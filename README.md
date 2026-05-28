@@ -178,7 +178,6 @@ Stack and Architecture Verdict / Risks and References
 |   |-- midbuild-express-api.md
 |   `-- postbuild-fastapi-template.md
 |-- scripts/
-|   |-- generate_social_preview.py
 |   |-- package_skill.py
 |   `-- validate_skill.py
 `-- tests/
@@ -198,12 +197,6 @@ python scripts/validate_skill.py
 ```
 
 The GitHub Actions workflow runs the same checks and fails if the generated package differs from what is committed.
-
-Regenerate the launch/social preview image:
-
-```bash
-python scripts/generate_social_preview.py
-```
 
 ## Tested Against
 
