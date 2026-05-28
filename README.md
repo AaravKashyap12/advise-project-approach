@@ -6,6 +6,14 @@ You know that friend who has built fifteen projects, read every ADR ever written
 
 This is that friend. As a skill.
 
+## One-Line Install
+
+```bash
+npx skills@latest add AaravKashyap12/advise-project-approach --skill advise-project-approach
+```
+
+This uses the open `skills` installer to fetch the repo from GitHub and install only this skill. It requires Node.js/npm. Review installed skills before use; skills run with your agent's normal permissions.
+
 ## Try These Prompts
 
 ```text
@@ -31,6 +39,20 @@ No vibes. Evidence first.
 
 ## Install
 
+### Recommended
+
+```bash
+npx skills@latest add AaravKashyap12/advise-project-approach --skill advise-project-approach
+```
+
+To list the skill without installing:
+
+```bash
+npx skills@latest add AaravKashyap12/advise-project-approach --list
+```
+
+### Manual Download
+
 Download the packaged skill:
 
 [dist/advise-project-approach.skill](./dist/advise-project-approach.skill)
@@ -39,14 +61,14 @@ Or install from the GitHub release:
 
 [v0.1.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.1.0/advise-project-approach.skill)
 
-### Skill UI
+#### Skill UI
 
 1. Download `dist/advise-project-approach.skill`.
 2. Open your agent's skill settings.
 3. Upload the `.skill` file.
 4. Start a new conversation.
 
-### Local Skill Folder
+#### Local Skill Folder
 
 If your agent supports local skill folders:
 
