@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from zipfile import ZIP_DEFLATED, ZipFile
+from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,7 +26,11 @@ def main() -> None:
         for path in sorted(SOURCE_DIR.rglob("*")):
             if path.is_file():
                 relative = path.relative_to(SOURCE_DIR.parent)
-                archive.write(path, relative.as_posix())
+                info = ZipInfo(relative.as_posix())
+                info.date_time = (2026, 1, 1, 0, 0, 0)
+                info.compress_type = ZIP_DEFLATED
+                info.external_attr = 0o644 << 16
+                archive.writestr(info, path.read_bytes())
 
     print(f"Built {OUT_FILE.relative_to(ROOT)}")
 
