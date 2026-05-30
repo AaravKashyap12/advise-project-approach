@@ -1,7 +1,7 @@
 {
   "name": "advise-project-approach",
   "description": "Research the best way to build a software project before, during, or after implementation.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Aarav Kashyap"
   },

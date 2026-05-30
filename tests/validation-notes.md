@@ -68,3 +68,12 @@ What it exposed:
 - Automatic invocation still depends heavily on the `description` field.
 - Star counts, release dates, package downloads, and "active" claims must always be rechecked live.
 - The skill is intentionally advisory and read-only; users may still expect it to implement changes unless the agent explains the boundary.
+
+## v0.2 Feedback Cases
+
+Launch feedback added these validation expectations:
+
+- Comparable projects must not become a popularity vote. The output should name what transfers and what should not be copied.
+- The recommendation should expose its decision framework, not only a confident answer.
+- Large repo reviews should map first, inspect targeted slices, and disclose skipped areas.
+- A/B examples should show where comparable research changes, narrows, or confirms the recommendation compared with generic prompting.

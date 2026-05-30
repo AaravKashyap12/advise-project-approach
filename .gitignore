@@ -8,4 +8,8 @@ Thumbs.db
 *.tmp
 *.log
 
+# Local skill installer output
+.agents/
+skills-lock.json
+
 # Keep dist/*.skill tracked as release artifacts.

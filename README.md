@@ -16,6 +16,16 @@ npx skills@latest add AaravKashyap12/advise-project-approach --skill advise-proj
 
 This uses the open `skills` installer to fetch the repo from GitHub and install only this skill. It requires Node.js/npm. Review installed skills before use; skills run with your agent's normal permissions.
 
+## What Changed in v0.2
+
+Based on launch feedback, v0.2 makes the skill more rigorous and easier to judge:
+
+- Adds a clear decision methodology: constraints -> comparables -> transferable patterns -> tradeoffs -> recommendation -> failure conditions.
+- Treats comparable projects as evidence, not a popularity vote.
+- Adds repo-size and token-budget rules for large codebases and monorepos.
+- Requires the output to say what was inspected, sampled, skipped, and where the recommendation is provisional.
+- Adds A/B examples showing where the skill should change generic AI advice.
+
 ## Try These Prompts
 
 ```text
@@ -61,7 +71,7 @@ Download the packaged skill:
 
 Or install from the GitHub release:
 
-[v0.1.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.1.0/advise-project-approach.skill)
+[v0.2.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.2.0/advise-project-approach.skill)
 
 #### Skill UI
 
@@ -106,6 +116,7 @@ The demo avoids hard-coded star counts and "latest" dates because those decay. T
 
 See more examples:
 
+- [A/B comparisons against generic prompting](./examples/ab-comparisons.md)
 - [Pre-build bookmark manager](./examples/prebuild-bookmark-manager.md)
 - [Mid-build Express API](./examples/midbuild-express-api.md)
 - [Post-build FastAPI template](./examples/postbuild-fastapi-template.md)
@@ -116,7 +127,9 @@ Without the skill, an agent will usually give you an answer. This skill makes it
 
 - Every "active" or "maintained" claim needs an exact date or adoption signal.
 - Comparable projects are verified against real repos, docs, or other primary sources.
+- Comparables must be separated into what transfers and what should not be copied.
 - If no repo was provided, it says "advisory from description" instead of pretending it inspected files.
+- Large repos are mapped first, then sampled by relevance instead of read blindly.
 - The recommendation includes when it becomes the wrong recommendation.
 - A self-check runs before output: is this grounded in actual project constraints, or is it generic?
 
@@ -174,6 +187,7 @@ Stack and Architecture Verdict / Risks and References
 |       `-- agents/
 |           `-- openai.yaml
 |-- examples/
+|   |-- ab-comparisons.md
 |   |-- prebuild-bookmark-manager.md
 |   |-- midbuild-express-api.md
 |   `-- postbuild-fastapi-template.md
