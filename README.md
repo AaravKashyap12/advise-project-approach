@@ -30,6 +30,20 @@ npx skills@latest add AaravKashyap12/advise-project-approach --skill advise-proj
 
 This uses the open `skills` installer to fetch the repo from GitHub and install only this skill. It requires Node.js/npm. Review installed skills before use; skills run with your agent's normal permissions.
 
+## Source of Truth
+
+The runtime skill spec lives in [skills/advise-project-approach/SKILL.md](./skills/advise-project-approach/SKILL.md). That file is the source of truth for the workflow agents actually run.
+
+Everything else in this repo exists to package, explain, test, or distribute that skill.
+
+## Where This Fits
+
+Use recent-signal tools to discover what changed.
+
+Use `advise-project-approach` to decide what to build, change, defer, or avoid.
+
+The skill is not trying to be a general search engine. It is a project-judgment workflow for turning evidence into engineering decisions.
+
 ## What Changed in v0.3
 
 v0.3 focuses on the thing generic AI stack advice often misses: real operating cost.
@@ -76,7 +90,7 @@ No vibes. Evidence first.
 
 ## Works Beyond Claude/Codex
 
-The workflow is intentionally self-contained in:
+The workflow is intentionally self-contained in its runtime skill file:
 
 ```text
 skills/advise-project-approach/SKILL.md
