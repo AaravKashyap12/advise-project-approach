@@ -1,12 +1,26 @@
 # advise-project-approach
 
-> A portable AI workflow that researches the best way to build your project before you commit to the wrong stack, vendor, or cost model.
+AI agents should not give project advice from vibes.
+
+`advise-project-approach` is a Claude/Codex skill for project planning, course correction, and review.
+
+Before recommending a stack, architecture, vendor, refactor, or shipping plan, it checks:
+
+- your actual constraints
+- comparable real-world projects
+- tradeoffs and failure conditions
+- cost and lock-in realities
+- when the recommendation becomes wrong
 
 ![advise-project-approach social preview](./assets/social-preview.png)
 
-You know that friend who has built fifteen projects, read every ADR ever written, and will tell you "actually, don't use Kafka for this" before you have even opened your editor?
+## Use It When
 
-This is that friend. As a skill-shaped workflow.
+- you have a rough project idea and need a build plan
+- your repo is getting messy and you need course correction
+- you are choosing between stacks or vendors
+- you want a review before shipping
+- you want the agent to explain what not to build yet
 
 ## One-Line Install
 

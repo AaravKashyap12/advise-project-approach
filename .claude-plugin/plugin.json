@@ -1,6 +1,6 @@
 {
   "name": "advise-project-approach",
-  "description": "Research the best way to build a software project before, during, or after implementation.",
+  "description": "Make AI agents research comparable projects, tradeoffs, costs, and failure conditions before giving build advice.",
   "version": "0.3.0",
   "author": {
     "name": "Aarav Kashyap"
@@ -14,7 +14,10 @@
     "project-planning",
     "software-architecture",
     "tech-stack",
-    "code-review"
+    "code-review",
+    "project-review",
+    "architecture-review",
+    "developer-tools"
   ],
   "skills": [
     "./skills/advise-project-approach"
