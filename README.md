@@ -54,6 +54,14 @@ v0.3 focuses on the thing generic AI stack advice often misses: real operating c
 - Clarifies that the core workflow is vendor-agnostic: `SKILL.md` can be copied into any agent harness.
 - Adds a pricing-focused example for Supabase-style recommendations.
 
+## Intake and Research Controls
+
+For vague pre-build ideas, the skill asks a short, nontechnical project-intake interview before researching. If you already gave enough constraints, it skips the interview and researches immediately.
+
+When current community signals could change the decision, it asks whether to include X, Reddit, and YouTube. You can choose official docs/GitHub only, selected community sources, or all three.
+
+The skill can optionally use [Agent-Reach](https://github.com/Panniantong/agent-reach) as a research adapter when it is already installed and authorized. Agent-Reach is not bundled or required; the core `SKILL.md` remains portable, read-only by default, and usable with ordinary browsing/search tools.
+
 ## What Changed in v0.2
 
 Based on launch feedback, v0.2 makes the skill more rigorous and easier to judge:

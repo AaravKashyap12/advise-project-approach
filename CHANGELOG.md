@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Added a lightweight intake interview for vague pre-build requests while skipping unnecessary questions when constraints are already clear.
+- Added user permission before researching current community signals from X, Reddit, and YouTube.
+- Added capability routing, source fallback, and evidence-coverage disclosure for external research.
+- Added optional Agent-Reach adapter guidance without bundling its dependencies or requiring installation.
+- Added external-content prompt-injection and secret-handling guardrails.
+
 ## 0.3.0 - 2026-06-01
 
 - Added pricing and operating-cost analysis for managed services, hosting, storage, auth, AI APIs, observability, and vendor lock-in.
