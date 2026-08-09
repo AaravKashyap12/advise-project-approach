@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 - 2026-08-09
 
 - Added a lightweight intake interview for vague pre-build requests while skipping unnecessary questions when constraints are already clear.
 - Added user permission before researching current community signals from X, Reddit, and YouTube.

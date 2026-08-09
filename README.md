@@ -54,7 +54,11 @@ v0.3 focuses on the thing generic AI stack advice often misses: real operating c
 - Clarifies that the core workflow is vendor-agnostic: `SKILL.md` can be copied into any agent harness.
 - Adds a pricing-focused example for Supabase-style recommendations.
 
-## Intake and Research Controls
+## What Changed in v0.4
+
+v0.4 adds lightweight intake and configurable research routing.
+
+### Intake and Research Controls
 
 For vague pre-build ideas, the skill asks a short, nontechnical project-intake interview before researching. If you already gave enough constraints, it skips the interview and researches immediately.
 
@@ -128,7 +132,7 @@ Download the packaged skill:
 
 Or install from the GitHub release:
 
-[v0.3.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.3.0/advise-project-approach.skill)
+[v0.4.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.4.0/advise-project-approach.skill)
 
 #### Skill UI
 
