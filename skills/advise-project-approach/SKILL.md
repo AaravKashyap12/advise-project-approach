@@ -7,6 +7,17 @@ description: Research and advise on the best way to approach a software project,
 
 Help the user decide, validate, or improve how a project should be built. This skill automates the research loop a strong engineer would normally do manually: understand the project goal, inspect any existing work, study credible comparables, evaluate tech-stack and architecture choices, then recommend the highest-leverage path.
 
+## Non-Negotiable Protocol
+
+Apply these gates before all other instructions:
+
+1. **Stop for vague intake.** If two or more decision-critical facts are unknown, ask the concise intake batch and end the response. Do not invent a target user, product direction, stack, architecture, roadmap, or success metric. If the user explicitly says to skip questions, proceed with visible assumptions instead.
+2. **Keep repository review read-only.** A request to inspect or review a repository does not authorize dependency installation or execution of its tests, builds, linters, audits, benchmarks, scripts, or application code. Ask before running them.
+3. **Do not outsource judgment to popularity.** Never select or copy a stack because a repository has the most stars or adoption. If the user requests that shortcut, explain why it is not a fit test and continue only with visible assumptions or known constraints.
+4. **Require receipts before recommendation.** For a substantive recommendation, inspect relevant local evidence and normally two comparables plus primary documentation or pricing sources when available. State what was inspected, what each source supports, its limits, and the observed date for time-sensitive claims.
+5. **Complete the decision.** Every final recommendation must include constraint fit, at least one credible alternative, explicit tradeoffs, when the recommendation becomes wrong, and ordered next actions. If evidence is unavailable, mark the answer provisional instead of silently omitting these items.
+6. **Stop when evidence is sufficient.** Use the bounded research and repository-inspection rules below. Do not browse or inspect indefinitely to make the answer look thorough.
+
 ## Operating Modes
 
 First identify which mode applies:
@@ -26,6 +37,8 @@ If a mid-build or post-build request provides only a description and no repo/cod
 ## Project Intake
 
 Use a lightweight intake interview before research when a pre-build request is vague enough that different answers would materially change the recommendation.
+
+Decision-critical facts include the primary user, core workflow, project stage, must-haves, builder/team capability, budget or deadline, deployment target, and dominant priority.
 
 Do not interrogate users who already supplied clear constraints. If the project, users, must-have workflow, stage, and major constraints are sufficiently specified, begin research immediately and ask only the missing decision-critical question.
 
@@ -75,11 +88,13 @@ The agent must ask before:
 
 - modifying files
 - installing dependencies
-- running scripts that may change state
+- running project scripts, tests, builds, linters, audits, benchmarks, or commands that may create caches, artifacts, lockfile changes, downloads, database access, or other state
 - running migrations, seeders, code generators, or package publish commands
 - committing, pushing, opening issues, creating pull requests, or creating releases
 - deleting files or changing configuration
 - installing or configuring optional research adapters such as Agent-Reach
+
+For a repository review, do not interpret “review this repo” as permission to install dependencies or execute its scripts. Inspect files, existing CI results, and published artifacts first. Ask before running repository code even when the command appears routine.
 
 ## Safety and Privacy
 
@@ -104,6 +119,19 @@ Follow the checklist in order. Skip a step only when it is impossible or irrelev
 6. **Compare approaches** - evaluate 2-4 plausible architecture and stack options against the criteria. Include tradeoffs, migration risk, maturity, deployment fit, operating cost, and when each option would be wrong.
 7. **Recommend a path** - choose one primary approach, explain why, name second-best alternatives, and give next actions ordered by impact.
 8. **Adapt to project stage** - for pre-build, produce a build strategy; for mid-build, produce course corrections; for post-build, produce a review and improvement roadmap.
+
+## Required Deliverables
+
+Do not finalize a recommendation unless the answer includes these items, scaled to the size of the question:
+
+1. **Evidence status** - what was inspected, what external research was performed, and what was unavailable or skipped.
+2. **Constraint fit** - which user constraints drove the decision.
+3. **Comparable evidence** - normally two relevant comparables when available, including what transfers and what should not be copied. If comparables are unavailable or unnecessary for a narrow decision, say why.
+4. **Alternatives and tradeoffs** - at least one credible alternative with what it improves and what it worsens.
+5. **Failure conditions** - the conditions or new evidence that would make the recommendation wrong.
+6. **Next actions** - a short, ordered path the user can execute.
+
+For a vague request stopped at the intake gate, the intake questions are the complete response for that turn; these deliverables apply after the user answers.
 
 ## Decision Methodology
 
@@ -156,6 +184,8 @@ Avoid burning context on large projects. Always map first, then inspect selectiv
 - **Large repo** - roughly 500-2,000 relevant files. Inspect docs/manifests/architecture notes, identify major subsystems, then review targeted slices only. Do not summarize every subsystem.
 - **Huge repo or monorepo** - ask for the target app/package/service if unclear. If the user cannot narrow it, produce a shallow map and recommend the most useful target for deeper review.
 
+For a broad repository request, use one bounded first pass: map the tree, read the main documentation and manifests, inspect CI/test configuration, and sample only the two or three subsystems most relevant to the question. Then either produce a scoped assessment or ask the user where to go deeper. Do not silently turn a broad review into an exhaustive audit.
+
 For medium and larger repos, include an inspection scope note:
 
 - what was mapped
@@ -179,6 +209,25 @@ Before external research, identify which capabilities are available:
 - optional adapters such as Agent-Reach, if already installed and authorized
 
 Use a preferred source and a fallback when possible. If a source or adapter is unavailable, continue with the remaining sources and disclose the gap. Never claim a multi-source search happened when only one source was checked.
+
+### Research budget and stop rule
+
+Start with the smallest evidence set capable of changing the decision:
+
+- two or three direct or adjacent comparables
+- the primary official documentation for each material stack or architecture claim
+- the official pricing/limits source for each cost-sensitive vendor claim
+- one contrasting alternative when it clarifies the recommendation
+
+Expand research only when sources conflict, a material claim remains unverified, or the decision is high stakes. Stop when each material recommendation is supported, the main alternative is understood, and remaining uncertainty is explicitly listed. Do not keep browsing merely to accumulate more links.
+
+Maintain a compact evidence ledger while researching:
+
+- **Claim or decision** - what the evidence is being used to decide
+- **Source** - local file/command or external URL
+- **Observed** - exact date for time-sensitive web evidence
+- **Support** - what the source actually establishes
+- **Limit** - what it does not establish
 
 ### Optional Agent-Reach adapter
 
@@ -297,6 +346,9 @@ Use the contract that matches the operating mode.
 ### Project Frame
 <Goal, users, constraints, assumptions, success criteria, and evidence status.>
 
+### Evidence Reviewed
+<Compact evidence ledger: local/user evidence, external sources, observed dates, and research gaps.>
+
 ### Decision Methodology
 <Constraints considered, decision criteria, and how comparables influenced or did not influence the recommendation.>
 
@@ -383,6 +435,8 @@ For a vague pre-build request, include an `Intake Summary` before `Project Frame
 ```
 
 When community research was requested, include the selected sources and their coverage in `Evidence Reviewed`. When it was declined or unavailable, say so explicitly.
+
+The headings above are a completeness contract, not a demand for a long report. Merge adjacent sections for narrow questions, but preserve evidence status, alternatives, failure conditions, and next actions.
 
 Cap high-priority items at five. Keep the report direct and useful; do not bury the user in every possible improvement.
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+## 0.5.0 - 2026-08-11
+
+- Added a turn-ending intake gate so vague project ideas cannot receive invented product or stack recommendations before constraints are known.
+- Added required evidence status, constraint fit, comparable evidence, alternatives, failure conditions, and next actions to every completed recommendation.
+- Added an explicit permission boundary before running repository tests, builds, linters, audits, benchmarks, or dependency installation.
+- Added bounded first-pass repository inspection and external-research stopping rules.
+- Added a reusable behavioral evaluation matrix, rubric, and the first recorded six-case forward-test report.
+- Replaced the growing README test-case list with links to the dedicated `evals/` evidence area.
+- Added a theme-aware project mark and compact README navigation.
+- Reduced the README release summary to the current version and moved older history to this changelog.
+
 ## 0.4.0 - 2026-08-09
 
 - Added a lightweight intake interview for vague pre-build requests while skipping unnecessary questions when constraints are already clear.

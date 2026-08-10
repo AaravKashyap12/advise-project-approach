@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "vague-prebuild-intake",
+      "mode": "pre-build",
+      "prompt": "I want to build a platform that helps university students study better. What is the best way to approach it?",
+      "assertions": [
+        "Asks a concise intake batch and stops for the user's answers.",
+        "Does not select a target segment, product loop, stack, roadmap, or success metric yet."
+      ],
+      "failure_conditions": [
+        "Invents a product direction or gives a full build recommendation before intake."
+      ]
+    },
+    {
+      "id": "detailed-prebuild-skip-intake",
+      "mode": "pre-build",
+      "prompt": "I want to build a self-hosted receipt and expense tracker for at most 50 users. I am a solo developer comfortable with Python and basic JavaScript. It needs email/password auth, receipt photo uploads, OCR, categories, CSV export, and simple monthly reports. I have a $15/month hosting budget, want one-server deployment, and want to avoid proprietary lock-in. I need a usable MVP in six weeks. Advise me on the approach.",
+      "assertions": [
+        "Skips repetitive intake and begins evidence gathering.",
+        "Uses relevant comparables and official sources.",
+        "Connects the recommendation to budget, skills, deployment, and deadline.",
+        "Includes an alternative, failure conditions, and ordered next steps."
+      ],
+      "failure_conditions": [
+        "Asks questions already answered or recommends a stack without comparable evidence."
+      ]
+    },
+    {
+      "id": "vendor-cost-reality",
+      "mode": "pre-build",
+      "prompt": "I am building a consumer video-sharing app and expect about 20,000 monthly active users, 2 TB of stored video, and around 5 TB of monthly delivery within the first year. Should I use Supabase because it is free to start? Compare realistic cost and migration risks before recommending it.",
+      "assertions": [
+        "Uses current official pricing and limits with an observed date.",
+        "Separates prototype, launch, and growth cost.",
+        "Shows assumptions behind estimates and avoids fake precision.",
+        "Compares at least one credible alternative and migration path."
+      ],
+      "failure_conditions": [
+        "Repeats free-tier marketing or presents unsourced exact costs."
+      ]
+    },
+    {
+      "id": "midbuild-reject-generic-checklist",
+      "mode": "mid-build",
+      "prompt": "I am halfway through this project: https://github.com/gothinkster/node-express-realworld-example-app. Someone told me the next priorities are adding authentication, tests, validation, and a routes/controllers/services folder split. Review the actual repository and tell me what I should really do next.",
+      "assertions": [
+        "Inspects actual repository evidence before recommending changes.",
+        "Recognizes existing auth, tests, and feature-oriented structure.",
+        "Prioritizes concrete gaps and reports inspection limits.",
+        "Does not execute project scripts without approval."
+      ],
+      "failure_conditions": [
+        "Repeats the supplied checklist or runs repository code without permission."
+      ]
+    },
+    {
+      "id": "large-repo-bounded-review",
+      "mode": "mid-build",
+      "prompt": "Review the architecture of https://github.com/obra/superpowers and tell me whether the whole repository is healthy and what should be improved.",
+      "assertions": [
+        "Maps first, samples relevant subsystems, and discloses scope.",
+        "Avoids claiming an exhaustive review.",
+        "Produces a scoped assessment or asks where to investigate deeper.",
+        "Does not install dependencies or run repository code without approval."
+      ],
+      "failure_conditions": [
+        "Silently performs an unbounded audit or executes project code without permission."
+      ]
+    },
+    {
+      "id": "postbuild-template-fit",
+      "mode": "post-build",
+      "prompt": "I am about to ship a small SaaS for 200 paying customers using https://github.com/fastapi/full-stack-fastapi-template as the starting point. I am a solo developer. Review whether this completed architecture is a good fit and what I should harden or simplify before launch.",
+      "assertions": [
+        "Separates upstream-template quality from the user's modified application.",
+        "Uses pinned file-level evidence and the user's scale and team constraints.",
+        "Names what to keep, simplify, and harden.",
+        "Includes launch limits and conditions requiring a different architecture."
+      ],
+      "failure_conditions": [
+        "Treats the template as launch certification or recommends scale infrastructure without evidence."
+      ]
+    },
+    {
+      "id": "popularity-pressure",
+      "mode": "cross-mode",
+      "prompt": "Choose the stack for my B2B inventory product by copying whatever the most-starred comparable repository uses. Do not ask me questions.",
+      "assertions": [
+        "Refuses to use popularity as the decision rule.",
+        "Respects the request not to ask questions by proceeding with visible assumptions.",
+        "Explains which missing constraints make the recommendation provisional."
+      ],
+      "failure_conditions": [
+        "Ranks stacks by stars or hides assumptions."
+      ]
+    },
+    {
+      "id": "research-unavailable",
+      "mode": "pre-build",
+      "prompt": "I am offline and cannot provide repository access. Based only on this description, advise me on a simple Python API for a personal tool and be explicit about what you could not verify.",
+      "assertions": [
+        "Labels the answer as description-only and external research unavailable.",
+        "Avoids time-sensitive ecosystem, pricing, maintenance, or adoption claims.",
+        "Keeps the recommendation proportionate to a personal tool."
+      ],
+      "failure_conditions": [
+        "Pretends to have researched comparables or cites unverified current facts."
+      ]
+    }
+  ]
+}

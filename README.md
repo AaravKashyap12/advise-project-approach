@@ -1,6 +1,16 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/brand/mark-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/brand/mark-light.svg">
+    <img alt="advise-project-approach logo" src="./assets/brand/mark-light.svg" width="112">
+  </picture>
+</p>
+
 # advise-project-approach
 
 AI agents should not give project advice from vibes.
+
+**[Install](#one-line-install) | [Skill source](./skills/advise-project-approach/SKILL.md) | [What's new in v0.5](#whats-new-in-v050) | [Examples](#demo) | [Tests & evidence](#evaluation) | [Changelog](./CHANGELOG.md) | [Contributing](./CONTRIBUTING.md)**
 
 `advise-project-approach` is a Claude/Codex skill for project planning, course correction, and review.
 
@@ -36,6 +46,19 @@ The runtime skill spec lives in [skills/advise-project-approach/SKILL.md](./skil
 
 Everything else in this repo exists to package, explain, test, or distribute that skill.
 
+## What's New in v0.5.0
+
+v0.5 makes the workflow harder to bypass and easier to evaluate.
+
+- Stops vague pre-build requests at a short intake instead of inventing requirements and recommending a stack immediately.
+- Requires evidence status, constraint fit, alternatives, failure conditions, and concrete next actions in every completed recommendation.
+- Adds explicit permission boundaries before repository tests, builds, audits, benchmarks, dependency installation, or other execution.
+- Bounds first-pass repository inspection and external research so large projects do not consume tokens without a stopping rule.
+- Adds reusable evaluation cases, a scoring rubric, and preserved forward-test evidence, including the initial failure run.
+- Adds the new project identity and a more navigable README without turning the README into release-history storage.
+
+See the [full changelog](./CHANGELOG.md) for earlier versions.
+
 ## Where This Fits
 
 Use recent-signal tools to discover what changed.
@@ -43,38 +66,6 @@ Use recent-signal tools to discover what changed.
 Use `advise-project-approach` to decide what to build, change, defer, or avoid.
 
 The skill is not trying to be a general search engine. It is a project-judgment workflow for turning evidence into engineering decisions.
-
-## What Changed in v0.3
-
-v0.3 focuses on the thing generic AI stack advice often misses: real operating cost.
-
-- Adds pricing and operating-cost analysis for managed services, hosting, storage, auth, AI APIs, observability, and lock-in.
-- Treats "free to start" as a claim to verify, not a reason to recommend a vendor.
-- Makes tradeoffs more blunt: what you gain, what you give up, what becomes harder later, and when the recommendation becomes wrong.
-- Clarifies that the core workflow is vendor-agnostic: `SKILL.md` can be copied into any agent harness.
-- Adds a pricing-focused example for Supabase-style recommendations.
-
-## What Changed in v0.4
-
-v0.4 adds lightweight intake and configurable research routing.
-
-### Intake and Research Controls
-
-For vague pre-build ideas, the skill asks a short, nontechnical project-intake interview before researching. If you already gave enough constraints, it skips the interview and researches immediately.
-
-When current community signals could change the decision, it asks whether to include X, Reddit, and YouTube. You can choose official docs/GitHub only, selected community sources, or all three.
-
-The skill can optionally use [Agent-Reach](https://github.com/Panniantong/agent-reach) as a research adapter when it is already installed and authorized. Agent-Reach is not bundled or required; the core `SKILL.md` remains portable, read-only by default, and usable with ordinary browsing/search tools.
-
-## What Changed in v0.2
-
-Based on launch feedback, v0.2 makes the skill more rigorous and easier to judge:
-
-- Adds a clear decision methodology: constraints -> comparables -> transferable patterns -> tradeoffs -> recommendation -> failure conditions.
-- Treats comparable projects as evidence, not a popularity vote.
-- Adds repo-size and token-budget rules for large codebases and monorepos.
-- Requires the output to say what was inspected, sampled, skipped, and where the recommendation is provisional.
-- Adds A/B examples showing where the skill should change generic AI advice.
 
 ## Try These Prompts
 
@@ -110,15 +101,9 @@ skills/advise-project-approach/SKILL.md
 
 The packaged `.skill` file and `agents/openai.yaml` are convenience metadata for compatible installers and UIs. A non-Claude or non-Codex harness can copy the `SKILL.md` instructions, adapt its own trigger/loading mechanism, and still use the same decision workflow.
 
-## Install
+## Other Install Methods
 
-### Recommended
-
-```bash
-npx skills@latest add AaravKashyap12/advise-project-approach --skill advise-project-approach
-```
-
-To list the skill without installing:
+To inspect the available skill before installing:
 
 ```bash
 npx skills@latest add AaravKashyap12/advise-project-approach --list
@@ -132,7 +117,7 @@ Download the packaged skill:
 
 Or install from the GitHub release:
 
-[v0.4.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.4.0/advise-project-approach.skill)
+[Download the v0.5.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.5.0/advise-project-approach.skill)
 
 #### Skill UI
 
@@ -240,6 +225,9 @@ Stack and Architecture Verdict / Cost and Vendor Reality / Risks and References
 |-- SECURITY.md
 |-- CLAUDE.md
 |-- assets/
+|   |-- brand/
+|   |   |-- mark-dark.svg
+|   |   `-- mark-light.svg
 |   `-- social-preview.png
 |-- .claude-plugin/
 |   `-- plugin.json
@@ -259,11 +247,13 @@ Stack and Architecture Verdict / Cost and Vendor Reality / Risks and References
 |   |-- prebuild-bookmark-manager.md
 |   |-- midbuild-express-api.md
 |   `-- postbuild-fastapi-template.md
+|-- evals/
+|   |-- README.md
+|   |-- cases.json
+|   `-- results/
 |-- scripts/
 |   |-- package_skill.py
 |   `-- validate_skill.py
-`-- tests/
-    `-- validation-notes.md
 ```
 
 The packaged `.skill` file is a zip archive containing the `advise-project-approach/` skill folder.
@@ -280,15 +270,15 @@ python scripts/validate_skill.py
 
 The GitHub Actions workflow runs the same checks and fails if the generated package differs from what is committed.
 
-## Tested Against
+## Evaluation
 
-| Repo | What it exposed |
-| --- | --- |
-| [linkding](https://github.com/sissbruecker/linkding) | Freshness rules: the skill must not flatten a mature project's current stack into an older, simpler version. |
-| [gothinkster/node-express-realworld-example-app](https://github.com/gothinkster/node-express-realworld-example-app) | Repo evidence: do not recommend "add auth/tests" when the repo already has them. |
-| [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | Fit judgment: distinguish "this is a good template" from "this is right for your user and scale." |
+The skill is forward-tested across vague and detailed pre-build requests, vendor-cost decisions, mid-build repository reviews, large-repository sampling, and post-build launch reviews.
 
-See [tests/validation-notes.md](./tests/validation-notes.md) for the validation notes.
+The first exploratory six-case run surfaced risks in intake enforcement, research completeness, repository permission boundaries, and stopping behavior. A stricter rerun explicitly invoked the skill by name and path. Both records are preserved rather than hiding the rough first pass.
+
+[Methodology and rubric](./evals/README.md) | [Reusable cases](./evals/cases.json) | [Initial failure run](./evals/results/2026-08-11-v0.4.0-forward-test.md) | [v0.5.0 focused rerun](./evals/results/2026-08-11-v0.5.0-rerun.md)
+
+These are exploratory forward tests, not yet a controlled same-model baseline benchmark. No improvement percentage is claimed.
 
 ## Contributing
 
