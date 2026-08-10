@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="120" viewBox="0 28 1000 108">
+      
+      <g transform="translate(4,48) scale(0.8)">
+        <circle cx="24" cy="18" r="5.5" fill="#FFFFFF"/>
+        <path fill="#FFFFFF" d="M18 28 Q18 25 21 25 H27 Q30 25 30 28 V39 L45 49 V79 H37 V54 L18 42 Z"/>
+        <circle cx="50" cy="10" r="6" fill="#C77855"/>
+        <path fill="#C77855" d="M42 29 L50 21 L58 29 H54 V80 H46 V29 Z"/>
+        <circle cx="76" cy="18" r="5.5" fill="#FFFFFF"/>
+        <path fill="#FFFFFF" d="M70 28 Q70 25 73 25 H79 Q82 25 82 28 V42 L63 54 V79 H55 V49 L70 39 Z"/>
+      </g>
+    
+      <text x="98" y="112" fill="#FFFFFF"
+            font-family="Inter, Arial, Helvetica, sans-serif"
+            font-size="66" font-weight="600" letter-spacing="-2.2">
+        advise-project-approach
+      </text>
+    </svg>

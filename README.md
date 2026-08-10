@@ -1,16 +1,24 @@
-<p align="center">
+<h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/brand/mark-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/brand/mark-light.svg">
-    <img alt="advise-project-approach logo" src="./assets/brand/mark-light.svg" width="112">
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/brand/lockup-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/brand/lockup-light.svg">
+    <img alt="advise-project-approach" src="./assets/brand/lockup-light.svg" width="680">
   </picture>
+</h1>
+
+<p align="center"><strong>AI agents should not give project advice from vibes.</strong></p>
+
+<p align="center">
+  <strong>
+    <a href="#one-line-install">Install</a> |
+    <a href="./skills/advise-project-approach/SKILL.md">Skill source</a> |
+    <a href="#whats-new-in-v050">What's new in v0.5</a> |
+    <a href="#demo">Examples</a> |
+    <a href="#evaluation">Tests &amp; evidence</a> |
+    <a href="./CHANGELOG.md">Changelog</a> |
+    <a href="./CONTRIBUTING.md">Contributing</a>
+  </strong>
 </p>
-
-# advise-project-approach
-
-AI agents should not give project advice from vibes.
-
-**[Install](#one-line-install) | [Skill source](./skills/advise-project-approach/SKILL.md) | [What's new in v0.5](#whats-new-in-v050) | [Examples](#demo) | [Tests & evidence](#evaluation) | [Changelog](./CHANGELOG.md) | [Contributing](./CONTRIBUTING.md)**
 
 `advise-project-approach` is a Claude/Codex skill for project planning, course correction, and review.
 
@@ -21,8 +29,6 @@ Before recommending a stack, architecture, vendor, refactor, or shipping plan, i
 - tradeoffs and failure conditions
 - cost and lock-in realities
 - when the recommendation becomes wrong
-
-![advise-project-approach social preview](./assets/social-preview.png)
 
 ## Use It When
 
@@ -225,10 +231,9 @@ Stack and Architecture Verdict / Cost and Vendor Reality / Risks and References
 |-- SECURITY.md
 |-- CLAUDE.md
 |-- assets/
-|   |-- brand/
-|   |   |-- mark-dark.svg
-|   |   `-- mark-light.svg
-|   `-- social-preview.png
+|   `-- brand/
+|       |-- lockup-dark.svg
+|       `-- lockup-light.svg
 |-- .claude-plugin/
 |   `-- plugin.json
 |-- .github/

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Replaced the oversized README preview with a compact, theme-aware horizontal logo lockup.
+
 ## 0.5.0 - 2026-08-11
 
 - Added a turn-ending intake gate so vague project ideas cannot receive invented product or stack recommendations before constraints are known.
