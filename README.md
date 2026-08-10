@@ -1,10 +1,10 @@
-<h1 align="center">
+<p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/brand/lockup-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="./assets/brand/lockup-light.svg">
     <img alt="advise-project-approach" src="./assets/brand/lockup-light.svg" width="680">
   </picture>
-</h1>
+</p>
 
 <p align="center"><strong>AI agents should not give project advice from vibes.</strong></p>
 
