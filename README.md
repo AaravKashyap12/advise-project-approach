@@ -12,7 +12,7 @@
   <strong>
     <a href="#one-line-install">Install</a> |
     <a href="./skills/advise-project-approach/SKILL.md">Skill source</a> |
-    <a href="#whats-new-in-v050">What's new in v0.5</a> |
+    <a href="#whats-new-in-v060">What's new in v0.6</a> |
     <a href="#demo">Examples</a> |
     <a href="#evaluation">Tests &amp; evidence</a> |
     <a href="./CHANGELOG.md">Changelog</a> |
@@ -52,16 +52,15 @@ The runtime skill spec lives in [skills/advise-project-approach/SKILL.md](./skil
 
 Everything else in this repo exists to package, explain, test, or distribute that skill.
 
-## What's New in v0.5.0
+## What's New in v0.6.0
 
-v0.5 makes the workflow harder to bypass and easier to evaluate.
+v0.6 makes the skill portable across agent harnesses without removing the compatibility layers existing users rely on.
 
-- Stops vague pre-build requests at a short intake instead of inventing requirements and recommending a stack immediately.
-- Requires evidence status, constraint fit, alternatives, failure conditions, and concrete next actions in every completed recommendation.
-- Adds explicit permission boundaries before repository tests, builds, audits, benchmarks, dependency installation, or other execution.
-- Bounds first-pass repository inspection and external research so large projects do not consume tokens without a stopping rule.
-- Adds reusable evaluation cases, a scoring rubric, and preserved forward-test evidence, including the initial failure run.
-- Adds the new project identity and a more navigable README without turning the README into release-history storage.
+- Adds `AGENTS.md` as the shared repository guidance source, with a small `CLAUDE.md` import bridge for Claude Code.
+- Documents installation for pi, Claude Code, Codex, and generic Agent Skills-compatible harnesses.
+- Keeps the packaged `.skill`, Claude plugin manifest, and Codex `agents/openai.yaml` as additive compatibility layers.
+- Adds a portability evidence matrix that separates structural compatibility from runtime claims.
+- Adds release-version validation so `VERSION`, plugin metadata, and the README cannot silently drift apart.
 
 See the [full changelog](./CHANGELOG.md) for earlier versions.
 
@@ -138,7 +137,7 @@ Download the packaged skill:
 
 Or install from the GitHub release:
 
-[Download the v0.5.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.5.0/advise-project-approach.skill)
+[Download the v0.6.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.6.0/advise-project-approach.skill)
 
 #### Skill UI
 

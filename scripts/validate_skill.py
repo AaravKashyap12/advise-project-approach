@@ -18,6 +18,9 @@ PACKAGE_FILE = ROOT / "dist" / f"{SKILL_NAME}.skill"
 EVAL_CASES_FILE = ROOT / "evals" / "cases.json"
 AGENTS_FILE = ROOT / "AGENTS.md"
 CLAUDE_FILE = ROOT / "CLAUDE.md"
+VERSION_FILE = ROOT / "VERSION"
+PLUGIN_FILE = ROOT / ".claude-plugin" / "plugin.json"
+README_FILE = ROOT / "README.md"
 EXPECTED_PACKAGE_FILES = {
     f"{SKILL_NAME}/SKILL.md",
     f"{SKILL_NAME}/agents/openai.yaml",
@@ -129,11 +132,35 @@ def validate_repo_guidance() -> None:
         fail("CLAUDE.md must import AGENTS.md")
 
 
+def validate_release_version() -> None:
+    if not VERSION_FILE.is_file():
+        fail("Missing VERSION release source of truth")
+    version = VERSION_FILE.read_text(encoding="utf-8").strip()
+    if not re.fullmatch(r"\d+\.\d+\.\d+", version):
+        fail("VERSION must contain a semantic version such as 0.6.0")
+
+    if not PLUGIN_FILE.is_file():
+        fail("Missing .claude-plugin/plugin.json")
+    plugin = json.loads(PLUGIN_FILE.read_text(encoding="utf-8"))
+    if plugin.get("version") != version:
+        fail("Plugin version must match VERSION")
+
+    if not README_FILE.is_file():
+        fail("Missing README.md")
+    readme = README_FILE.read_text(encoding="utf-8")
+    if f"## What's New in v{version}" not in readme:
+        fail("README current What's New section must match VERSION")
+    release_url = f"/releases/download/v{version}/advise-project-approach.skill"
+    if release_url not in readme:
+        fail("README release asset link must match VERSION")
+
+
 def main() -> None:
     validate_source()
     validate_package()
     validate_eval_cases()
     validate_repo_guidance()
+    validate_release_version()
     print("Skill package is valid.")
 
 

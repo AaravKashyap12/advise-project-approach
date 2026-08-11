@@ -8,6 +8,22 @@ This repository packages one public skill: `advise-project-approach`.
 - Do not edit `dist/advise-project-approach.skill` by hand. Rebuild it with `python scripts/package_skill.py`.
 - Keep `.claude-plugin/plugin.json`, `skills/advise-project-approach/agents/openai.yaml`, `CHANGELOG.md`, and release notes in sync when changing their public metadata.
 
+## Release Discipline
+
+- Treat `VERSION` as the canonical release version.
+- Every public push must bump `VERSION` using semantic versioning, update `.claude-plugin/plugin.json`, replace the README's single current `What's New` section and release-asset link, and add a dated entry to `CHANGELOG.md`.
+- Rebuild `dist/advise-project-approach.skill` before committing.
+- After pushing, create or update the matching `vX.Y.Z` GitHub release and attach the rebuilt `.skill` artifact.
+- Do not accumulate old release summaries in the README; keep full history in `CHANGELOG.md`.
+
+## Maintainer Agent Roles
+
+- For each PR or issue task, create a fresh read-only communication sub-agent with the complete discussion, review, check, and linked-issue context. Use it to recommend or draft communication, then close it when the task is complete.
+- Keep communication review separate from code review. Use an independent code-review sub-agent to inspect correctness, regressions, compatibility, security, and missing tests.
+- Communication agents must not post, close, merge, label, or otherwise mutate GitHub without explicit maintainer authorization.
+- Read the full conversation before replying, distinguish a useful idea from implementation quality, and credit ideas incorporated through a different implementation.
+- A green check is necessary but not sufficient for merging. Accepted changes must also satisfy scope, behavior, compatibility, documentation, and release requirements.
+
 ## Validation
 
 Before committing changes, run:
@@ -27,6 +43,7 @@ The validator checks:
 - packaged `.skill` archive contains the expected root folder and files
 - evaluation cases retain their required schema
 - repository guidance remains available to generic agents and Claude Code
+- release version, plugin metadata, and README current-version references agree
 
 ## Editing Rules
 
