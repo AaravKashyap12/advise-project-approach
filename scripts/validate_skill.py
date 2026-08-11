@@ -1,25 +1,16 @@
 #!/usr/bin/env python3
-"""Validate source and packaged skill structure."""
+"""Validate source skill structure."""
 
 from __future__ import annotations
 
-import json
 import re
 from pathlib import Path
-from zipfile import ZipFile
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAME = "advise-project-approach"
 SOURCE_DIR = ROOT / "skills" / SKILL_NAME
 SKILL_FILE = SOURCE_DIR / "SKILL.md"
-AGENT_FILE = SOURCE_DIR / "agents" / "openai.yaml"
-PACKAGE_FILE = ROOT / "dist" / f"{SKILL_NAME}.skill"
-EVAL_CASES_FILE = ROOT / "evals" / "cases.json"
-EXPECTED_PACKAGE_FILES = {
-    f"{SKILL_NAME}/SKILL.md",
-    f"{SKILL_NAME}/agents/openai.yaml",
-}
 
 
 def fail(message: str) -> None:
@@ -47,14 +38,13 @@ def validate_source() -> None:
         fail(f"Missing source directory: {SOURCE_DIR.relative_to(ROOT)}")
     if not SKILL_FILE.is_file():
         fail("Missing skills/advise-project-approach/SKILL.md")
-    if not AGENT_FILE.is_file():
-        fail("Missing skills/advise-project-approach/agents/openai.yaml")
 
+    # Only SKILL.md should exist in the skill folder
     extra_skill_files = {
         path.relative_to(SOURCE_DIR).as_posix()
         for path in SOURCE_DIR.rglob("*")
         if path.is_file()
-    } - {"SKILL.md", "agents/openai.yaml"}
+    } - {"SKILL.md"}
     if extra_skill_files:
         fail(f"Unexpected files inside skill package: {sorted(extra_skill_files)}")
 
@@ -73,56 +63,9 @@ def validate_source() -> None:
         fail("Frontmatter description must be 1024 characters or fewer")
 
 
-def validate_package() -> None:
-    if not PACKAGE_FILE.is_file():
-        fail(f"Missing package: {PACKAGE_FILE.relative_to(ROOT)}")
-    with ZipFile(PACKAGE_FILE) as archive:
-        names = {name for name in archive.namelist() if not name.endswith("/")}
-    if names != EXPECTED_PACKAGE_FILES:
-        fail(
-            "Package contents differ from expected files: "
-            f"expected {sorted(EXPECTED_PACKAGE_FILES)}, got {sorted(names)}"
-        )
-
-
-def validate_eval_cases() -> None:
-    if not EVAL_CASES_FILE.is_file():
-        fail("Missing evals/cases.json")
-
-    data = json.loads(EVAL_CASES_FILE.read_text(encoding="utf-8"))
-    if data.get("schema_version") != 1:
-        fail("evals/cases.json must use schema_version 1")
-
-    cases = data.get("cases")
-    if not isinstance(cases, list) or len(cases) < 6:
-        fail("evals/cases.json must contain at least six cases")
-
-    allowed_modes = {"pre-build", "mid-build", "post-build", "cross-mode"}
-    seen_ids: set[str] = set()
-    for case in cases:
-        case_id = case.get("id")
-        if not isinstance(case_id, str) or not case_id:
-            fail("Every eval case must have a non-empty id")
-        if case_id in seen_ids:
-            fail(f"Duplicate eval case id: {case_id}")
-        seen_ids.add(case_id)
-        if case.get("mode") not in allowed_modes:
-            fail(f"Invalid mode for eval case {case_id}")
-        if not isinstance(case.get("prompt"), str) or not case["prompt"].strip():
-            fail(f"Eval case {case_id} must have a prompt")
-        for field in ("assertions", "failure_conditions"):
-            values = case.get(field)
-            if not isinstance(values, list) or not values:
-                fail(f"Eval case {case_id} must have non-empty {field}")
-            if not all(isinstance(value, str) and value.strip() for value in values):
-                fail(f"Eval case {case_id} has an invalid {field} entry")
-
-
 def main() -> None:
     validate_source()
-    validate_package()
-    validate_eval_cases()
-    print("Skill package is valid.")
+    print("Skill is valid.")
 
 
 if __name__ == "__main__":

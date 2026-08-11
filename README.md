@@ -10,9 +10,9 @@
 
 <p align="center">
   <strong>
-    <a href="#one-line-install">Install</a> |
+    <a href="#install">Install</a> |
     <a href="./skills/advise-project-approach/SKILL.md">Skill source</a> |
-    <a href="#whats-new-in-v050">What's new in v0.5</a> |
+    <a href="#whats-new-in-v060">What's new in v0.6</a> |
     <a href="#demo">Examples</a> |
     <a href="#evaluation">Tests &amp; evidence</a> |
     <a href="./CHANGELOG.md">Changelog</a> |
@@ -20,7 +20,7 @@
   </strong>
 </p>
 
-`advise-project-approach` is a Claude/Codex skill for project planning, course correction, and review.
+`advise-project-approach` is an agent skill for project planning, course correction, and review. It works with pi, Claude, Codex, and any agent harness that loads Markdown-based skill instructions.
 
 Before recommending a stack, architecture, vendor, refactor, or shipping plan, it checks:
 
@@ -38,30 +38,45 @@ Before recommending a stack, architecture, vendor, refactor, or shipping plan, i
 - you want a review before shipping
 - you want the agent to explain what not to build yet
 
-## One-Line Install
+## Install
+
+### pi
 
 ```bash
-npx skills@latest add AaravKashyap12/advise-project-approach --skill advise-project-approach
+# Copy skill to your pi skills directory
+cp -r skills/advise-project-approach ~/.agents/skills/
+# Or symlink it
+ln -s $(pwd)/skills/advise-project-approach ~/.pi/agent/skills/advise-project-approach
 ```
 
-This uses the open `skills` installer to fetch the repo from GitHub and install only this skill. It requires Node.js/npm. Review installed skills before use; skills run with your agent's normal permissions.
+### Claude / Codex
+
+```bash
+# Manual copy to Claude skills directory
+cp -r skills/advise-project-approach ~/.claude/skills/
+```
+
+### Any Agent
+
+Copy the contents of [skills/advise-project-approach/SKILL.md](./skills/advise-project-approach/SKILL.md) into your agent's skill loading mechanism. The workflow is self-contained in that single file.
 
 ## Source of Truth
 
 The runtime skill spec lives in [skills/advise-project-approach/SKILL.md](./skills/advise-project-approach/SKILL.md). That file is the source of truth for the workflow agents actually run.
 
-Everything else in this repo exists to package, explain, test, or distribute that skill.
+Everything else in this repo exists to explain, test, or document that skill.
 
-## What's New in v0.5.0
+## What's New in v0.6.0
 
-v0.5 makes the workflow harder to bypass and easier to evaluate.
+v0.6 removes agent-specific lock-in and makes the skill portable across all major agent harnesses.
 
-- Stops vague pre-build requests at a short intake instead of inventing requirements and recommending a stack immediately.
-- Requires evidence status, constraint fit, alternatives, failure conditions, and concrete next actions in every completed recommendation.
-- Adds explicit permission boundaries before repository tests, builds, audits, benchmarks, dependency installation, or other execution.
-- Bounds first-pass repository inspection and external research so large projects do not consume tokens without a stopping rule.
-- Adds reusable evaluation cases, a scoring rubric, and preserved forward-test evidence, including the initial failure run.
-- Adds the new project identity and a more navigable README without turning the README into release-history storage.
+- Removed Claude-specific files: `.claude-plugin/plugin.json`, `agents/openai.yaml`, and `dist/*.skill` archive.
+- Renamed `CLAUDE.md` to `AGENTS.md` with multi-agent guidance.
+- Removed Agent-Reach adapter references (non-portable external dependency).
+- Removed "Community Research Permission" section that added unnecessary friction.
+- Consolidated redundant Decision Methodology and Workflow sections.
+- Streamlined External Research Rules into a single focused section.
+- Updated README with agent-agnostic install instructions.
 
 See the [full changelog](./CHANGELOG.md) for earlier versions.
 
@@ -96,55 +111,6 @@ Drop it into your agent and it will:
 It does the research loop a good engineer would do manually: understand the goal, inspect the evidence, study credible comparables, evaluate the tradeoffs, and recommend the highest-leverage path.
 
 No vibes. Evidence first.
-
-## Works Beyond Claude/Codex
-
-The workflow is intentionally self-contained in its runtime skill file:
-
-```text
-skills/advise-project-approach/SKILL.md
-```
-
-The packaged `.skill` file and `agents/openai.yaml` are convenience metadata for compatible installers and UIs. A non-Claude or non-Codex harness can copy the `SKILL.md` instructions, adapt its own trigger/loading mechanism, and still use the same decision workflow.
-
-## Other Install Methods
-
-To inspect the available skill before installing:
-
-```bash
-npx skills@latest add AaravKashyap12/advise-project-approach --list
-```
-
-### Manual Download
-
-Download the packaged skill:
-
-[dist/advise-project-approach.skill](./dist/advise-project-approach.skill)
-
-Or install from the GitHub release:
-
-[Download the v0.5.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.5.0/advise-project-approach.skill)
-
-#### Skill UI
-
-1. Download `dist/advise-project-approach.skill`.
-2. Open your agent's skill settings.
-3. Upload the `.skill` file.
-4. Start a new conversation.
-
-#### Local Skill Folder
-
-If your agent supports local skill folders:
-
-```bash
-cp -r skills/advise-project-approach ~/.claude/skills/
-```
-
-For Codex-style local installs, copy or symlink `skills/advise-project-approach` into your supported skills directory.
-
-### Plugin Metadata
-
-This repo also includes `.claude-plugin/plugin.json` for plugin-aware installers that can read skill collections from GitHub repositories.
 
 ## Demo
 
@@ -229,23 +195,17 @@ Stack and Architecture Verdict / Cost and Vendor Reality / Risks and References
 |-- ROADMAP.md
 |-- CONTRIBUTING.md
 |-- SECURITY.md
-|-- CLAUDE.md
+|-- AGENTS.md
 |-- assets/
 |   `-- brand/
 |       |-- lockup-dark.svg
 |       `-- lockup-light.svg
-|-- .claude-plugin/
-|   `-- plugin.json
 |-- .github/
 |   `-- workflows/
 |       `-- validate.yml
-|-- dist/
-|   `-- advise-project-approach.skill
 |-- skills/
 |   `-- advise-project-approach/
-|       |-- SKILL.md
-|       `-- agents/
-|           `-- openai.yaml
+|       `-- SKILL.md
 |-- examples/
 |   |-- ab-comparisons.md
 |   |-- pricing-operating-cost.md
@@ -257,23 +217,18 @@ Stack and Architecture Verdict / Cost and Vendor Reality / Risks and References
 |   |-- cases.json
 |   `-- results/
 |-- scripts/
-|   |-- package_skill.py
 |   `-- validate_skill.py
 ```
 
-The packaged `.skill` file is a zip archive containing the `advise-project-approach/` skill folder.
-
 ## Development
 
-Validate and rebuild the package:
+Validate the skill:
 
 ```bash
 python scripts/validate_skill.py
-python scripts/package_skill.py
-python scripts/validate_skill.py
 ```
 
-The GitHub Actions workflow runs the same checks and fails if the generated package differs from what is committed.
+The GitHub Actions workflow runs the same checks on push and PR.
 
 ## Evaluation
 
@@ -301,4 +256,4 @@ MIT
 
 ### Portfolio
 
-See more of my work at [https://www.aaravkashyap.live/](https://www.aaravkashyap.live/).
+See more of the original author's work at [https://www.aaravkashyap.live/](https://www.aaravkashyap.live/).

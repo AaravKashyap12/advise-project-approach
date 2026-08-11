@@ -1,4 +1,4 @@
-name: Validate skill package
+name: Validate skill
 
 on:
   pull_request:
@@ -19,14 +19,5 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate checked-in package
+      - name: Validate skill
         run: python scripts/validate_skill.py
-
-      - name: Rebuild package
-        run: python scripts/package_skill.py
-
-      - name: Validate rebuilt package
-        run: python scripts/validate_skill.py
-
-      - name: Ensure generated package is committed
-        run: git diff --exit-code dist/advise-project-approach.skill
