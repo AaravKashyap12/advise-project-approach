@@ -3,6 +3,9 @@
 ## Unreleased
 
 - Replaced the oversized README preview with a compact, theme-aware horizontal logo lockup.
+- Added additive pi and generic Agent Skills installation guidance without removing Claude or Codex compatibility layers.
+- Added `AGENTS.md` as cross-harness repository guidance while retaining `CLAUDE.md` as an import bridge.
+- Added a portability evidence matrix that distinguishes structural compatibility from executed smoke tests.
 
 ## 0.5.0 - 2026-08-11
 

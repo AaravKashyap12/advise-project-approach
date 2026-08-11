@@ -16,6 +16,8 @@ SKILL_FILE = SOURCE_DIR / "SKILL.md"
 AGENT_FILE = SOURCE_DIR / "agents" / "openai.yaml"
 PACKAGE_FILE = ROOT / "dist" / f"{SKILL_NAME}.skill"
 EVAL_CASES_FILE = ROOT / "evals" / "cases.json"
+AGENTS_FILE = ROOT / "AGENTS.md"
+CLAUDE_FILE = ROOT / "CLAUDE.md"
 EXPECTED_PACKAGE_FILES = {
     f"{SKILL_NAME}/SKILL.md",
     f"{SKILL_NAME}/agents/openai.yaml",
@@ -118,10 +120,20 @@ def validate_eval_cases() -> None:
                 fail(f"Eval case {case_id} has an invalid {field} entry")
 
 
+def validate_repo_guidance() -> None:
+    if not AGENTS_FILE.is_file():
+        fail("Missing AGENTS.md cross-harness repository guidance")
+    if not CLAUDE_FILE.is_file():
+        fail("Missing CLAUDE.md compatibility bridge")
+    if "@AGENTS.md" not in CLAUDE_FILE.read_text(encoding="utf-8"):
+        fail("CLAUDE.md must import AGENTS.md")
+
+
 def main() -> None:
     validate_source()
     validate_package()
     validate_eval_cases()
+    validate_repo_guidance()
     print("Skill package is valid.")
 
 

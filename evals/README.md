@@ -8,6 +8,8 @@ This directory tests whether `advise-project-approach` changes agent behavior, n
 2. **Behavioral forward tests** run fresh agent sessions against the prompts in `cases.json`.
 3. **Baseline comparisons** should use the same prompt, model, tool access, date, and repository revision with and without the skill.
 
+Cross-harness packaging claims are tracked separately in [portability.md](./portability.md). Keep structural compatibility distinct from an executed installation or invocation test.
+
 Behavioral runs may use live repositories and pricing pages, so their results are time-sensitive. Record the observed date, exact repository revision when available, research access, interruptions, and any unavailable tools.
 
 ## Rubric

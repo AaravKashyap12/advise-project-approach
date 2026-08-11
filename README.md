@@ -20,7 +20,7 @@
   </strong>
 </p>
 
-`advise-project-approach` is a Claude/Codex skill for project planning, course correction, and review.
+`advise-project-approach` is an agent skill for project planning, course correction, and review. Its portable `SKILL.md` can be loaded by Claude, Codex, pi, and other Agent Skills-compatible harnesses.
 
 Before recommending a stack, architecture, vendor, refactor, or shipping plan, it checks:
 
@@ -97,15 +97,30 @@ It does the research loop a good engineer would do manually: understand the goal
 
 No vibes. Evidence first.
 
-## Works Beyond Claude/Codex
+## Works Across Agent Harnesses
 
-The workflow is intentionally self-contained in its runtime skill file:
+The workflow is self-contained in its runtime skill file:
 
 ```text
 skills/advise-project-approach/SKILL.md
 ```
 
-The packaged `.skill` file and `agents/openai.yaml` are convenience metadata for compatible installers and UIs. A non-Claude or non-Codex harness can copy the `SKILL.md` instructions, adapt its own trigger/loading mechanism, and still use the same decision workflow.
+From a local clone, install the same skill folder into the location your harness scans:
+
+| Harness | Local skill location |
+| --- | --- |
+| pi | `~/.agents/skills/` or `~/.pi/agent/skills/` |
+| Claude Code | `~/.claude/skills/` |
+| Codex | `~/.codex/skills/` |
+| Other compatible agents | Point the loader at the skill folder or `SKILL.md` |
+
+```bash
+cp -r skills/advise-project-approach <your-agent-skill-directory>/
+```
+
+Pi documents recursive discovery of directories containing `SKILL.md` and permits freeform additional files. See [pi's skill documentation](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md).
+
+The packaged `.skill` archive, `.claude-plugin/plugin.json`, and `agents/openai.yaml` are additive compatibility layers for installers and host UIs. They do not change the portable `SKILL.md` workflow, and harnesses that do not use them can ignore them.
 
 ## Other Install Methods
 
@@ -131,16 +146,6 @@ Or install from the GitHub release:
 2. Open your agent's skill settings.
 3. Upload the `.skill` file.
 4. Start a new conversation.
-
-#### Local Skill Folder
-
-If your agent supports local skill folders:
-
-```bash
-cp -r skills/advise-project-approach ~/.claude/skills/
-```
-
-For Codex-style local installs, copy or symlink `skills/advise-project-approach` into your supported skills directory.
 
 ### Plugin Metadata
 
@@ -229,6 +234,7 @@ Stack and Architecture Verdict / Cost and Vendor Reality / Risks and References
 |-- ROADMAP.md
 |-- CONTRIBUTING.md
 |-- SECURITY.md
+|-- AGENTS.md
 |-- CLAUDE.md
 |-- assets/
 |   `-- brand/
@@ -255,6 +261,7 @@ Stack and Architecture Verdict / Cost and Vendor Reality / Risks and References
 |-- evals/
 |   |-- README.md
 |   |-- cases.json
+|   |-- portability.md
 |   `-- results/
 |-- scripts/
 |   |-- package_skill.py
@@ -281,7 +288,7 @@ The skill is forward-tested across vague and detailed pre-build requests, vendor
 
 The first exploratory six-case run surfaced risks in intake enforcement, research completeness, repository permission boundaries, and stopping behavior. A stricter rerun explicitly invoked the skill by name and path. Both records are preserved rather than hiding the rough first pass.
 
-[Methodology and rubric](./evals/README.md) | [Reusable cases](./evals/cases.json) | [Initial failure run](./evals/results/2026-08-11-v0.4.0-forward-test.md) | [v0.5.0 focused rerun](./evals/results/2026-08-11-v0.5.0-rerun.md)
+[Methodology and rubric](./evals/README.md) | [Reusable cases](./evals/cases.json) | [Portability audit](./evals/portability.md) | [Initial failure run](./evals/results/2026-08-11-v0.4.0-forward-test.md) | [v0.5.0 focused rerun](./evals/results/2026-08-11-v0.5.0-rerun.md)
 
 These are exploratory forward tests, not yet a controlled same-model baseline benchmark. No improvement percentage is claimed.
 
