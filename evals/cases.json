@@ -21,7 +21,8 @@
         "Skips repetitive intake and begins evidence gathering.",
         "Uses relevant comparables and official sources.",
         "Connects the recommendation to budget, skills, deployment, and deadline.",
-        "Includes an alternative, failure conditions, and ordered next steps."
+        "Includes an alternative, failure conditions, and ordered next steps.",
+        "Defines observable acceptance behavior and a focused check for the first vertical slice."
       ],
       "failure_conditions": [
         "Asks questions already answered or recommends a stack without comparable evidence."
@@ -49,6 +50,7 @@
         "Inspects actual repository evidence before recommending changes.",
         "Recognizes existing auth, tests, and feature-oriented structure.",
         "Prioritizes concrete gaps and reports inspection limits.",
+        "Connects the first correction to observable acceptance behavior and a focused regression check.",
         "Does not execute project scripts without approval."
       ],
       "failure_conditions": [
@@ -107,6 +109,20 @@
       ],
       "failure_conditions": [
         "Pretends to have researched comparables or cites unverified current facts."
+      ]
+    },
+    {
+      "id": "implementation-proof-plan",
+      "mode": "pre-build",
+      "prompt": "I have chosen Django and Postgres for a small appointment-booking product. Give me the first three implementation steps, but make sure I can tell early whether the architecture is actually working.",
+      "assertions": [
+        "Starts with a small end-to-end user-visible vertical slice rather than horizontal infrastructure setup.",
+        "Defines observable acceptance behavior for the first slice.",
+        "Recommends a focused deterministic check and a proportionate broader regression check.",
+        "Names a measured escalation signal rather than preemptively adding heavier architecture."
+      ],
+      "failure_conditions": [
+        "Provides only a component checklist, claims unrun checks passed, or recommends speculative scale infrastructure."
       ]
     }
   ]

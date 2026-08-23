@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 0.7.0 - 2026-08-24
+
+- Added implementation-proof planning inspired by the strongest transferable ideas from `lean-engineering`.
+- Required the first recommended slice or correction to include observable acceptance behavior and a focused falsification check.
+- Added proportionate regression scope and measured escalation signals before recommending heavier architecture.
+- Added guidance against speculative structural refactors and unverified claims that proposed checks passed.
+- Added a behavioral evaluation case and rubric criterion for implementation-proof quality.
+
 ## 0.6.0 - 2026-08-11
 
 - Replaced the oversized README preview with a compact, theme-aware horizontal logo lockup.
