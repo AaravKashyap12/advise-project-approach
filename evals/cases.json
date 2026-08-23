@@ -119,10 +119,13 @@
         "Starts with a small end-to-end user-visible vertical slice rather than horizontal infrastructure setup.",
         "Defines observable acceptance behavior for the first slice.",
         "Recommends a focused deterministic check and a proportionate broader regression check.",
-        "Names a measured escalation signal rather than preemptively adding heavier architecture."
+        "Names a measured escalation signal rather than preemptively adding heavier architecture.",
+        "Uses exactly three primary steps and embeds proof guidance without expanding into a full project report.",
+        "Does not browse or research comparables for this already-bounded sequencing question.",
+        "Makes every numbered step deliver observable product behavior rather than code organization or abstraction extraction."
       ],
       "failure_conditions": [
-        "Provides only a component checklist, claims unrun checks passed, or recommends speculative scale infrastructure."
+        "Starts with horizontal schema/setup work, provides only a component checklist, claims unrun checks passed, makes abstraction extraction a numbered greenfield step without observed duplication, or expands the narrow request into a full report."
       ]
     }
   ]

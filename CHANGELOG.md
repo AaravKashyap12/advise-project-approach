@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 0.7.1 - 2026-08-24
+
+- Tightened narrow-answer proportionality after the v0.7.0 A/B treatment expanded three requested steps into a full report.
+- Added an early narrow-advice route that bypasses unnecessary research and full-report contracts for bounded questions.
+- Required the first numbered step itself to be an end-to-end vertical slice.
+- Required testable escalation thresholds and rejected vague "awkward" or "complexity grows" triggers.
+- Extended anti-fashion guidance to unsupported service-layer and folder-structure prescriptions.
+- Required every numbered greenfield step to deliver observable product behavior and prevented abstraction extraction before duplication or a failed check is observed.
+- Clarified portable support for Codex, Claude Code, pi, Hermes, and other Agent Skills-compatible harnesses.
+- Recorded complete A/B outputs and order-reversed grading evidence.
+
 ## 0.7.0 - 2026-08-24
 
 - Added implementation-proof planning inspired by the strongest transferable ideas from `lean-engineering`.

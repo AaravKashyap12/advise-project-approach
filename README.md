@@ -12,7 +12,7 @@
   <strong>
     <a href="#one-line-install">Install</a> |
     <a href="./skills/advise-project-approach/SKILL.md">Skill source</a> |
-    <a href="#whats-new-in-v070">What's new in v0.7</a> |
+    <a href="#whats-new-in-v071">What's new in v0.7.1</a> |
     <a href="#demo">Examples</a> |
     <a href="#evaluation">Tests &amp; evidence</a> |
     <a href="./CHANGELOG.md">Changelog</a> |
@@ -20,7 +20,7 @@
   </strong>
 </p>
 
-`advise-project-approach` is an agent skill for project planning, course correction, and review. Its portable `SKILL.md` can be loaded by Claude, Codex, pi, and other Agent Skills-compatible harnesses.
+`advise-project-approach` is an agent skill for project planning, course correction, and review. Its portable `SKILL.md` can be loaded by Codex, Claude Code, pi, Hermes, and other Agent Skills-compatible harnesses.
 
 Before recommending a stack, architecture, vendor, refactor, or shipping plan, it checks:
 
@@ -52,15 +52,15 @@ The runtime skill spec lives in [skills/advise-project-approach/SKILL.md](./skil
 
 Everything else in this repo exists to package, explain, test, or distribute that skill.
 
-## What's New in v0.7.0
+## What's New in v0.7.1
 
-v0.7 makes project advice easier to test before the user commits to a larger build.
+v0.7.1 keeps implementation-proof advice proportionate after the first controlled A/B exposed unnecessary report expansion.
 
-- Requires the first recommendation to be an observable vertical slice or bounded course correction.
-- Adds acceptance behavior and a focused check that can confirm or falsify the advice.
-- Adds regression scope and measured escalation signals before recommending heavier architecture.
-- Rejects fashionable refactors unless repository evidence or an upcoming requirement justifies them.
-- Adds a behavioral evaluation case for implementation-proof quality.
+- Makes the first numbered step itself an end-to-end slice instead of horizontal schema or setup work.
+- Adds a narrow-advice route that preserves the user's requested shape and count without unnecessary browsing or full-report expansion.
+- Requires testable escalation thresholds rather than vague complexity language.
+- Requires every numbered greenfield step to deliver observable product behavior instead of proactive service-layer or folder-structure extraction.
+- Records the initial v0.7.0 A/B result, including the graders' position-biased disagreement.
 
 See the [full changelog](./CHANGELOG.md) for earlier versions.
 
@@ -137,7 +137,7 @@ Download the packaged skill:
 
 Or install from the GitHub release:
 
-[Download the v0.7.0 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.7.0/advise-project-approach.skill)
+[Download the v0.7.1 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)
 
 #### Skill UI
 
@@ -285,11 +285,11 @@ The GitHub Actions workflow runs the same checks and fails if the generated pack
 
 The skill is forward-tested across vague and detailed pre-build requests, vendor-cost decisions, mid-build repository reviews, large-repository sampling, and post-build launch reviews.
 
-The first exploratory six-case run surfaced risks in intake enforcement, research completeness, repository permission boundaries, and stopping behavior. A stricter rerun explicitly invoked the skill by name and path. Both records are preserved rather than hiding the rough first pass.
+The first exploratory six-case run surfaced risks in intake enforcement, research completeness, repository permission boundaries, and stopping behavior. Later controlled A/B runs use the same prompt, model, isolation settings, and order-reversed blind graders. Rough and improved outputs are preserved rather than hidden.
 
-[Methodology and rubric](./evals/README.md) | [Reusable cases](./evals/cases.json) | [Portability audit](./evals/portability.md) | [Initial failure run](./evals/results/2026-08-11-v0.4.0-forward-test.md) | [v0.5.0 focused rerun](./evals/results/2026-08-11-v0.5.0-rerun.md)
+[Methodology and rubric](./evals/README.md) | [Reusable cases](./evals/cases.json) | [Latest controlled A/B](./evals/results/2026-08-24-v0.7.1-ab-report.md) | [v0.7.0 inconclusive A/B](./evals/results/2026-08-24-v0.7.0-ab-report.md) | [Portability audit](./evals/portability.md) | [Initial failure run](./evals/results/2026-08-11-v0.4.0-forward-test.md)
 
-These are exploratory forward tests, not yet a controlled same-model baseline benchmark. No improvement percentage is claimed.
+The latest narrow-advice A/B is controlled and order-robust, but it covers one prompt and one model. No broad improvement percentage is claimed.
 
 ## Contributing
 

@@ -1,0 +1,32 @@
+**Candidate A**
+
+1. `Pass` - It explicitly starts with “a thin vertical slice” and the first step is one complete flow: create availability, show open slots, book one slot.
+2. `Pass` - It defines observable first-slice behavior as a happy-path flow working against the real database.
+3. `Pass` - It recommends a deterministic check: two simultaneous booking attempts for the same slot.
+4. `Partial` - It suggests a small integration-test set on every change, but does not clearly separate that into a broader, proportionate regression scope beyond the focused concurrency check.
+5. `Fail` - It pushes database constraints plus transactional locking immediately, but does not state a measured signal for when heavier architecture or stricter mechanisms become necessary.
+6. `Partial` - It is fairly direct about what the slice would validate, but it does not state assumptions or limits of the advice.
+7. `Partial` - It names one key failure condition (double-booking/race conditions) but gives little tradeoff discussion beyond that.
+8. `Pass` - It stays concise and gives exactly three actionable steps.
+
+Flags:
+- Unsupported architectural prescription: “use database constraints plus transactional locking where needed” is reasonable but asserted without explaining when locking is actually required versus constraints alone.
+- No false claim that checks already passed.
+
+**Candidate B**
+
+1. `Pass` - It clearly prioritizes one thin vertical slice and centers the plan on one real booking flow end to end.
+2. `Pass` - It defines concrete acceptance behavior for the slice, including slot display, successful booking, and rejection of conflicts.
+3. `Pass` - It recommends focused deterministic checks such as one overlapping-booking test and one stale-slot conflict test.
+4. `Pass` - It proposes a proportionate broader regression scope after the first slice, including cancellation/reschedule, timezone edges, and availability queries.
+5. `Pass` - It names escalation signals such as immediate need for background jobs, external calendars, or complex availability computation before recommending earlier architectural splitting.
+6. `Pass` - It is explicit about assumptions, limits, lack of external research, and that the plan is provisional.
+7. `Pass` - It includes meaningful tradeoffs, alternatives, and clear failure conditions where the recommendation would stop fitting.
+8. `Partial` - It is actionable, but it overruns the requested “first three steps” with extra framing and even adds a fourth “Next Actions” item.
+
+Flags:
+- Unsupported architectural prescription: recommending a service layer in step 2 is defensible, but it is still an architectural preference rather than something proven necessary by the stated evidence.
+- Mild overclaim: “If that works cleanly, the architecture is probably sound” is appropriately hedged, not a false claim that checks already passed.
+- No false claim that checks already passed.
+
+B better

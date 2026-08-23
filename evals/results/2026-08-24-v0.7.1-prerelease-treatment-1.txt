@@ -1,0 +1,58 @@
+## Project Approach: Appointment Booking
+
+### TL;DR
+Start by proving the hardest invariant first: “two active bookings cannot overlap for the same provider/resource.” With Django + Postgres, the architecture is working if that rule is enforced in the database, exposed through one booking flow, and then reused by the availability read path without duplicated scheduling logic.
+
+### Project Frame
+Small appointment-booking product, stack already chosen: Django + Postgres. Dominant constraint appears to be simplicity with early architectural proof, not maximum scale.
+
+### Evidence Reviewed
+- User evidence: product description only; no repo inspected.
+- External references:
+  - Django Postgres `ExclusionConstraint` docs: https://docs.djangoproject.com/en/3.2/ref/contrib/postgres/constraints/
+  - Django transactions docs/search target: https://docs.djangoproject.com/
+  - PostgreSQL range/exclusion constraint docs: https://www.postgresql.org/docs/17/rangetypes.html
+- Comparables: skipped for this narrow sequencing question. They would matter more for marketplace, multi-staff, or enterprise scheduling scope.
+
+### First Three Steps
+1. **Build one end-to-end booking slice around a DB-enforced overlap rule.**
+   Model `Provider`/`Resource`, `Customer`, and `Appointment` with `start`, `end`, `status`, and a Postgres-backed non-overlap constraint for active appointments per provider/resource. Then expose one create-booking path only: form or API in, transaction, row written or rejected.
+   Acceptance behavior: a valid booking is created; an overlapping booking for the same provider is rejected; an adjacent booking is allowed.
+   Focused check: create three cases manually or in one integration test: `10:00-10:30` succeeds, `10:15-10:45` fails, `10:30-11:00` succeeds.
+   Why this proves architecture: if the invariant lives in Postgres rather than only Python validation, your core data model survives race conditions and future entry points.
+
+2. **Add the availability read path from the same appointment table, with no second scheduling model.**
+   Implement “show open times for provider on date X” by deriving availability from working hours minus active appointments. Keep it dumb and direct at first; do not add caching, slot materialization, or background jobs yet.
+   Acceptance behavior: after creating or canceling an appointment, the availability response changes immediately and correctly.
+   Focused check: seed one provider day with working hours and a few appointments; verify the returned open windows match expected gaps, including boundary cases and canceled bookings.
+   Why this proves architecture: it shows your write model and read model line up without hidden duplication.
+
+3. **Harden the booking boundary with one concurrency check and one operator workflow.**
+   Add cancellation/reschedule in the same transaction discipline, plus one concurrency-oriented test around double-book attempts. Also add the minimal operator surface: Django admin or a staff view to inspect bookings and statuses.
+   Acceptance behavior: two near-simultaneous attempts to book the same time do not create two active appointments; staff can see the final state clearly.
+   Focused check: run a targeted integration test or scripted probe that submits overlapping requests nearly together; result should be one success, one constraint failure.
+   Why this proves architecture: it confirms the system still holds under the first realistic failure mode, not just happy-path CRUD.
+
+### Recommended Stack
+- Django app with a thin service layer around booking actions
+- Postgres as source of truth for appointment conflicts
+- Django admin for early operator workflow
+- Integration tests for booking invariants before broader test expansion
+
+### Alternatives Considered
+1. **Pre-generated `AppointmentSlot` table with `UNIQUE` bookings per slot**
+   Better if every booking is fixed to discrete 15/30/60-minute slots. Simpler queries, simpler mental model.
+   Worse if you need variable durations, buffers, staff-specific rules, or later calendar flexibility.
+
+### Failure Conditions
+This recommendation becomes wrong if:
+- all appointments are strictly fixed-slot and never variable, making a slot table materially simpler
+- you need complex scheduling rules immediately: pooled resources, holds/expirations, multi-location capacity, external calendar sync
+- the dominant requirement becomes offline-first or event-driven integration rather than a simple transactional web app
+
+### Validation Plan
+The first proof is not “the app runs”; it is this observable behavior: **the database prevents overlapping active appointments, and the availability screen reflects that same truth immediately**. If that passes, the architecture is directionally correct for a small product. If you find yourself adding duplicate availability tables, caches, or Python-only overlap checks just to make step 2 work, the design is already drifting.
+
+### References
+- https://docs.djangoproject.com/en/3.2/ref/contrib/postgres/constraints/
+- https://www.postgresql.org/docs/17/rangetypes.html

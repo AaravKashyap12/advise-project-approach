@@ -1,0 +1,170 @@
+## Project Approach: Small Appointment-Booking Product
+
+### TL;DR
+Start with one thin vertical slice, not platform setup. With Django + Postgres, the fastest way to validate the architecture is to prove one real booking flow end to end: staff availability exists, a customer can book a slot, and double-booking is blocked at the database boundary. If that works cleanly, the architecture is probably sound for this product size.
+
+### Project Frame
+Assumptions: small product, likely single business or low-complexity multi-staff scheduling, web app, no marketplace-style matching, no heavy real-time coordination yet.
+
+Primary constraint fit:
+- `Django` gives you admin, forms, auth, and clear server-rendered workflows quickly.
+- `Postgres` is the right place to enforce booking integrity early.
+- The main architecture risk is not scale. It is whether your domain model and transaction boundaries make booking logic simple instead of fragile.
+
+### Evidence Reviewed
+- User evidence only: chosen stack (`Django` + `Postgres`), product type (small appointment booking).
+- External research: not performed.
+- Comparable evidence: not required for this narrow first-steps question, so this is a provisional implementation plan rather than a benchmarked stack review.
+- Limits: advice may change if you need multi-location scheduling, staff marketplaces, payments-first flows, or calendar-sync-heavy operations.
+
+### Recommended First Three Steps
+
+#### 1. Model the booking domain and enforce the hard rules in the database
+Create only the core models first:
+- `Service`
+- `Staff` or `Provider`
+- `AvailabilityWindow`
+- `Booking`
+
+Put the first architectural bet here:
+- A booking belongs to one service, one provider, one customer, one start time, one end time, one status.
+- Store times in UTC.
+- Enforce “no overlapping active bookings for the same provider” as close to the database as practical.
+
+What you gain:
+- Early proof that your data model matches the business.
+- Fewer hidden bugs in later API/UI work.
+
+What you give up:
+- You postpone polish, notifications, and fancy calendar UI.
+
+Acceptance behavior:
+- Given availability for Provider A at 10:00-10:30, a customer can create one booking.
+- A second overlapping booking for Provider A is rejected deterministically.
+
+Focused check:
+- Write one model/service-level test that attempts two overlapping bookings and confirms only one succeeds.
+
+When this step proves the architecture wrong:
+- If booking creation needs lots of special-case code before basic constraints work, your model is too weak.
+- If overlap rules are hard to express cleanly, your time-slot design likely needs revision.
+
+#### 2. Build one end-to-end booking path through a service layer, not directly in views
+Implement one use case:
+- “List available slots for a service/provider/day”
+- “Submit booking request”
+- “Persist booking inside a transaction”
+
+Keep orchestration in a dedicated application service, for example `booking/services.py`, rather than spreading logic across views, forms, and models.
+
+Suggested boundary:
+- Views handle HTTP and validation wiring.
+- Service layer decides slot availability and booking creation.
+- Models store state and invariants.
+- Postgres enforces integrity.
+
+What you gain:
+- Early test of whether the architecture stays readable as rules grow.
+- Easier future additions: cancellation, reschedule, payments, reminders.
+
+What you give up:
+- Slightly more structure up front than dumping logic into Django views.
+
+Acceptance behavior:
+- A user can open one page or endpoint, see valid slots, submit a booking, and receive a confirmed result.
+- The same path rejects stale or conflicting slots safely.
+
+Focused check:
+- One integration test for the happy path and one for a stale-slot conflict.
+
+Escalation signal:
+- If the service layer starts needing background jobs, external calendars, or complex availability computation immediately, split availability calculation from booking command handling earlier.
+
+#### 3. Use Django admin as the operator interface before building customer-facing complexity
+Before investing in full frontend flows, use Django admin to manage:
+- services
+- providers
+- availability windows
+- bookings
+
+This is not just convenience. It is an architecture check:
+- Can staff actually operate the system with the current model?
+- Are core concepts understandable without workaround fields and manual repair?
+
+What you gain:
+- Fast operational feedback.
+- Real proof that your domain objects are usable.
+
+What you give up:
+- Less excitement than building polished customer UI first.
+
+Acceptance behavior:
+- An internal operator can create a provider, define availability, inspect bookings, and resolve a cancellation manually without touching the database.
+
+Focused check:
+- Run through a manual scenario:
+  1. create provider and service
+  2. add availability
+  3. make booking
+  4. cancel booking
+  5. confirm the slot becomes bookable again if your rules allow it
+
+### Architecture Direction
+Keep the first version simple:
+
+```text
+HTTP/View/Form
+    -> Booking Application Service
+        -> Django ORM Models
+            -> Postgres constraints/transactions
+```
+
+Do not start with:
+- microservices
+- event buses
+- separate scheduling engine
+- SPA frontend unless you already know you need it
+
+### Alternative
+A credible alternative is “put most logic in Django models/managers.”
+
+What it improves:
+- Less initial structure.
+
+What it worsens:
+- Booking flows become harder to follow once reschedules, cancellations, reminders, and payment states appear.
+
+When the alternative is better:
+- Very small internal-only tool with one or two workflows and low change rate.
+
+### Failure Conditions
+This recommendation becomes wrong if:
+- You need marketplace-style matching across many providers and locations.
+- Availability depends heavily on external calendar sync from day one.
+- Booking rules vary sharply by tenant or organization.
+- You need high write concurrency beyond a typical small business workload.
+
+### Next Actions
+1. Define the four core models and the overlap rule.
+2. Implement `create_booking()` and `list_available_slots()` in a service layer.
+3. Prove the flow with two tests: happy path and double-book prevention.
+4. Expose the same objects in Django admin and run one manual operator scenario.
+
+### Validation Plan
+The first useful slice is: “book one appointment safely.”
+
+You should be able to observe:
+- available slot shown
+- booking created once
+- conflicting retry rejected
+- booking visible in admin
+
+Narrowest realistic proof:
+- one transactional booking test plus one manual admin walkthrough
+
+Broader regression scope after that passes:
+- cancellation/reschedule tests
+- timezone edge cases
+- per-provider/day availability queries
+
+If you want, I can turn this into a concrete Django app layout with model skeletons and the first test cases.

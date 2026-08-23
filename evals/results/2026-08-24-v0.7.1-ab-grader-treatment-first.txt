@@ -1,0 +1,8 @@
+Winner: **A**
+
+| Candidate | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | Total |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| A | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 20 |
+| B | 2 | 1 | 2 | 2 | 0 | 2 | 2 | 2 | 2 | 2 | 17 |
+
+A is stronger because it is more test-first and operationally concrete. Its first step is a clearer user-visible slice, it states explicit acceptance behavior, and it names a concrete escalation threshold tied to invariant duplication or failed concurrency/idempotency checks. B is solid, but it stays more architectural and abstract, especially on acceptance behavior and when to escalate.

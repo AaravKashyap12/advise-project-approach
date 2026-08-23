@@ -1,0 +1,12 @@
+Start with a thin vertical slice, not the full schema.
+
+1. Create the booking backbone end to end.
+Build one Django app with the minimum models: `Provider`, `AvailabilityWindow`, and `Appointment`. Use Postgres from day one, run real migrations, and expose a single happy-path flow: create provider availability, show open slots, book one slot. If this slice works against the real database, you immediately validate your model boundaries, transaction behavior, and ORM fit.
+
+2. Prove concurrency before adding features.
+Implement booking with a hard rule against double-booking, using database constraints plus transactional locking where needed. Then test it with two simultaneous booking attempts for the same slot. This is the earliest architecture check that matters: if your system cannot safely prevent race-condition bookings, the rest of the product shape is wrong no matter how clean the code looks.
+
+3. Add one executable architecture test layer.
+Write a small set of integration tests that hit the real Postgres-backed flow: migration up, create availability, list slots, book slot, reject duplicate booking. Run them in CI or locally on every change. This gives you an early signal that the architecture is actually holding together across Django models, service logic, and Postgres behavior, instead of only “working” in isolated unit tests.
+
+If you want, I can turn this into a concrete Django project skeleton with model/service/test boundaries next.

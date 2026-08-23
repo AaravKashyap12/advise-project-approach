@@ -1,0 +1,31 @@
+**Candidate A**
+
+1. `Pass` — It leads with “one thin vertical slice” and centers the first proof on a real booking flow rather than environment/setup tasks.
+2. `Pass` — It gives concrete acceptance behavior for the first slice, including one successful booking and deterministic rejection of an overlapping booking.
+3. `Pass` — It recommends focused checks such as a single overlapping-booking test and a narrow happy-path/stale-slot integration test.
+4. `Pass` — It adds a broader but still proportionate follow-up scope: cancellation/reschedule, timezone edges, and availability queries after the first slice passes.
+5. `Pass` — It names escalation signals like service-layer complexity, background jobs, external calendars, and difficult overlap rules instead of prescribing heavy architecture upfront.
+6. `Pass` — It explicitly states assumptions, limits, and that external research was not performed, so the confidence level is clear.
+7. `Pass` — It includes real tradeoffs and failure conditions, such as postponing polish/UI and cases where the recommendation breaks down.
+8. `Partial` — It is actionable, but it overshoots the requested “first three steps” with extra sections, alternatives, next actions, and validation detail.
+
+Flags:
+- Unsupported architectural prescriptions: `booking/services.py` service layer is a reasonable opinion but not strongly evidenced from the prompt alone.
+- Claims that unrun checks passed: none.
+
+**Candidate B**
+
+1. `Pass` — It starts with a thin vertical slice and describes one end-to-end booking flow before broader architecture.
+2. `Partial` — It implies observable behavior through “show open slots, book one slot,” but it does not state acceptance criteria as explicitly or concretely as A.
+3. `Pass` — It recommends a deterministic check: two simultaneous booking attempts for the same slot against the real database.
+4. `Pass` — It suggests a proportionate broader regression layer of Postgres-backed integration tests run on every change.
+5. `Pass` — It escalates based on a measured signal, namely failure to prevent race-condition double-booking, rather than adding heavy architecture preemptively.
+6. `Partial` — It does not overclaim test results, but it is less explicit than A about assumptions, limits, and what evidence it is relying on.
+7. `Partial` — It includes some rationale and one major failure condition, but it gives fewer tradeoffs and fewer concrete ways the approach could fail.
+8. `Pass` — It stays concise and directly actionable, organized cleanly around exactly three steps.
+
+Flags:
+- Unsupported architectural prescriptions: “database constraints plus transactional locking where needed” is plausible but somewhat prescriptive without context showing both are necessary.
+- Claims that unrun checks passed: none.
+
+B better

@@ -1,0 +1,17 @@
+**Winner:** B
+
+| Criterion | A | B |
+|---|---:|---:|
+| 1 | 2 | 2 |
+| 2 | 1 | 2 |
+| 3 | 2 | 2 |
+| 4 | 2 | 2 |
+| 5 | 1 | 2 |
+| 6 | 2 | 2 |
+| 7 | 2 | 2 |
+| 8 | 2 | 2 |
+| 9 | 2 | 2 |
+| 10 | 2 | 2 |
+| **Total** | **18** | **20** |
+
+B is stronger because it is more testable as written: it states explicit acceptance behavior, includes clear deterministic checks, and names a concrete escalation trigger. A is solid and appropriately architecture-first, but it is less explicit about observable acceptance criteria and escalation thresholds, which makes it slightly weaker for a solo developer trying to validate the architecture early.
