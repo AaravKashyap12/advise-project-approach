@@ -1,0 +1,41 @@
+The best approach is to **not** start by building a broad “study better” platform. That category is too vague, and most products in it collapse into generic notes, task lists, or AI chat.
+
+Start with a narrow wedge:
+
+1. Pick one student segment.
+   Example: first-year engineering students, pre-med students, law students, students preparing for finals in content-heavy courses.
+
+2. Pick one painful study job.
+   Example: turning lecture slides into practice questions, building a revision plan before exams, tracking weak topics across courses.
+
+3. Solve that one job better than existing tools.
+   The strongest wedge is usually:
+   **course material in -> active recall + spaced review plan out**
+   That is closer to real learning outcomes than “AI tutor” or “note workspace”.
+
+4. Validate before building much.
+   Talk to 15-20 students.
+   Ask for their actual workflow, last exam prep process, tools used, where they waste time, and what they abandon.
+   If possible, manually do the service for a few of them before automating it.
+
+5. Define one hard metric.
+   Good examples:
+   `weekly active study sessions`
+   `cards/questions completed per week`
+   `days retained in revision plan`
+   `self-reported exam confidence improvement`
+   Avoid vanity metrics like signups or chats started.
+
+A strong first MVP would be:
+- Upload notes/slides/syllabus
+- Auto-generate practice questions and summaries
+- Build a study schedule around exam dates
+- Track mastery by topic
+- Remind students to review weak areas
+
+That is much better than launching with forums, social features, broad course marketplaces, or a generic chatbot.
+
+The main risk is building something students try once but do not return to. So design for a repeated loop:
+`import material -> study -> get tested -> see weakness -> come back tomorrow`
+
+If you want, I can turn this into a concrete 6-week MVP plan with features, user flows, and a simple business model.

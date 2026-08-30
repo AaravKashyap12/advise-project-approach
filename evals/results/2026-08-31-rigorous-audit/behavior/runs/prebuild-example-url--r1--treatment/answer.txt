@@ -1,0 +1,21 @@
+## Project Approach: Personal Bookmark Manager
+
+### TL;DR
+Provisional recommendation: build a small Django app with SQLite first, then switch to Postgres only if search or multi-user needs outgrow it. For a solo weekend MVP on an existing self-hosted server, Django gives auth, admin, forms, and ORM immediately, which is a better fit than a lighter framework plus manual plumbing.
+
+### Project Frame
+Goal: self-hosted personal bookmark manager for about 5,000 bookmarks with tags and title search. Constraints driving this: solo Python developer, weekend MVP, existing server, personal use, low operational overhead. Evidence status: user description only; no repo inspected; no external research available.
+
+### Recommended Stack
+Use Django, SQLite, server-rendered HTML, HTMX only if you want small UI niceties, and basic pytest coverage. Model: `Bookmark(url, title, notes, created_at)` and `Tag(name)` with many-to-many. Start with login, add bookmark, tag filter, title search, and list view.
+
+### Tradeoffs
+You gain speed, built-in admin, and simple deployment. You give up richer full-text search and some long-term flexibility versus Postgres plus a JS frontend. Flask is a credible alternative, but it slows MVP delivery because you must assemble more pieces yourself.
+
+### Build Plan
+1. Ship add/list/search/tag pages end-to-end.
+2. Add import/export and duplicate-URL handling.
+3. Harden backups and deployment.
+
+### Validation
+Acceptance: add a bookmark, tag it, search by title, filter by tag. Focused check: load 5,000 rows and confirm search/list responses stay acceptable. This becomes wrong if you need multi-user sharing, full-text relevance, or browser extension capture immediately.

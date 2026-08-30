@@ -1,0 +1,140 @@
+## Project Approach: Volunteer Shift Scheduler
+
+### TL;DR
+For your constraints, build a small Django monolith with server-rendered pages, Django admin, and a relational database. Start locally with `SQLite`, keep the schema portable, and plan to deploy to a managed Python host with `Postgres` when you are ready to launch. That gives you the fastest path to usable coordinator workflows without adding frontend or ops complexity you do not need.
+
+### Project Frame
+You are building a new shift scheduler for group coordinators. Core workflows are shift creation and volunteer signup. Payments are out of scope. You are solo, already know Python, have about one month, and simplicity is the main constraint.
+
+Because external research is blocked and the workspace contains no project files, this is a provisional pre-build recommendation based on your intake and general engineering judgment only.
+
+### Evidence Reviewed
+- Local repo evidence: none accessible in the fixture; the workspace appears empty.
+- External references: not performed, per environment restriction.
+- Research gaps: no official pricing pages, no current vendor limits, no comparable repo review.
+
+### Decision Methodology
+The decision is driven mostly by:
+- `Python familiarity`
+- `solo build speed`
+- `one-month delivery window`
+- `simplicity over flexibility`
+- `unknown deployment experience`
+
+Those constraints strongly favor a conventional monolith over a JS-heavy frontend, microservices, or serverless-first architecture.
+
+### Comparable Projects and References
+Comparable research was not possible here. Instead, I’m using the simpler class of projects this resembles:
+1. **Internal scheduling/admin tools** - transferable pattern: CRUD-heavy coordinator workflows fit well in a server-rendered web app with strong forms and admin support. What not to copy: enterprise role systems and audit/compliance features.
+2. **Volunteer/event signup systems** - transferable pattern: clear shift capacity, signup rules, and simple notifications matter more than flashy UI. What not to copy: multi-tenant billing, complex availability optimization, and mobile apps in v1.
+
+### Recommended Stack
+- Backend/UI: `Django`
+- Templates/UI: Django templates plus a small amount of vanilla JS only where needed
+- Database at start: `SQLite`
+- Database for deployment: `Postgres`
+- Auth: Django built-in auth with two roles to start: coordinators and volunteers
+- Admin: Django admin for coordinator/internal management
+- Background work: none initially; send email synchronously or defer email until after core scheduling works
+- Testing: Django model/form/view tests for the critical signup invariants
+- Hosting target: managed Python app platform plus managed `Postgres`
+
+### Cost and Vendor Reality
+Your budget and deployment uncertainty mainly affects one decision: `managed platform` versus `self-managed server`.
+
+The simplest path is a managed host:
+- What you gain: easier deploys, less Linux/server work, simpler rollback/logs, faster time to first launch.
+- What you give up: some vendor lock-in and higher monthly cost than the absolute cheapest VPS.
+- What becomes harder later: very custom infra tuning or low-level control.
+
+The cheaper but harder path is a VPS:
+- What you gain: lower raw hosting cost and full control.
+- What you give up: you become responsible for process management, TLS, backups, OS updates, firewalling, and database operations.
+- This is usually the wrong first choice for a first deployment under a one-month timeline.
+
+Practical budget framing:
+- Prototype cost: likely near-zero locally.
+- Launch cost: app hosting, database, domain, and transactional email are the main categories.
+- Growth cost: database, email volume, and operational time will matter before CPU scaling does for this project.
+
+### Architecture Direction
+Keep it as one app process and one database.
+
+```text
+Browser
+  -> Django routes/views
+  -> Forms + validation
+  -> Models
+  -> SQLite locally / Postgres in production
+
+Coordinator flow:
+  create shift -> publish shift -> view signups
+
+Volunteer flow:
+  browse shifts -> sign up -> cancel signup
+```
+
+Core models:
+- `User`
+- `CoordinatorProfile` or coordinator flag
+- `VolunteerProfile` if needed
+- `Shift`
+- `Signup`
+
+Core rules:
+- shift has capacity
+- volunteer cannot sign up twice for the same shift
+- closed/full shifts reject new signups
+- coordinators can see attendee lists
+
+### Alternatives Considered
+1. **Flask + SQLAlchemy**
+   - Gain: lighter framework, more explicit control.
+   - Give up: slower delivery for auth/admin/forms because you assemble more pieces yourself.
+   - Harder later: consistency and maintainability as features grow.
+   - Wrong if: you specifically want a minimal custom stack and are comfortable building more infrastructure yourself.
+
+2. **React frontend + Python API**
+   - Gain: richer client UX and clearer API separation.
+   - Give up: much more setup, two codebases, more deployment moving parts.
+   - Harder later: auth, validation, and state synchronization.
+   - Wrong for this project unless: the product soon needs complex interactive scheduling UX or a separate mobile client.
+
+3. **No-code / spreadsheet-backed tool**
+   - Gain: fastest possible prototype.
+   - Give up: weaker validation, weaker permissions, awkward future customization.
+   - Harder later: migration into a real product.
+   - Better only if: this is a short-lived internal experiment and reliability matters less than immediate use.
+
+### Build Plan
+1. Build the first vertical slice: coordinator logs in, creates a shift with date/time/capacity, and a volunteer can sign up until the shift is full.
+   Acceptance behavior: one full end-to-end scheduling loop works in the browser.
+   Focused validation: confirm duplicate signups are blocked and the last open slot closes correctly.
+
+2. Add coordinator management views.
+   Acceptance behavior: coordinator can see all upcoming shifts, signup counts, and attendee lists, and can close or reopen a shift.
+
+3. Add launch hardening.
+   Acceptance behavior: deployed app uses `Postgres`, basic error pages/logging exist, and critical signup rules are covered by tests.
+
+### Validation Plan
+For the first slice:
+- Focused check: create a shift with capacity `1`, sign up one volunteer successfully, verify a second signup is rejected.
+- Broader regression scope: model tests for uniqueness/capacity, form validation tests, and one browser-level manual test of the main flow.
+- Escalation signal: if you need recurring shifts, waitlists, notifications, and role-specific dashboards before the first slice is stable, freeze feature scope rather than expanding architecture.
+
+### Risks and Unknowns
+- If volunteers must sign up without accounts, auth and abuse prevention change the design.
+- If coordinators need recurring schedules immediately, data modeling gets more complex.
+- If email reminders are required in v1, deployment and vendor choice matter more.
+- If multiple organizations will use the same app, you may need tenancy boundaries earlier.
+
+### Deployment Choice, Plainly
+Because you have not deployed before, choose the option that removes infrastructure work:
+- Pick a managed Python host if your priority is shipping.
+- Avoid a VPS first unless you specifically want to learn server operations now.
+- Use `SQLite` locally for speed, but plan on `Postgres` for the deployed app.
+
+The recommendation becomes wrong if your real priority changes from simplicity to either `lowest possible monthly cost` or `deep infrastructure control`. In that case, a VPS-backed Django deploy becomes more reasonable, but it is a worse fit for your current timeline.
+
+If you want, I can turn this into exactly three concrete next implementation steps for week 1, or compare `Django + managed host` versus `Django + VPS` in a tighter deployment-focused decision.

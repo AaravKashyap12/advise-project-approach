@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 0.7.2 - 2026-08-31
+
+- Added no-clobber, stale-preview, partial-failure, and recovery guidance for recommendations that change user data.
+- Distinguished controlled concurrency checks from sequential retries and implementation defects from architecture failures.
+- Clarified explicit project-stage precedence, accepted intake unknowns, safety prerequisites, and user answer limits.
+- Added private-query minimization and a no-progress research stopping rule; separated operating-responsibility assumptions from verified prices.
+- Hardened package metadata and archive validation, atomic artifact replacement, release consistency, and eval-schema checks with permanent regression tests.
+- Added an isolated behavioral runner with synthetic fixture tools, saved source/config fingerprints, and before/after evidence.
+- Corrected evaluation claims and labeled illustrative examples separately from measured comparisons.
+
 ## 0.7.1 - 2026-08-24
 
 - Tightened narrow-answer proportionality after the v0.7.0 A/B treatment expanded three requested steps into a full report.

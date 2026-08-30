@@ -1,0 +1,21 @@
+Using only the synthetic snapshot in [pricing.md](C:/Users/aarav/AppData/Local/Temp/apa-rigorous-oc3cfwgi/fixtures/pricing-fixture--r1--treatment/pricing.md:1), `ExampleCloud` is `$130/month` and `PlainHost` is `$92/month`.
+
+`ExampleCloud` estimate:
+- Org subscription: `$20`
+- Compute for `staging` + `production`: `2 x $10 = $20`
+- Storage: `200 GB` with `100 GB` included, so `100 GB` overage = `$2`
+- Delivery: `1500 GB/month` with `500 GB` included, so `1000 GB` overage = `$80`
+- Daily backups: `$8`
+
+`PlainHost` estimate:
+- Server for both environments: `$30`
+- External backups: `$12`
+- Delivery/CDN: `$50`
+
+Recommendation: choose `ExampleCloud` if you want the better fit for a solo developer. It stays inside your `$150/month` cap and costs `$38/month` more than `PlainHost`, but the snapshot explicitly places upgrade work, access hardening, backup restoration, monitoring, and capacity planning on you with `PlainHost`. For a 40-staff internal document app, that ongoing operator burden is the more important cost unless you specifically want to self-manage infra.
+
+This recommendation becomes wrong if either:
+- You are comfortable owning routine ops and want the lowest recurring bill, in which case `PlainHost` wins on pure monthly spend.
+- Your real workload grows enough that `ExampleCloud` delivery overages climb materially above this snapshot assumption, because its bandwidth pricing is already the dominant line item.
+
+Focused check before committing: confirm that `staging` really needs a full separate paid environment and that `1500 GB/month` delivery is a realistic estimate. Those two assumptions drive most of the difference.

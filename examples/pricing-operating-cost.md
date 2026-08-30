@@ -1,6 +1,6 @@
 # Pricing and Operating-Cost Example
 
-This example shows how `advise-project-approach` should handle vendor recommendations where generic AI advice often stops at "free to start."
+This hand-written illustration shows intended behavior for vendor recommendations. It is not a measured model comparison or verified current pricing; see [evaluations](../evals/README.md) for executed tests.
 
 ## Prompt
 

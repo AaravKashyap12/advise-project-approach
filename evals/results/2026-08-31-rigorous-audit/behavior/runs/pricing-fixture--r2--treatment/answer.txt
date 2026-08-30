@@ -1,0 +1,7 @@
+Based on the snapshot in [pricing.md](C:/Users/aarav/AppData/Local/Temp/apa-rigorous-83m9m9vn/fixtures/pricing-fixture--r2--treatment/pricing.md:1), I’d recommend `ExampleCloud`.
+
+`ExampleCloud` comes to `$130/month`: `$20` org subscription, `$20` compute for staging + production, `$2` for 100 GB over the 100 GB storage allowance, `$80` for 1000 GB over the 500 GB delivery allowance, and `$8` for daily backups. `PlainHost` comes to `$92/month`: `$30` server, `$12` backups, `$50` delivery/CDN. So `PlainHost` is `$38/month` cheaper.
+
+The reason I still recommend `ExampleCloud` is operating work. Your budget cap is `$150/month`, and `ExampleCloud` stays under it while avoiding the self-managed work explicitly assigned to you on `PlainHost`: upgrades, access hardening, backup restore responsibility, monitoring, and capacity planning. For a solo developer with 40 internal users, that reduction in operational burden is worth more than the `$38/month` savings unless you are strongly optimizing for cash over time.
+
+When this recommendation becomes wrong: choose `PlainHost` instead if keeping recurring spend as low as possible matters more than your ops time, or if you already have solid server-management automation and are comfortable owning restore drills and hardening. Focused check: before committing, verify whether your real app needs separate staging infrastructure beyond the included assumptions, because any extra environment-specific compute would widen `ExampleCloud`’s cost gap.

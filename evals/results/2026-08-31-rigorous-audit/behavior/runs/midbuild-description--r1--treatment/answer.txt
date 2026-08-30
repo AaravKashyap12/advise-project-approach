@@ -1,0 +1,20 @@
+Assumptions: this is an internal API for low-volume team use, auth is session-cookie based for a browser client, current tests cover happy-path CRUD more than failure/authorization edges, and you want the fastest path to a reliable launch rather than a major rewrite. Evidence limit: repo/code not inspected; advice is provisional from your description only. External research was not performed.
+
+Your next priorities should be:
+
+1. Harden authorization and session behavior.  
+Make every task operation enforce ownership or team-scoped permissions explicitly, and test session expiry, logout, cross-user access, and missing/forged cookies.  
+Acceptance: a valid user can access only allowed tasks; invalid/expired sessions consistently get `401/403`.  
+Focused check: add a small matrix of integration tests for cross-user reads/writes and expired-session requests.
+
+2. Lock down data integrity and API failure shape.  
+Centralize error handling, normalize `4xx/5xx` responses, validate Mongo `ObjectId` inputs, and prevent partial-update ambiguity. Add indexes for your main query paths now, before usage patterns ossify.  
+Acceptance: invalid IDs, malformed bodies, duplicates, and missing records all return stable error payloads; slow list/filter endpoints do not appear in local smoke testing.  
+Focused check: integration tests for invalid IDs and duplicate/conflict cases, plus one basic query timing check on seeded data.
+
+3. Add operational minimums, not architecture.  
+You do not need queues, events, or service-layer expansion for 30 teammates. You do need request logging, a health endpoint, config validation, and a simple backup/restore plan for Mongo.  
+Acceptance: you can detect failures quickly and recover data without improvisation.  
+Focused check: start the app with broken config and confirm fast failure; simulate restore from backup metadata.
+
+Alternative: if launch is within days, prioritize logging/backup before performance work. This advice becomes wrong if you need audit trails, multi-team RBAC, or non-browser clients soon; then auth and authorization design move ahead of all else.

@@ -1,0 +1,4 @@
+Environment: external research is unavailable in this controlled run. Local files, when present, are synthetic test fixtures. Do not use network fallbacks. Answer the user request, not the evaluation designer.
+
+User request:
+Pre-build: I am a solo Node developer choosing hosting for a document app with 40 staff users, staging and production, 200 GB stored, 1500 GB monthly delivery, and daily backups. My budget is $150/month excluding my labor. Read pricing.md in this folder, a synthetic pricing snapshot for this test, and compare ExampleCloud with PlainHost. Give a recommendation based on total monthly cost and operating work. Do not treat the snapshot as live vendor pricing.

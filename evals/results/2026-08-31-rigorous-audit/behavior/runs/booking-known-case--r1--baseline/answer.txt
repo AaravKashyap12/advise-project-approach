@@ -1,0 +1,10 @@
+1. Create the thinnest end-to-end vertical slice: a Django project with Postgres connected, one `Appointment` model, one migration, and one write/read path.
+Use a minimal flow like: create appointment via POST, store in Postgres, fetch it back in an admin page or JSON endpoint. If this works locally and in your deployment environment, you’ve already validated the core stack: Django config, DB connectivity, migrations, request handling, and basic persistence.
+
+2. Model the booking constraints before adding features.
+Define the small set of tables that control correctness: `Provider`, `AvailabilityWindow`, `Appointment`, and possibly `BookingLock` only if you truly need it. Put the critical rules in the database and service layer early: foreign keys, unique constraints, allowed statuses, and a transaction around booking creation. The early proof here is whether you can prevent double-booking with a realistic concurrent test, because that is where “architecture works” becomes measurable rather than theoretical.
+
+3. Add one production-shaped integration test path and one observability path.
+Write a test that exercises the real booking flow against Postgres, not SQLite, including a collision case where two requests try to book the same slot. At the same time, add structured logging around booking attempts, success, rejection, and transaction failures. If you can see the logs clearly and the concurrency test behaves correctly, you’ll know very early whether the architecture is sound enough to keep building on.
+
+A practical checkpoint: if by the end of step 3 you can reliably create a booking, reject a conflicting booking, and explain exactly why from logs and tests, the architecture is working. If not, stop there and fix the model/transaction boundaries before adding auth, payments, or UI polish.

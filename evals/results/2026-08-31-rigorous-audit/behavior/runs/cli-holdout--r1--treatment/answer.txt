@@ -1,0 +1,9 @@
+1. Build a `plan` mode that scans a target folder, reads each photo’s best-available date from standard-library metadata sources you can access safely, proposes the new filename, detects collisions, and writes a preview report to stdout plus a CSV or text file without changing any files.
+Acceptance behavior: pointing it at a test folder shows `old name -> new name` for every supported file, flags missing dates and duplicate target names, and exits with a nonzero status if any rename would be ambiguous.
+Focused check: create a small fixture set with 5-10 copied photos, including two files that would map to the same timestamp and one file with no usable date; confirm the report shows the exact rename plan and refuses unsafe cases.
+
+2. Add an explicit `apply` mode that only executes a previously reviewed plan, renames files with `os.replace` in a deterministic order, logs every completed rename, and supports a `--backup-log` or `--undo-log` file so you can reverse the batch if needed.
+Acceptance behavior: after reviewing the dry-run output, running `apply` against the same fixture folder changes only the approved files, leaves skipped/conflicting files untouched, and produces a machine-readable log that can drive an undo command or manual reversal.
+Focused check: run `plan`, inspect the output, then run `apply` on copied test files and verify filename changes, log contents, and that rerunning `apply` does not rename already-renamed files differently.
+
+If the preview step shows more than a few files with missing or conflicting dates, stop and switch from “rename by date only” to “date plus sequence suffix” before touching the real 500-file folder.

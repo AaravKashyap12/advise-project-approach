@@ -1,0 +1,11 @@
+Assumption: filenames and file timestamps are your available date sources, and no EXIF parser will be used because you want standard library only.
+
+1. Build a `--dry-run` planner that scans the target folder, derives a date per file, proposes the new name, and refuses ambiguous cases.
+Acceptance behavior: running it prints a full old->new plan, marks files with missing/invalid dates as skipped, and flags any target-name collisions without changing anything.
+Focused check: create a disposable folder with a few copied photos plus two files that would collide on the same timestamp; confirm the tool reports the collision and exits without any rename.
+
+2. Add the real rename mode so it executes only a previously reviewed plan, using a no-clobber rename and a rollback log.
+Acceptance behavior: after reviewing the dry-run output, a real run renames only approved files, never overwrites an existing destination, and writes a log that can reverse completed renames if a later rename fails.
+Focused check: test on copied photos first, including a pre-created destination filename to force a conflict; confirm the tool stops fail-closed, preserves untouched files, and the rollback command restores any already-renamed files.
+
+Escalate only if more than a few files end up skipped because their dates are unavailable or wrong; that is the threshold where standard-library-only date extraction is no longer a good fit.

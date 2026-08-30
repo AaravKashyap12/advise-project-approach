@@ -1,0 +1,21 @@
+Assumptions: this is an internal API for about 30 trusted teammates, Express is staying, MongoDB is already wired, auth is cookie-session based, Zod covers request validation, and the 18 integration tests cover happy paths more than failure/recovery cases. Evidence status: description only; no repo inspected, no external research performed.
+
+Your next priorities should be:
+
+1. Authorization and tenancy boundaries. Authentication is not enough if teammates should only see or mutate their own tasks or role-allowed fields. Add explicit per-route ownership/role checks before adding more features.
+Acceptance: a logged-in user cannot read, update, or delete another user’s task.
+Focused check: integration tests for cross-user access on every mutating and read-by-id route.
+
+2. Data correctness at the database boundary. Zod protects inputs, but you still need Mongo-level guarantees for duplicate states, missing indexes, and unsafe update patterns. Add required indexes, unique constraints where applicable, and normalize partial update behavior.
+Acceptance: repeated requests do not create invalid duplicates, and common list/query routes stay predictable.
+Focused check: tests for duplicate creation, invalid state transitions, and query behavior with realistic seed data.
+
+3. Operational failure handling. For an internal tool, reliability beats new endpoints. Standardize error responses, request logging, auth/session expiry behavior, and basic health/readiness checks.
+Acceptance: auth failures, validation failures, missing records, and DB outages return consistent machine-usable responses.
+Focused check: integration tests that force each failure class and assert status/body shape.
+
+4. Minimal deploy hardening. Add env validation, secure cookie settings per environment, and a simple backup/restore plan for Mongo.
+Acceptance: startup fails fast on bad config; production cookies are locked down.
+Focused check: boot with missing env vars and verify fail-fast.
+
+Alternative: if teammates are blocked by missing workflow features, do one thin end-to-end feature next, but only after step 1. This advice becomes wrong if the API is already externally exposed or needs audit/compliance; then rate limiting, audit logs, and stricter session controls move up immediately.

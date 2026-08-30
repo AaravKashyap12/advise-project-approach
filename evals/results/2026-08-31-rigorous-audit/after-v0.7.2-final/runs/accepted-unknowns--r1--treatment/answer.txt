@@ -1,0 +1,45 @@
+For your constraints, the default recommendation is: build this as a small Django app, start with SQLite locally, and plan to deploy first on a simple managed host that can run one Python web app plus a Postgres database when you’re ready to launch. That fits solo Python work, a one-month timeline, and your priority on simplicity better than assembling a lighter framework plus extra auth/admin/form pieces yourself.
+
+**Why this fits**
+Your decision drivers are clear: solo builder, Python comfort, one month, coordinators as the main users, and a narrow workflow of shift creation plus signup. That pushes toward a batteries-included stack with built-in admin, forms, auth, and ORM. The main thing you give up versus something lighter like Flask is a bit more framework surface area, but you save time on glue code and deployment mistakes. I inspected the local workspace and found no project files, so this is greenfield advice from your stated constraints only; external comparables and pricing verification were unavailable in this run.
+
+**Deployment and Budget**
+Because you have not deployed before, treat deployment as a simplicity choice first and a cost choice second.
+
+A good first posture is:
+1. Build locally with `SQLite`.
+2. Keep the app stateless enough that switching to `Postgres` later is straightforward.
+3. Deploy to a managed Python host before considering self-hosting.
+
+That is the right bias because self-hosting looks cheap on paper but adds operational work immediately: OS updates, process management, TLS, backups, monitoring, and recovery. For a volunteer scheduler, that work is likely worse than the hosting bill.
+
+Think about budget in three stages:
+- Prototype cost: likely near-zero if it only runs on your machine for demos.
+- Launch cost: one web app plus one database, maybe a domain.
+- Growth cost: email sending, backups, and database/storage growth matter before compute does.
+
+Since pricing could not be verified here, I would not anchor you to exact numbers. The cost-sensitive choice is really managed hosting versus self-hosting. For your case, managed hosting is the safer default even if it costs a bit more.
+
+**Best Path vs Alternative**
+Primary path: Django + SQLite locally, Postgres in production, managed hosting.
+What you gain: fastest route to usable admin screens, data model changes, auth, and form handling.
+What you give up: slightly heavier framework and some future migration work from SQLite to Postgres.
+When this becomes wrong: if you later need complex real-time availability, multi-organization isolation, or very low operating cost with strong infra control.
+
+Credible alternative: Flask or FastAPI with server-rendered templates.
+What it improves: smaller mental model.
+What it worsens: you must assemble admin/auth/form workflows yourself, which is exactly where solo one-month projects lose time.
+
+Comparable evidence was not available because external research is blocked, so I’m not claiming ecosystem or pricing specifics beyond general engineering tradeoffs.
+
+**Next Actions**
+1. Define the first slice as: coordinator creates a shift, volunteer sees open shifts, volunteer signs up, coordinator sees updated roster.
+2. Model only the core entities: `Coordinator/User`, `Volunteer`, `Shift`, `Signup`.
+3. Build this first in ordinary Django views/templates and the Django admin, not an API-first architecture.
+4. Keep deployment-ready settings separated early: env-based secret key, allowed hosts, database URL.
+5. Switch from SQLite to Postgres only when you are preparing a real hosted deployment or need production-like testing.
+
+**Proof**
+The first slice is successful when a coordinator can create a shift in the app, a volunteer can claim it, and a second volunteer is prevented from taking a full slot if capacity is reached. The focused check is to create a disposable test dataset and verify that two competing signups cannot exceed shift capacity. If that invariant is hard to enforce cleanly in your current code path, debug the write path first rather than adding architecture.
+
+If you want, I can turn this into a concrete one-month implementation plan with exactly 4 weekly milestones and a recommended deployment path for a first-time Python app.

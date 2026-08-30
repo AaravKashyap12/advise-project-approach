@@ -1,0 +1,57 @@
+Start narrower than “help students study better.” That framing is too broad to build well. The best approach is to pick one painful, frequent job students already struggle with and solve it unusually well.
+
+A strong sequence is:
+
+1. Pick a wedge.
+Good starting wedges are:
+- turning lecture notes/slides into study material
+- planning what to study each week
+- spaced repetition and revision tracking
+- group study and accountability
+- exam-specific practice with feedback
+
+2. Validate the pain before building much.
+Talk to 20-30 students across 2-3 disciplines and ask:
+- What part of studying wastes the most time?
+- What do you currently use?
+- What do you avoid because it’s too much effort?
+- What happens right before exams that breaks down?
+
+You want repeated complaints, not polite interest.
+
+3. Build the smallest product that creates repeat use.
+A good MVP is not “all-in-one study OS.” It is one loop students come back to weekly. For example:
+- upload class material
+- platform generates flashcards, quiz questions, and study plan
+- student studies for 15 minutes
+- system tracks weak areas and schedules review
+
+If they return without being pushed, you have something.
+
+4. Optimize for retention, not feature count.
+The key metric is whether students keep using it after the first week. Track:
+- weekly active users
+- number of study sessions per user
+- 2-week and 4-week retention
+- materials uploaded per user
+- completion of recommended review sessions
+
+5. Choose a user segment.
+“University students” is still too broad. Pick one:
+- first-year STEM students
+- medical students
+- law students
+- students preparing for high-stakes finals
+- students in large lecture-based courses
+
+Different groups study very differently.
+
+A practical MVP concept would be: “AI study companion for course materials,” focused on lecture PDFs, notes, and exam prep. That is concrete, easy to test, and aligned with real workflow. But the real differentiator is not AI generation by itself; it’s whether your product reliably helps students decide what to study next and remember more with less friction.
+
+Avoid these mistakes:
+- building a generic dashboard with notes, tasks, calendar, and chat
+- relying on novelty instead of habit formation
+- trying to serve every subject at once
+- assuming students want social features before core study value exists
+
+If you want, I can turn this into a concrete 30-day MVP plan, including features, user interviews, and a first product spec.

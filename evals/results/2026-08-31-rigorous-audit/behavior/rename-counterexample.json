@@ -1,0 +1,10 @@
+{
+  "scenario": "A destination is created after a clean dry-run plan but before apply.",
+  "suggested_primitive": "os.replace(source, target)",
+  "plan_marked_no_collision": true,
+  "unrelated_destination_sha256_before": "18525b972ef24784253e59dc576af812ccf00c8afec57112028af464b1ecea75",
+  "destination_sha256_after": "bd807022c51e46e4d52058bf5710f8d279e80b6f9134f445b17a22594ca6d619",
+  "unrelated_destination_preserved": false,
+  "source_exists_after": false,
+  "scope": "Disposable synthetic bytes only. This demonstrates an omitted safety condition in both holdout treatment answers, not a bug in any real user application."
+}

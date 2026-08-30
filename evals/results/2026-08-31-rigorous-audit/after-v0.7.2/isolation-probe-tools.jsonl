@@ -1,0 +1,2 @@
+{"tool": "read_file", "arguments": {"path": "probe.txt"}, "result": {"path": "probe.txt", "total_lines": 1, "lines": [{"number": 1, "text": "APA_READ_PROBE_42"}]}}
+{"tool": "read_file", "arguments": {"path": "probe.txt"}, "result": {"path": "probe.txt", "total_lines": 1, "lines": [{"number": 1, "text": "APA_READ_PROBE_42"}]}}

@@ -1,0 +1,19 @@
+Initial harness-development attempt, before any test executed.
+
+Command:
+python evals/results/2026-08-31-rigorous-audit/packaging/audit_packaging.py --repo C:\Users\aarav\Desktop\skills
+Process exit: 1
+
+Failure at shutil.copytree(repo, self.snapshot, ignore=self.ignore_copy):
+PermissionError: [WinError 5] Access is denied: 'C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-2m02tcii\snapshot'
+
+TemporaryDirectory cleanup also failed at os.scandir and os.chmod:
+PermissionError: [WinError 5] Access is denied: 'C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-2m02tcii'
+
+This is a harness/environment setup failure, not a production defect or an audit test result.
+No baseline or mutation commands executed. No production files changed.
+Harness adjustment: create a unique OS-temp directory using Path.mkdir() with
+inherited Windows permissions rather than tempfile.TemporaryDirectory's owner-only
+permissions; verify the resolved absolute cleanup target remains under OS temp.
+The inaccessible first-attempt directory was not forcibly removed or escalated.
+The final run's complete subprocess records are in commands.txt and results.json.

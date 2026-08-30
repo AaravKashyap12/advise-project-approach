@@ -1,0 +1,54 @@
+{
+  "date": "2026-08-31",
+  "findings_addressed": 7,
+  "model_api_calls": 0,
+  "real_credentials_used": false,
+  "legacy_evidence_modified": false,
+  "red_before_edits": {
+    "tests": 28,
+    "failures": 23,
+    "errors": 1,
+    "passes": 4,
+    "exit_code": 1,
+    "record": "red-reviewed-snapshots.txt"
+  },
+  "green_original": {
+    "tests": 28,
+    "passes": 28,
+    "exit_code": 0,
+    "record": "green-initial.txt"
+  },
+  "red_expanded_against_reviewed_snapshots": {
+    "tests": 38,
+    "failures": 30,
+    "errors": 1,
+    "passes": 7,
+    "exit_code": 1,
+    "record": "red-expanded.txt"
+  },
+  "green_expanded": {
+    "tests": 38,
+    "passes": 38,
+    "exit_code": 0,
+    "record": "green-expanded.txt"
+  },
+  "package_regressions": {
+    "tests": 35,
+    "passes": 35,
+    "exit_code": 0,
+    "record": "package-regressions.txt"
+  },
+  "eval_regressions": {
+    "tests": 51,
+    "passes": 51,
+    "exit_code": 0,
+    "outside_windows_sandbox": true,
+    "record": "eval-regressions.txt"
+  },
+  "limits": [
+    "Forced process termination may bypass finally and leave owner-only temporary auth and a stale lock.",
+    "Legacy evidence requires manual verification; no automatic schema upgrade is supported.",
+    "Real Codex/model execution of the corrected schema was not performed.",
+    "Hashes provide consistency checks, not signed tamper-proof attestations."
+  ]
+}

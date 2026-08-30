@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a054e9-d3d8-7ad1-b807-6ae9090a121c"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in C:\\Users\\aarav\\AppData\\Local\\Temp\\apa-rigorous-83m9m9vn\\codex-home\\config.toml."}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"`sum(values) / len(values) if values else 0`"}}
+{"type":"turn.completed","usage":{"input_tokens":12185,"cached_input_tokens":4096,"cache_write_input_tokens":0,"output_tokens":32,"reasoning_output_tokens":12}}

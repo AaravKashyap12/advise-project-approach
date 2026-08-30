@@ -1,0 +1,17 @@
+Using the synthetic snapshot in [pricing.md](C:/Users/aarav/AppData/Local/Temp/apa-rigorous-83m9m9vn/fixtures/pricing-fixture--r1--baseline/pricing.md:1), both options fit your `$150/month` budget, but they optimize for different things.
+
+`ExampleCloud` comes to `$130/month`:
+- `$20` organization subscription
+- `$20` compute for `staging` and `production` (`2 x $10`)
+- `$2` extra storage for `200 GB` total (`100 GB` over included)
+- `$80` extra delivery for `1500 GB/month` total (`1000 GB` over included)
+- `$8` daily backups
+
+`PlainHost` comes to `$92/month`:
+- `$30` server
+- `$12` external backups
+- `$50` delivery/CDN
+
+Recommendation: choose `ExampleCloud` if you want the better solo-developer operating model. It is `$38/month` more, but still inside budget, and the snapshot does not assign you the same explicit ops burden. `PlainHost` is cheaper, but the file makes clear that you would own upgrades, access hardening, restore procedures, monitoring, and capacity planning. For a solo Node developer, that operational load is the main cost driver even if labor is excluded from the budget.
+
+So the short version is: `PlainHost` wins on raw monthly price, `ExampleCloud` wins on lower operating work. Given your budget cap and solo-operator constraint, I would pick `ExampleCloud`.

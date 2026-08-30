@@ -1,3 +1,7 @@
 * text=auto eol=lf
 
 *.skill binary
+
+# Evaluation artifacts are byte-hashed evidence, not normalized source files.
+evals/results/** -text whitespace=cr-at-eol
+evals/results/**/*.txt -whitespace

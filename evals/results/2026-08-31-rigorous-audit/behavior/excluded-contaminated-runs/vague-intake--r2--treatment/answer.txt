@@ -1,0 +1,24 @@
+1. What are you trying to build for university students, and who is the first target user?
+Examples: exam prep, spaced repetition, lecture-note organization, assignment planning, peer study groups, tutoring, AI study coach.
+
+2. Is this an idea, an active project, or nearly ready to ship?
+
+3. What must it do in version 1, and what is explicitly out of scope for now?
+
+4. Are you building solo or with a team, and what tools/languages are you comfortable with?
+
+5. What matters most for this project: speed, low cost, simplicity, scale, control, or flexibility?
+
+6. Where do you expect to run it, and what would you strongly prefer to avoid?
+Examples: web app only, mobile too, self-hosted, Firebase/Supabase, heavy AI costs, complex DevOps.
+
+If you want, you can answer in a compact format like:
+
+```text
+1. Users / problem:
+2. Stage:
+3. Must-have / out-of-scope:
+4. Team / skills:
+5. Top priority:
+6. Deployment / avoid:
+```

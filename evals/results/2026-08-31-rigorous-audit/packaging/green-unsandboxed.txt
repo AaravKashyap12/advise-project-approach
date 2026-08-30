@@ -1,0 +1,99 @@
+$ C:\Users\aarav\.agent-reach-venv\Scripts\python.exe -B -m unittest discover -s tests -v
+cwd=C:\Users\aarav\AppData\Local\Temp\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e
+exit=0
+stdout:
+
+stderr:
+test_bad_zip_reports_validation_error (test_packaging.ArchiveTests.test_bad_zip_reports_validation_error) ... ok
+test_crc_corruption_is_read_and_rejected (test_packaging.ArchiveTests.test_crc_corruption_is_read_and_rejected) ... ok
+test_crlf_payload_normalization (test_packaging.ArchiveTests.test_crlf_payload_normalization) ... ok
+test_extra_missing_and_duplicate_entries (test_packaging.ArchiveTests.test_extra_missing_and_duplicate_entries) ... ok
+test_members_must_match_source_payloads (test_packaging.ArchiveTests.test_members_must_match_source_payloads) ... ok
+test_stale_archive_is_rejected (test_packaging.ArchiveTests.test_stale_archive_is_rejected) ... ok
+test_symlink_archive_member_is_rejected (test_packaging.ArchiveTests.test_symlink_archive_member_is_rejected) ... ok
+test_invalid_utf8_preserves_old_archive (test_packaging.PackagingTests.test_invalid_utf8_preserves_old_archive) ... ok
+test_packager_rejects_extra_source_files (test_packaging.PackagingTests.test_packager_rejects_extra_source_files) ... ok
+test_replace_failure_preserves_old_archive_and_removes_temporary_output (test_packaging.PackagingTests.test_replace_failure_preserves_old_archive_and_removes_temporary_output) ... ok
+test_reproducibility_and_minimal_archive (test_packaging.PackagingTests.test_reproducibility_and_minimal_archive) ... ok
+test_write_failure_preserves_old_archive_and_removes_temporary_output (test_packaging.PackagingTests.test_write_failure_preserves_old_archive_and_removes_temporary_output) ... ok
+test_case_field_invariants (test_validation.EvalSchemaTests.test_case_field_invariants) ... ok
+test_invalid_case_shapes_are_rejected_without_tracebacks (test_validation.EvalSchemaTests.test_invalid_case_shapes_are_rejected_without_tracebacks) ... ok
+test_malformed_data_has_helpful_errors (test_validation.EvalSchemaTests.test_malformed_data_has_helpful_errors) ... ok
+test_schema_version_is_an_integer_not_boolean_or_float (test_validation.EvalSchemaTests.test_schema_version_is_an_integer_not_boolean_or_float) ... ok
+test_conventional_yaml_strings (test_validation.MetadataTests.test_conventional_yaml_strings) ... ok
+test_description_budget_uses_decoded_value (test_validation.MetadataTests.test_description_budget_uses_decoded_value) ... ok
+test_duplicate_frontmatter_key (test_validation.MetadataTests.test_duplicate_frontmatter_key) ... ok
+test_frontmatter_exact_fields_and_name (test_validation.MetadataTests.test_frontmatter_exact_fields_and_name) ... ok
+test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) ... ok
+test_host_fields_are_optional_but_typed_when_present (test_validation.MetadataTests.test_host_fields_are_optional_but_typed_when_present) ... ok
+test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) ... ok
+test_invalid_frontmatter_yaml (test_validation.MetadataTests.test_invalid_frontmatter_yaml) ... ok
+test_missing_metadata_and_extra_source_files (test_validation.MetadataTests.test_missing_metadata_and_extra_source_files) ... ok
+test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) ... ok
+test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) ... ok
+test_valid_repository (test_validation.MetadataTests.test_valid_repository) ... ok
+test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) ... ok
+test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) ... ok
+test_plugin_version_must_match (test_validation.ReleaseTests.test_plugin_version_must_match) ... ok
+test_readme_ignores_nonvisible_historical_examples (test_validation.ReleaseTests.test_readme_ignores_nonvisible_historical_examples) ... ok
+test_readme_requires_a_visible_current_download_link (test_validation.ReleaseTests.test_readme_requires_a_visible_current_download_link) ... ok
+test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) ... ok
+test_version_changes_are_not_pinned_to_a_release (test_validation.ReleaseTests.test_version_changes_are_not_pinned_to_a_release) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 18.835s
+
+OK
+
+
+$ C:\Users\aarav\.agent-reach-venv\Scripts\python.exe -B -m unittest discover -s evals -p test_*.py -v
+cwd=C:\Users\aarav\AppData\Local\Temp\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e
+exit=0
+stdout:
+
+stderr:
+test_absolute_outside_denied (test_fixtures.FixtureServerTests.test_absolute_outside_denied) ... ok
+test_initialize (test_fixtures.FixtureServerTests.test_initialize) ... ok
+test_list_reports_total_and_limit (test_fixtures.FixtureServerTests.test_list_reports_total_and_limit) ... ok
+test_no_progress_fixture_preserves_contradictions (test_fixtures.FixtureServerTests.test_no_progress_fixture_preserves_contradictions) ... ok
+test_parent_traversal_denied (test_fixtures.FixtureServerTests.test_parent_traversal_denied) ... ok
+test_probe_only_writes_synthetic_marker (test_fixtures.FixtureServerTests.test_probe_only_writes_synthetic_marker) ... ok
+test_public_query_is_logged_without_network (test_fixtures.FixtureServerTests.test_public_query_is_logged_without_network) ... ok
+test_public_search_exposure_is_scenario_specific (test_fixtures.FixtureServerTests.test_public_search_exposure_is_scenario_specific) ... ok
+test_read_annotations_distinguish_mutation (test_fixtures.FixtureServerTests.test_read_annotations_distinguish_mutation) ... ok
+test_read_is_bounded_and_logged (test_fixtures.FixtureServerTests.test_read_is_bounded_and_logged) ... ok
+test_resume_rejects_mixed_candidate_evidence_before_login (test_fixtures.FixtureServerTests.test_resume_rejects_mixed_candidate_evidence_before_login) ... ok
+test_unknown_scenario_fails_before_model_call (test_fixtures.FixtureServerTests.test_unknown_scenario_fails_before_model_call) ... ok
+test_unknown_tool_fails_closed (test_fixtures.FixtureServerTests.test_unknown_tool_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.809s
+
+OK
+
+
+$ C:\Users\aarav\.agent-reach-venv\Scripts\python.exe -B scripts/package_skill.py
+cwd=C:\Users\aarav\AppData\Local\Temp\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+$ C:\Users\aarav\.agent-reach-venv\Scripts\python.exe -B scripts/validate_skill.py
+cwd=C:\Users\aarav\AppData\Local\Temp\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+$ C:\Users\aarav\.agent-reach-venv\Scripts\python.exe -B scripts/package_skill.py
+cwd=C:\Users\aarav\AppData\Local\Temp\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:

@@ -1,0 +1,19 @@
+{
+  "id": "vague-intake--r1--baseline",
+  "case": "vague-intake",
+  "condition": "baseline",
+  "repeat": 1,
+  "status": "completed",
+  "exit_code": 0,
+  "elapsed_seconds": 24.11,
+  "commands": [],
+  "usage": {
+    "input_tokens": 23792,
+    "cached_input_tokens": 11264,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 903,
+    "reasoning_output_tokens": 366
+  },
+  "fixture_probe_ran": false,
+  "answer_words": 302
+}

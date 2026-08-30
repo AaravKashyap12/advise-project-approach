@@ -1,0 +1,35 @@
+{
+  "control": "evals\\results\\2026-08-31-rigorous-audit\\behavior",
+  "candidate": "evals\\results\\2026-08-31-rigorous-audit\\after-v0.7.2-final",
+  "control_condition": "baseline",
+  "rubric_sha256": "c2b1437dd2e5e5f3bf2219d1afe2a994194ff958d9a4adb12e557ce6b3001681",
+  "control_manifest": {
+    "model": "gpt-5.4",
+    "reasoning_effort": "medium",
+    "cli": "codex-cli 0.151.0-alpha.7.2",
+    "skill_sha256": "0c94a9941a05966f5e38e2ae640d94ed24508dc83ba4fa64039d93245179b1dc",
+    "date": "2026-08-31",
+    "network": "web search disabled; model connection only",
+    "sandbox": "read-only; fixture MCP is confined to synthetic cwd and a harmless execution marker",
+    "isolation": "fresh ephemeral sessions; isolated CODEX_HOME with explicit per-skill disables; plugins, apps and multi-agent disabled",
+    "disabled_paths": 566,
+    "fixture_root": "C:\\Users\\aarav\\AppData\\Local\\Temp\\apa-rigorous-83m9m9vn",
+    "timeout_seconds": 150
+  },
+  "candidate_manifest": {
+    "model": "gpt-5.4",
+    "reasoning_effort": "medium",
+    "cli": "codex-cli 0.151.0-alpha.7.2",
+    "skill_sha256": "ec5044e15fee8f54a2b6733d5d346c63c8bc20610015733ab8e3970675c6c50a",
+    "date": "2026-08-31",
+    "network": "web search disabled; model connection only",
+    "sandbox": "read-only; fixture MCP is confined to synthetic cwd and a harmless execution marker",
+    "isolation": "fresh ephemeral sessions; isolated CODEX_HOME with explicit per-skill disables; plugins, apps and multi-agent disabled",
+    "disabled_paths": 566,
+    "fixture_root": "C:\\Users\\aarav\\AppData\\Local\\Temp\\apa-rigorous-btyiuwxs",
+    "timeout_seconds": 150,
+    "skill_prompt_sha256": "ec5044e15fee8f54a2b6733d5d346c63c8bc20610015733ab8e3970675c6c50a",
+    "suite_sha256": "223bc1fdd7b5cbe118986453eeda99504d459c346307f506ca28664c1e0046f6",
+    "fixture_server_sha256": "3b88fccd87a88429da1812bc97be28a62d5e53524301343463b717489db3ba89"
+  }
+}

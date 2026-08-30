@@ -1,0 +1,72 @@
+test_anonymizes_all_nested_tool_evidence (test_runner.ComparisonTests.test_anonymizes_all_nested_tool_evidence) ... ok
+test_matching_runs_generate_two_orders (test_runner.ComparisonTests.test_matching_runs_generate_two_orders) ... ok
+test_rejects_changed_runtime (test_runner.ComparisonTests.test_rejects_changed_runtime) ... usage: prepare_comparison.py [-h] --control CONTROL --candidate CANDIDATE
+                             --output OUTPUT
+                             [--control-condition {baseline,treatment}]
+                             --cases CASES [CASES ...] [--repeats REPEATS]
+prepare_comparison.py: error: Comparison runtime/suite/fixture identity mismatch
+ok
+test_rejects_different_fixture_inputs (test_runner.ComparisonTests.test_rejects_different_fixture_inputs) ... usage: prepare_comparison.py [-h] --control CONTROL --candidate CANDIDATE
+                             --output OUTPUT
+                             [--control-condition {baseline,treatment}]
+                             --cases CASES [CASES ...] [--repeats REPEATS]
+prepare_comparison.py: error: Comparison served prompt/fixture inputs differ: probe-case
+ok
+test_rejects_different_served_prompts (test_runner.ComparisonTests.test_rejects_different_served_prompts) ... usage: prepare_comparison.py [-h] --control CONTROL --candidate CANDIDATE
+                             --output OUTPUT
+                             [--control-condition {baseline,treatment}]
+                             --cases CASES [CASES ...] [--repeats REPEATS]
+prepare_comparison.py: error: Comparison runtime/suite/fixture identity mismatch
+ok
+test_rejects_foreign_run_provenance (test_runner.ComparisonTests.test_rejects_foreign_run_provenance) ... usage: prepare_comparison.py [-h] --control CONTROL --candidate CANDIDATE
+                             --output OUTPUT
+                             [--control-condition {baseline,treatment}]
+                             --cases CASES [CASES ...] [--repeats REPEATS]
+prepare_comparison.py: error: Invalid per-run provenance: probe-case--r1--treatment
+ok
+test_rejects_legacy_evidence_without_rewriting (test_runner.ComparisonTests.test_rejects_legacy_evidence_without_rewriting) ... usage: prepare_comparison.py [-h] --control CONTROL --candidate CANDIDATE
+                             --output OUTPUT
+                             [--control-condition {baseline,treatment}]
+                             --cases CASES [CASES ...] [--repeats REPEATS]
+prepare_comparison.py: error: Legacy evidence cannot be resumed or automatically compared. Use a new output directory; manually verify legacy served prompts, command settings and fixture responses.
+ok
+test_rejects_tampered_served_prompt (test_runner.ComparisonTests.test_rejects_tampered_served_prompt) ... usage: prepare_comparison.py [-h] --control CONTROL --candidate CANDIDATE
+                             --output OUTPUT
+                             [--control-condition {baseline,treatment}]
+                             --cases CASES [CASES ...] [--repeats REPEATS]
+prepare_comparison.py: error: Run artifact mismatch: probe-case--r1--treatment/prompt.txt
+ok
+test_uses_saved_prompt_not_current_checkout (test_runner.ComparisonTests.test_uses_saved_prompt_not_current_checkout) ... ok
+test_cleanup_covers_configuration_write_failure (test_runner.RunnerTests.test_cleanup_covers_configuration_write_failure) ... ok
+test_cleanup_covers_failed_isolation_probe (test_runner.RunnerTests.test_cleanup_covers_failed_isolation_probe) ... ok
+test_cleanup_covers_partial_credential_copy (test_runner.RunnerTests.test_cleanup_covers_partial_credential_copy) ... ok
+test_cleanup_covers_version_command_failure (test_runner.RunnerTests.test_cleanup_covers_version_command_failure) ... ok
+test_completed_resume_preserves_manifest (test_runner.RunnerTests.test_completed_resume_preserves_manifest) ... ok
+test_failed_case_remains_nonzero_on_resume (test_runner.RunnerTests.test_failed_case_remains_nonzero_on_resume) ... Failed run requires classification, not automatic reuse: probe-case--r1--treatment
+ok
+test_new_output_must_be_empty (test_runner.RunnerTests.test_new_output_must_be_empty) ... ok
+test_reasoning_configuration_drives_both_commands (test_runner.RunnerTests.test_reasoning_configuration_drives_both_commands) ... ok
+test_resume_rejects_changed_cli_without_relabeling (test_runner.RunnerTests.test_resume_rejects_changed_cli_without_relabeling) ... Use a new output directory: runtime/source/fixture identity differs
+ok
+test_resume_rejects_changed_runner (test_runner.RunnerTests.test_resume_rejects_changed_runner) ... Use a new output directory: runtime/source/fixture identity differs
+ok
+test_resume_rejects_changed_source (test_runner.RunnerTests.test_resume_rejects_changed_source) ... Use a new output directory: runtime/source/fixture identity differs
+ok
+test_resume_rejects_changed_timeout (test_runner.RunnerTests.test_resume_rejects_changed_timeout) ... Use a new output directory: runtime/source/fixture identity differs
+ok
+test_resume_rejects_foreign_result (test_runner.RunnerTests.test_resume_rejects_foreign_result) ... Invalid per-run provenance: probe-case--r1--treatment
+ok
+test_resume_rejects_missing_answer (test_runner.RunnerTests.test_resume_rejects_missing_answer) ... Missing or unsafe evidence file: C:\Users\aarav\AppData\Local\Temp\apa-tooling-test-2610bc417906422aa4ddb56052391c2f\evidence\runs\probe-case--r1--treatment\answer.txt
+ok
+test_resume_rejects_partial_run_directory (test_runner.RunnerTests.test_resume_rejects_partial_run_directory) ... Missing or unsafe evidence file: C:\Users\aarav\AppData\Local\Temp\apa-tooling-test-3678c8aa58074bfcb954014dc499fb11\evidence\runs\probe-case--r1--treatment\result.json
+ok
+test_resume_rejects_tampered_answer (test_runner.RunnerTests.test_resume_rejects_tampered_answer) ... Run artifact mismatch: probe-case--r1--treatment/answer.txt
+ok
+test_resume_requires_manifest (test_runner.RunnerTests.test_resume_requires_manifest) ... ok
+test_rg_error_falls_back_to_filesystem_discovery (test_runner.RunnerTests.test_rg_error_falls_back_to_filesystem_discovery) ... ok
+test_rg_is_optional (test_runner.RunnerTests.test_rg_is_optional) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 6.138s
+
+OK

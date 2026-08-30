@@ -1,0 +1,104 @@
+{
+  "phase": "green-unsandboxed",
+  "snapshot": "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e",
+  "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+  "pyyaml": "6.0.3",
+  "baseline_revision": null,
+  "source_hashes": {
+    "scripts/validate_skill.py": "d27c1b443420fdc5dd89f74148c52020f2a4a3e049218226ee54018414917e5d",
+    "scripts/package_skill.py": "4cf8519bbd97be1e94f39e789ff0ed08bd162c67eb51a8af01e1e772689a5bbe",
+    "VERSION": "d0176718bd214ce8474c06ed61c395ca113fdfc2acdd86d9aa9933b40d9b561e",
+    "dist/advise-project-approach.skill": "b0b1453f662ddd6411965227f521945a0e65fa3143a5d557b90da6680630cdbd",
+    ".github/workflows/validate.yml": "49c890771ad328c4917a67dde3507edc5389ff441ab4ca277481e53f6fafa521",
+    "requirements-dev.txt": "0969da99a0bc2a1b71ed50584560f4588a37567ac63af3ddbaf3c4617ca5621a",
+    "README.md": "023b1dcbb58d8313a3515d60f455271191fbb3ecad08c9413c3a2cd24a68b184",
+    "CHANGELOG.md": "e6a35e983f09aac377c8443458dfb715f1f28ad62f6a5402592d56e0c7e516a1",
+    ".claude-plugin/plugin.json": "7f8e929bfc6ec83e6ec720016545d9bfdddbcff731ac1ea9f43a88e7dde9cc06",
+    "skills/advise-project-approach/SKILL.md": "ec5044e15fee8f54a2b6733d5d346c63c8bc20610015733ab8e3970675c6c50a",
+    "skills/advise-project-approach/agents/openai.yaml": "5953ba626074226db2bf2ba121d15b507e187ae0b881603549694076fc670444",
+    "tests/support.py": "4a1f523702497b85d853fe05b9bc4c885acd872b0ca7050a46e5b23b9763a041",
+    "tests/test_packaging.py": "dd7d293901258b0714a587584a00a34308e686eaeb09aaf62c86e8cd64c8c497",
+    "tests/test_validation.py": "228bc133dab986876af2c22ba324e4b6388a24acbc5e89ad0f3cec93bee66f2e",
+    "tests/__init__.py": "e8ccda2433ecbc0a98471acdabb539c904c7062adfe34878a1ffeac3a45bab5e"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\aarav\\.agent-reach-venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "cwd": "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_bad_zip_reports_validation_error (test_packaging.ArchiveTests.test_bad_zip_reports_validation_error) ... ok\ntest_crc_corruption_is_read_and_rejected (test_packaging.ArchiveTests.test_crc_corruption_is_read_and_rejected) ... ok\ntest_crlf_payload_normalization (test_packaging.ArchiveTests.test_crlf_payload_normalization) ... ok\ntest_extra_missing_and_duplicate_entries (test_packaging.ArchiveTests.test_extra_missing_and_duplicate_entries) ... ok\ntest_members_must_match_source_payloads (test_packaging.ArchiveTests.test_members_must_match_source_payloads) ... ok\ntest_stale_archive_is_rejected (test_packaging.ArchiveTests.test_stale_archive_is_rejected) ... ok\ntest_symlink_archive_member_is_rejected (test_packaging.ArchiveTests.test_symlink_archive_member_is_rejected) ... ok\ntest_invalid_utf8_preserves_old_archive (test_packaging.PackagingTests.test_invalid_utf8_preserves_old_archive) ... ok\ntest_packager_rejects_extra_source_files (test_packaging.PackagingTests.test_packager_rejects_extra_source_files) ... ok\ntest_replace_failure_preserves_old_archive_and_removes_temporary_output (test_packaging.PackagingTests.test_replace_failure_preserves_old_archive_and_removes_temporary_output) ... ok\ntest_reproducibility_and_minimal_archive (test_packaging.PackagingTests.test_reproducibility_and_minimal_archive) ... ok\ntest_write_failure_preserves_old_archive_and_removes_temporary_output (test_packaging.PackagingTests.test_write_failure_preserves_old_archive_and_removes_temporary_output) ... ok\ntest_case_field_invariants (test_validation.EvalSchemaTests.test_case_field_invariants) ... ok\ntest_invalid_case_shapes_are_rejected_without_tracebacks (test_validation.EvalSchemaTests.test_invalid_case_shapes_are_rejected_without_tracebacks) ... ok\ntest_malformed_data_has_helpful_errors (test_validation.EvalSchemaTests.test_malformed_data_has_helpful_errors) ... ok\ntest_schema_version_is_an_integer_not_boolean_or_float (test_validation.EvalSchemaTests.test_schema_version_is_an_integer_not_boolean_or_float) ... ok\ntest_conventional_yaml_strings (test_validation.MetadataTests.test_conventional_yaml_strings) ... ok\ntest_description_budget_uses_decoded_value (test_validation.MetadataTests.test_description_budget_uses_decoded_value) ... ok\ntest_duplicate_frontmatter_key (test_validation.MetadataTests.test_duplicate_frontmatter_key) ... ok\ntest_frontmatter_exact_fields_and_name (test_validation.MetadataTests.test_frontmatter_exact_fields_and_name) ... ok\ntest_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) ... ok\ntest_host_fields_are_optional_but_typed_when_present (test_validation.MetadataTests.test_host_fields_are_optional_but_typed_when_present) ... ok\ntest_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) ... ok\ntest_invalid_frontmatter_yaml (test_validation.MetadataTests.test_invalid_frontmatter_yaml) ... ok\ntest_missing_metadata_and_extra_source_files (test_validation.MetadataTests.test_missing_metadata_and_extra_source_files) ... ok\ntest_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) ... ok\ntest_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) ... ok\ntest_valid_repository (test_validation.MetadataTests.test_valid_repository) ... ok\ntest_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) ... ok\ntest_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) ... ok\ntest_plugin_version_must_match (test_validation.ReleaseTests.test_plugin_version_must_match) ... ok\ntest_readme_ignores_nonvisible_historical_examples (test_validation.ReleaseTests.test_readme_ignores_nonvisible_historical_examples) ... ok\ntest_readme_requires_a_visible_current_download_link (test_validation.ReleaseTests.test_readme_requires_a_visible_current_download_link) ... ok\ntest_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) ... ok\ntest_version_changes_are_not_pinned_to_a_release (test_validation.ReleaseTests.test_version_changes_are_not_pinned_to_a_release) ... ok\n\n----------------------------------------------------------------------\nRan 35 tests in 18.835s\n\nOK\n",
+      "seconds": 19.015
+    },
+    {
+      "argv": [
+        "C:\\Users\\aarav\\.agent-reach-venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "evals",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_absolute_outside_denied (test_fixtures.FixtureServerTests.test_absolute_outside_denied) ... ok\ntest_initialize (test_fixtures.FixtureServerTests.test_initialize) ... ok\ntest_list_reports_total_and_limit (test_fixtures.FixtureServerTests.test_list_reports_total_and_limit) ... ok\ntest_no_progress_fixture_preserves_contradictions (test_fixtures.FixtureServerTests.test_no_progress_fixture_preserves_contradictions) ... ok\ntest_parent_traversal_denied (test_fixtures.FixtureServerTests.test_parent_traversal_denied) ... ok\ntest_probe_only_writes_synthetic_marker (test_fixtures.FixtureServerTests.test_probe_only_writes_synthetic_marker) ... ok\ntest_public_query_is_logged_without_network (test_fixtures.FixtureServerTests.test_public_query_is_logged_without_network) ... ok\ntest_public_search_exposure_is_scenario_specific (test_fixtures.FixtureServerTests.test_public_search_exposure_is_scenario_specific) ... ok\ntest_read_annotations_distinguish_mutation (test_fixtures.FixtureServerTests.test_read_annotations_distinguish_mutation) ... ok\ntest_read_is_bounded_and_logged (test_fixtures.FixtureServerTests.test_read_is_bounded_and_logged) ... ok\ntest_resume_rejects_mixed_candidate_evidence_before_login (test_fixtures.FixtureServerTests.test_resume_rejects_mixed_candidate_evidence_before_login) ... ok\ntest_unknown_scenario_fails_before_model_call (test_fixtures.FixtureServerTests.test_unknown_scenario_fails_before_model_call) ... ok\ntest_unknown_tool_fails_closed (test_fixtures.FixtureServerTests.test_unknown_tool_fails_closed) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 1.809s\n\nOK\n",
+      "seconds": 1.985
+    },
+    {
+      "argv": [
+        "C:\\Users\\aarav\\.agent-reach-venv\\Scripts\\python.exe",
+        "-B",
+        "scripts/package_skill.py"
+      ],
+      "cwd": "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e",
+      "exit_code": 0,
+      "stdout": "Built dist\\advise-project-approach.skill\n",
+      "stderr": "",
+      "seconds": 0.171
+    },
+    {
+      "argv": [
+        "C:\\Users\\aarav\\.agent-reach-venv\\Scripts\\python.exe",
+        "-B",
+        "scripts/validate_skill.py"
+      ],
+      "cwd": "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e",
+      "exit_code": 0,
+      "stdout": "Skill package is valid.\n",
+      "stderr": "",
+      "seconds": 0.157
+    },
+    {
+      "argv": [
+        "C:\\Users\\aarav\\.agent-reach-venv\\Scripts\\python.exe",
+        "-B",
+        "scripts/package_skill.py"
+      ],
+      "cwd": "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-implementation-49c0ddd922e84befb1cd0d7a92294e2e",
+      "exit_code": 0,
+      "stdout": "Built dist\\advise-project-approach.skill\n",
+      "stderr": "",
+      "seconds": 0.156
+    }
+  ],
+  "root_dist_before": "b0b1453f662ddd6411965227f521945a0e65fa3143a5d557b90da6680630cdbd",
+  "rebuilds_equal": true,
+  "rebuilt_dist_sha256": "ae50e152c1268461ecb30a0ba39e8ce8e3d6292778e62b3b4615dddc48ec5deb",
+  "root_dist_after": "b0b1453f662ddd6411965227f521945a0e65fa3143a5d557b90da6680630cdbd",
+  "root_dist_unchanged": true,
+  "exit_code": 0
+}

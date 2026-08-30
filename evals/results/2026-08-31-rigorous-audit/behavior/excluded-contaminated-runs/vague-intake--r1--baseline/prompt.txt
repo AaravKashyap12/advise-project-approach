@@ -1,0 +1,4 @@
+Environment: external research is unavailable in this controlled run. Local files, when present, are synthetic test fixtures. Do not use network fallbacks. Answer the user request, not the evaluation designer.
+
+User request:
+I want to build a platform that helps university students study better. What is the best way to approach it?

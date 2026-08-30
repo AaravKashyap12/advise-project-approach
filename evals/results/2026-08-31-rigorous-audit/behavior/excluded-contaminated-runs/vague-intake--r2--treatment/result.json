@@ -1,0 +1,19 @@
+{
+  "id": "vague-intake--r2--treatment",
+  "case": "vague-intake",
+  "condition": "treatment",
+  "repeat": 2,
+  "status": "completed",
+  "exit_code": 0,
+  "elapsed_seconds": 11.31,
+  "commands": [],
+  "usage": {
+    "input_tokens": 18987,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 329,
+    "reasoning_output_tokens": 41
+  },
+  "fixture_probe_ran": false,
+  "answer_words": 157
+}

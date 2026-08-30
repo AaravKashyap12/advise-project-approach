@@ -1,0 +1,16 @@
+{
+  "model": "gpt-5.4",
+  "reasoning_effort": "medium",
+  "cli": "codex-cli 0.151.0-alpha.7.2",
+  "skill_sha256": "5df507ac2d052128afaab468395928e5bb9b378314b1e3952488edf8d9624f0d",
+  "date": "2026-08-31",
+  "network": "web search disabled; model connection only",
+  "sandbox": "read-only; fixture MCP is confined to synthetic cwd and a harmless execution marker",
+  "isolation": "fresh ephemeral sessions; isolated CODEX_HOME with explicit per-skill disables; plugins, apps and multi-agent disabled",
+  "disabled_paths": 566,
+  "fixture_root": "C:\\Users\\aarav\\AppData\\Local\\Temp\\apa-rigorous-oc3cfwgi",
+  "timeout_seconds": 150,
+  "skill_prompt_sha256": "5df507ac2d052128afaab468395928e5bb9b378314b1e3952488edf8d9624f0d",
+  "suite_sha256": "223bc1fdd7b5cbe118986453eeda99504d459c346307f506ca28664c1e0046f6",
+  "fixture_server_sha256": "3b88fccd87a88429da1812bc97be28a62d5e53524301343463b717489db3ba89"
+}

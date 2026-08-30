@@ -1,0 +1,59 @@
+{
+  "pairs": [
+    {
+      "case": "booking-known-case",
+      "repeat": 1,
+      "matched_served_request_and_environment": true,
+      "matched_recorded_command_settings": true,
+      "candidate_matches_saved_skill_text": true,
+      "pricing_payloads_match": false
+    },
+    {
+      "case": "booking-known-case",
+      "repeat": 2,
+      "matched_served_request_and_environment": true,
+      "matched_recorded_command_settings": true,
+      "candidate_matches_saved_skill_text": true,
+      "pricing_payloads_match": false
+    },
+    {
+      "case": "cli-holdout",
+      "repeat": 1,
+      "matched_served_request_and_environment": true,
+      "matched_recorded_command_settings": true,
+      "candidate_matches_saved_skill_text": true,
+      "pricing_payloads_match": false
+    },
+    {
+      "case": "cli-holdout",
+      "repeat": 2,
+      "matched_served_request_and_environment": true,
+      "matched_recorded_command_settings": true,
+      "candidate_matches_saved_skill_text": true,
+      "pricing_payloads_match": false
+    },
+    {
+      "case": "pricing-fixture",
+      "repeat": 1,
+      "matched_served_request_and_environment": true,
+      "matched_recorded_command_settings": true,
+      "candidate_matches_saved_skill_text": true,
+      "pricing_payloads_match": true
+    },
+    {
+      "case": "pricing-fixture",
+      "repeat": 2,
+      "matched_served_request_and_environment": true,
+      "matched_recorded_command_settings": true,
+      "candidate_matches_saved_skill_text": true,
+      "pricing_payloads_match": true
+    }
+  ],
+  "matching_default_fixture_tool_definitions": true,
+  "condition_paths_absent_from_complete_packets": true,
+  "limitations": [
+    "This validates concrete saved records, not every historical execution property.",
+    "Historical manifests lack the new runner's full provenance schema and cannot be silently upgraded.",
+    "No model was called; declared CLI identities were compared, not reconstructed from a network capture."
+  ]
+}

@@ -1,0 +1,75 @@
+## Project Approach: B2B Inventory Product
+
+### TL;DR
+Do not copy the most-starred repo’s stack just because it is the most starred. That is not a fit test, and in this environment I cannot verify any comparable anyway.  
+Provisional recommendation: build this as a **modular monolith** with **Django + PostgreSQL**, server-rendered UI first with **HTMX**, and add **Redis/Celery** only when background jobs appear.
+
+### Project Frame
+Visible assumptions, since you asked to skip questions and browsing is unavailable:
+- Product is a typical B2B inventory system: SKUs, stock movements, purchase orders, receiving, adjustments, user roles, exports, and audit history.
+- Priority is shipping a reliable business system, not a consumer-grade frontend or ultra-high scale on day one.
+- Team constraints, hosting target, and language preference are unknown.
+
+### Evidence Status
+- Local repo evidence: none provided.
+- External comparable research: not performed; browsing is unavailable.
+- Comparable-by-stars request: rejected as decision method, because popularity does not establish fit.
+
+### Recommended Stack
+- Backend: `Django`
+- Database: `PostgreSQL`
+- Frontend: Django templates + `HTMX`
+- Auth: Django auth initially; add SSO only if a customer requires it
+- Background jobs: `Celery` + `Redis` only for imports, notifications, scheduled reconciliation
+- API: add Django REST Framework only when external integrations or separate clients actually need it
+- Hosting: one app service/container + managed Postgres
+- Files: object storage only if you need large import/export artifacts or attachments
+- Observability: structured app logs, DB slow-query visibility, error tracking
+
+### Why This Fits
+What you gain:
+- Fastest path to complex CRUD and workflow-heavy business software
+- Strong relational modeling for inventory, orders, locations, lots, and audit trails
+- Good admin surface for internal operations from the start
+- Lower architectural overhead than separate SPA + API + microservices
+
+What you give up:
+- Less frontend flexibility than a dedicated SPA stack
+- Smaller JS-native hiring/story if your team is fully frontend-heavy
+- Async and realtime patterns are less natural than in a JS-first stack
+
+What becomes harder later:
+- A richer client-side UX if you later want a highly interactive warehouse console
+- Splitting the system into services if you prematurely overgrow the monolith
+
+### Credible Alternative
+**TypeScript monolith: `Next.js` + `PostgreSQL` + Prisma**
+- Improves: single-language team flow, modern web hiring pool, easier path to richer client UX
+- Worsens: more accidental frontend/API complexity for a workflow-heavy back-office app
+- Wrong choice if: your main need is reliable transactional business logic and admin throughput, not product-polished client UX
+
+### When This Recommendation Is Wrong
+Switch away from this recommendation if any of these become true:
+- Your team is already strongly JS/TS-only and weak in Python
+- The product must support complex offline-first warehouse scanning clients early
+- Customer requirements force deep realtime collaboration or multi-tenant self-service customization very early
+- You need a public API ecosystem as a first-class product surface from the first release
+
+### Next Actions
+1. Build the first vertical slice: create SKUs, receive stock into a location, adjust quantity, and show current on-hand balance with an audit trail.
+2. Model the core tables first: products, locations, stock movements, suppliers, purchase orders, users/roles.
+3. Add import/export only after the core movement model is stable.
+4. Add background jobs only when a real workflow needs async processing.
+5. Add API endpoints only when an external integration or second client actually exists.
+
+### Validation Plan
+First slice acceptance behavior:
+- An operator can create a product, receive stock, move/adjust stock, and see the correct quantity and movement history in the UI.
+
+Focused check:
+- Verify that every inventory-changing action writes an immutable stock movement row and derived stock totals remain consistent after a short manual scenario.
+
+Escalation signal:
+- If the same inventory invariants are duplicated across multiple entry points or integrations, or if import/reconciliation jobs start blocking request latency, then introduce explicit service boundaries and background processing.
+
+This is a provisional recommendation because no repo, comparables, or deployment constraints were available. If you want, I can next turn this into a concrete build plan for the first 6 weeks using this stack.

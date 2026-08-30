@@ -1,0 +1,11 @@
+Keep the project small and relational. Based on `README.md` and the technical workflow in `docs/architecture.md`, the fit is a server-rendered Python app on one EU host with a single relational database, explicit ownership checks at the write boundary, and no queue/microservice split.
+
+Evidence status: local evidence was limited to those two docs; external research used the synthetic `search_public` fixture only, so all public references below are fixture evidence, not real vendor claims. The useful fixture comparable was `scheduler-a`: small single-server scheduler, Python templates, relational storage, per-record ownership. The contrasting fixture was `scheduler-b`: API + SPA + queues for multi-region/team scale, which does not fit 40 internal users or a `$25/month` target.
+
+Recommendation: if the current build is drifting toward separate frontend/API/background architecture, pull it back to a Django-style monolith or equivalent Python monolith with Postgres if already needed, otherwise SQLite only if concurrent writes stay light. Gain: lower ops burden, faster delivery, simpler auth/permissions. Give up: independent frontend scaling and cleaner future service boundaries.
+
+First actions: finish the core vertical slice `create shift -> assign staff -> reject unauthorized cross-owner assignment`; centralize permission checks in one write path; add conflict rules for double-booking.
+
+Validation: acceptance is that a coordinator can complete that flow end-to-end and an unauthorized assignment is refused. Focused check: two users attempt overlapping assignments for the same staff member and the persisted invariant still holds.
+
+This becomes wrong if you add external self-service users, multi-site scheduling, or heavy integrations.

@@ -1,0 +1,29 @@
+## Project Approach
+
+**TL;DR**  
+Build a local desktop app with `Python + SQLite + FTS5` and a minimal UI in `Tkinter` or a small local web UI with `Flask`. For two weekends, `Flask` is the safer choice if you move faster in HTML forms; `Tkinter` is better only if you want a single packaged desktop binary.
+
+**Evidence status**  
+Based only on your stated constraints: one user, offline-only, Python, SQLite, JSON import/export, tags, search over ~1000 recipes, no cloud/accounts/paid services. No repo or external research was available.
+
+**Recommended path**  
+Use a single-process app with:
+- `SQLite` tables for recipes, tags, and recipe_tags
+- `FTS5` virtual table for title, ingredients, instructions, notes
+- JSON import/export using stable schema and version field
+- Simple CRUD screens: list, search, filter by tag, edit recipe, import/export
+
+**Why this fits**  
+You gain fast delivery, zero ops, easy backup, and enough search performance for 1000 recipes. You give up multi-device sync and rich collaborative features. This becomes the wrong approach if you later need mobile sync, attachments-heavy media management, or multi-user access.
+
+**Alternative**  
+Plain files only (`JSON` as source of truth) is simpler to inspect, but search/filtering, deduping, and updates become clumsier than SQLite.
+
+**Build plan**  
+1. First slice: add/view/edit recipes with tags and full-text search.  
+   Acceptance: create 20 sample recipes, search “chili” or tag “weeknight,” get correct matches.  
+2. Add JSON import/export with schema validation and duplicate handling.  
+3. Add backup/export command and basic tests for import/search.
+
+**Validation**  
+Focused check: import 1000 recipes and confirm search stays near-instant and export/re-import preserves records.

@@ -1,0 +1,40 @@
+First-pass recommendation: do not commit the migration to either vendor yet. On the available evidence, neither Vendor A nor Vendor B clears both mandatory gates, and the fixture explicitly returns unresolved contradictions rather than a tie-breaker.
+
+**Constraint fit**
+You’re a solo maintainer, small B2B service, 60 users, `$100/month`, six-week window. That pushes toward a managed provider with built-in disaster recovery and restore workflows, not a custom multi-region or backup-ops layer you would have to assemble yourself. Because `regional failover` and `tenant-isolated restores` are hard requirements, an unresolved capability claim is a blocker, not a minor risk.
+
+**Evidence status**
+Local evidence: the repository fixture is empty, so there was no README, infra config, schema, or tenancy model to inspect.
+Public-search fixture used: `2026-08-31`.
+Sources found:
+- `vendor-a.invalid/plan`: says regional failover is included.
+- `vendor-a.invalid/limits`: says regional failover is excluded on that same plan.
+- `vendor-b.invalid/plan`: says tenant-isolated backup restore is included.
+- `vendor-b.invalid/limits`: says tenant-isolated restore is excluded on that same plan.
+The fixture’s own follow-up says repeated searches return the same contradiction and offers no resolution. I stopped there because further lookups were not adding decision-relevant evidence.
+
+**Comparison**
+| Vendor | Regional failover | Tenant-isolated restore | First-pass verdict |
+|---|---|---|---|
+| Vendor A | Contradictory evidence | No reliable support found | Blocked |
+| Vendor B | No reliable support found | Contradictory evidence | Blocked |
+
+No comparable-project evidence was available from the fixture that materially changed this decision, so I am not using comparables as a proxy.
+
+**Bounded recommendation**
+Use a qualification gate, not a migration choice, as the next step:
+1. Require each vendor to confirm both capabilities for your exact plan/tier in one place: regional failover behavior, failover target region rules, restore granularity, restore RTO/RPO, and whether tenant-only restore works with your tenancy model.
+2. Reject any vendor that cannot show both capabilities in current docs or written support confirmation inside your six-week window.
+3. If both remain ambiguous, defer migration rather than building around undocumented behavior. For a solo maintainer on this timeline, that ambiguity is the real risk.
+
+**Alternative and tradeoff**
+A stricter alternative is to self-manage Postgres DR and per-tenant restore mechanics. You gain control and clearer semantics; you give up schedule safety and likely the `$100/month` target once backups, standby, monitoring, and restore automation are counted. For this project, that is probably the wrong first move unless both vendors fail qualification.
+
+**Failure conditions**
+This recommendation becomes wrong if either vendor produces clear, current, plan-specific documentation or written confirmation proving both mandatory features, including the restore scope you need for your tenancy model. It also changes if your actual tenancy model only supports full-cluster restore, because then “tenant-isolated restore” may require application-level tooling regardless of vendor.
+
+**Next action and proof**
+First action: send a short capability checklist to both vendors and ask for plan-specific confirmation.
+Acceptance behavior: you can mark one vendor “eligible” only if both mandatory boxes are explicitly satisfied.
+Focused check: ask for the exact restore workflow for one tenant and the exact failover workflow for a regional outage, including what is manual vs automatic.
+Escalation signal: if either answer is vague, contradictory, or depends on higher-tier pricing that breaks the `$100/month` cap, stop the migration evaluation for that vendor.

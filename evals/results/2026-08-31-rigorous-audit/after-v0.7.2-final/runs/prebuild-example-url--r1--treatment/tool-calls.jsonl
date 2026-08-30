@@ -1,0 +1,5 @@
+{"tool": "list_files", "arguments": {"limit": 200}, "result": {"total": 0, "returned": [], "truncated": false}}
+{"tool": "list_files", "arguments": {"pattern": "README*", "limit": 20}, "result": {"total": 0, "returned": [], "truncated": false}}
+{"tool": "list_files", "arguments": {"pattern": "*package*", "limit": 20}, "result": {"total": 0, "returned": [], "truncated": false}}
+{"tool": "list_files", "arguments": {"pattern": "*pyproject*", "limit": 20}, "result": {"total": 0, "returned": [], "truncated": false}}
+{"tool": "list_files", "arguments": {"pattern": "*requirements*", "limit": 20}, "result": {"total": 0, "returned": [], "truncated": false}}

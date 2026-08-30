@@ -1,0 +1,861 @@
+===== AGENTS.md =====
+   1: # Repository Guidance
+   2: 
+   3: This repository packages one public skill: `advise-project-approach`.
+   4: 
+   5: ## Source of Truth
+   6: 
+   7: - Edit the runtime skill at `skills/advise-project-approach/SKILL.md`.
+   8: - Do not edit `dist/advise-project-approach.skill` by hand. Rebuild it with `python scripts/package_skill.py`.
+   9: - Keep `.claude-plugin/plugin.json`, `skills/advise-project-approach/agents/openai.yaml`, `CHANGELOG.md`, and release notes in sync when changing their public metadata.
+  10: 
+  11: ## Release Discipline
+  12: 
+  13: - Treat `VERSION` as the canonical release version.
+  14: - Every public push must bump `VERSION` using semantic versioning, update `.claude-plugin/plugin.json`, replace the README's single current `What's New` section and release-asset link, and add a dated entry to `CHANGELOG.md`.
+  15: - Rebuild `dist/advise-project-approach.skill` before committing.
+  16: - After pushing, create or update the matching `vX.Y.Z` GitHub release and attach the rebuilt `.skill` artifact.
+  17: - Do not accumulate old release summaries in the README; keep full history in `CHANGELOG.md`.
+  18: 
+  19: ## Maintainer Agent Roles
+  20: 
+  21: - For each PR or issue task, create a fresh read-only communication sub-agent with the complete discussion, review, check, and linked-issue context. Use it to recommend or draft communication, then close it when the task is complete.
+  22: - Keep communication review separate from code review. Use an independent code-review sub-agent to inspect correctness, regressions, compatibility, security, and missing tests.
+  23: - Communication agents must not post, close, merge, label, or otherwise mutate GitHub without explicit maintainer authorization.
+  24: - Read the full conversation before replying, distinguish a useful idea from implementation quality, and credit ideas incorporated through a different implementation.
+  25: - A green check is necessary but not sufficient for merging. Accepted changes must also satisfy scope, behavior, compatibility, documentation, and release requirements.
+  26: 
+  27: ## Validation
+  28: 
+  29: Before committing changes, run:
+  30: 
+  31: ```bash
+  32: python scripts/validate_skill.py
+  33: python scripts/package_skill.py
+  34: python scripts/validate_skill.py
+  35: ```
+  36: 
+  37: The validator checks:
+  38: 
+  39: - skill folder and required files exist
+  40: - frontmatter has only `name` and `description`
+  41: - skill name matches folder name
+  42: - description is within the trigger metadata budget
+  43: - packaged `.skill` archive contains the expected root folder and files
+  44: - evaluation cases retain their required schema
+  45: - repository guidance remains available to generic agents and Claude Code
+  46: - release version, plugin metadata, and README current-version references agree
+  47: 
+  48: ## Editing Rules
+  49: 
+  50: - Keep the packaged skill folder minimal: `SKILL.md` plus optional host metadata under `agents/`.
+  51: - Keep human documentation at the repository root or in `examples/` and `evals/`, not inside the skill folder.
+  52: - Do not add runtime scripts to the skill package unless the skill truly needs executable behavior.
+  53: - Preserve the read-only, evidence-first safety posture of the skill.
+  54: - Avoid stale claims in examples. Do not hard-code star counts, release dates, or "latest" claims unless the example states they must be verified at review time.
+  55: 
+  56: ## Cross-Harness Compatibility
+  57: 
+  58: - `SKILL.md` is the portable runtime contract and must remain usable without optional metadata or adapters.
+  59: - Host-specific files are additive compatibility layers. Do not remove one harness's metadata merely to support another harness.
+  60: - Pi can discover the skill from `~/.agents/skills/` or `~/.pi/agent/skills/`.
+  61: - Claude Code can discover it from `~/.claude/skills/` and can use the optional plugin manifest.
+  62: - Codex can discover it from `~/.codex/skills/`; `agents/openai.yaml` supplies recommended UI metadata.
+  63: - Other Agent Skills-compatible harnesses can load the skill folder or point directly to `SKILL.md`.
+
+===== scripts/package_skill.py =====
+   1: #!/usr/bin/env python3
+   2: """Build the distributable .skill archive."""
+   3: 
+   4: from __future__ import annotations
+   5: 
+   6: from pathlib import Path
+   7: from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
+   8: 
+   9: 
+  10: ROOT = Path(__file__).resolve().parents[1]
+  11: SKILL_NAME = "advise-project-approach"
+  12: SOURCE_DIR = ROOT / "skills" / SKILL_NAME
+  13: DIST_DIR = ROOT / "dist"
+  14: OUT_FILE = DIST_DIR / f"{SKILL_NAME}.skill"
+  15: 
+  16: 
+  17: def main() -> None:
+  18:     if not SOURCE_DIR.is_dir():
+  19:         raise SystemExit(f"Missing skill source: {SOURCE_DIR}")
+  20: 
+  21:     DIST_DIR.mkdir(exist_ok=True)
+  22:     if OUT_FILE.exists():
+  23:         OUT_FILE.unlink()
+  24: 
+  25:     paths = sorted(
+  26:         (path for path in SOURCE_DIR.rglob("*") if path.is_file()),
+  27:         key=lambda path: path.relative_to(SOURCE_DIR.parent).as_posix().lower(),
+  28:     )
+  29: 
+  30:     with ZipFile(OUT_FILE, "w", compression=ZIP_DEFLATED) as archive:
+  31:         for path in paths:
+  32:             relative = path.relative_to(SOURCE_DIR.parent)
+  33:             info = ZipInfo(relative.as_posix())
+  34:             info.date_time = (2026, 1, 1, 0, 0, 0)
+  35:             info.compress_type = ZIP_DEFLATED
+  36:             info.create_system = 3
+  37:             info.external_attr = 0o644 << 16
+  38:             data = path.read_text(encoding="utf-8").replace("\r\n", "\n").encode(
+  39:                 "utf-8"
+  40:             )
+  41:             archive.writestr(info, data)
+  42: 
+  43:     print(f"Built {OUT_FILE.relative_to(ROOT)}")
+  44: 
+  45: 
+  46: if __name__ == "__main__":
+  47:     main()
+
+===== scripts/validate_skill.py =====
+   1: #!/usr/bin/env python3
+   2: """Validate source and packaged skill structure."""
+   3: 
+   4: from __future__ import annotations
+   5: 
+   6: import json
+   7: import re
+   8: from pathlib import Path
+   9: from zipfile import ZipFile
+  10: 
+  11: 
+  12: ROOT = Path(__file__).resolve().parents[1]
+  13: SKILL_NAME = "advise-project-approach"
+  14: SOURCE_DIR = ROOT / "skills" / SKILL_NAME
+  15: SKILL_FILE = SOURCE_DIR / "SKILL.md"
+  16: AGENT_FILE = SOURCE_DIR / "agents" / "openai.yaml"
+  17: PACKAGE_FILE = ROOT / "dist" / f"{SKILL_NAME}.skill"
+  18: EVAL_CASES_FILE = ROOT / "evals" / "cases.json"
+  19: AGENTS_FILE = ROOT / "AGENTS.md"
+  20: CLAUDE_FILE = ROOT / "CLAUDE.md"
+  21: VERSION_FILE = ROOT / "VERSION"
+  22: PLUGIN_FILE = ROOT / ".claude-plugin" / "plugin.json"
+  23: README_FILE = ROOT / "README.md"
+  24: EXPECTED_PACKAGE_FILES = {
+  25:     f"{SKILL_NAME}/SKILL.md",
+  26:     f"{SKILL_NAME}/agents/openai.yaml",
+  27: }
+  28: 
+  29: 
+  30: def fail(message: str) -> None:
+  31:     raise SystemExit(f"Validation failed: {message}")
+  32: 
+  33: 
+  34: def parse_frontmatter(text: str) -> dict[str, str]:
+  35:     match = re.match(r"^---\n(.*?)\n---\n", text, flags=re.DOTALL)
+  36:     if not match:
+  37:         fail("SKILL.md must start with YAML frontmatter")
+  38: 
+  39:     fields: dict[str, str] = {}
+  40:     for raw_line in match.group(1).splitlines():
+  41:         if not raw_line.strip():
+  42:             continue
+  43:         if ":" not in raw_line:
+  44:             fail(f"Invalid frontmatter line: {raw_line}")
+  45:         key, value = raw_line.split(":", 1)
+  46:         fields[key.strip()] = value.strip().strip('"')
+  47:     return fields
+  48: 
+  49: 
+  50: def validate_source() -> None:
+  51:     if not SOURCE_DIR.is_dir():
+  52:         fail(f"Missing source directory: {SOURCE_DIR.relative_to(ROOT)}")
+  53:     if not SKILL_FILE.is_file():
+  54:         fail("Missing skills/advise-project-approach/SKILL.md")
+  55:     if not AGENT_FILE.is_file():
+  56:         fail("Missing skills/advise-project-approach/agents/openai.yaml")
+  57: 
+  58:     extra_skill_files = {
+  59:         path.relative_to(SOURCE_DIR).as_posix()
+  60:         for path in SOURCE_DIR.rglob("*")
+  61:         if path.is_file()
+  62:     } - {"SKILL.md", "agents/openai.yaml"}
+  63:     if extra_skill_files:
+  64:         fail(f"Unexpected files inside skill package: {sorted(extra_skill_files)}")
+  65: 
+  66:     text = SKILL_FILE.read_text(encoding="utf-8")
+  67:     fields = parse_frontmatter(text)
+  68:     allowed_fields = {"name", "description"}
+  69:     extra_fields = set(fields) - allowed_fields
+  70:     missing_fields = allowed_fields - set(fields)
+  71:     if missing_fields:
+  72:         fail(f"Missing frontmatter fields: {sorted(missing_fields)}")
+  73:     if extra_fields:
+  74:         fail(f"Unexpected frontmatter fields: {sorted(extra_fields)}")
+  75:     if fields["name"] != SKILL_NAME:
+  76:         fail("Frontmatter name must match skill folder name")
+  77:     if len(fields["description"]) > 1024:
+  78:         fail("Frontmatter description must be 1024 characters or fewer")
+  79: 
+  80: 
+  81: def validate_package() -> None:
+  82:     if not PACKAGE_FILE.is_file():
+  83:         fail(f"Missing package: {PACKAGE_FILE.relative_to(ROOT)}")
+  84:     with ZipFile(PACKAGE_FILE) as archive:
+  85:         names = {name for name in archive.namelist() if not name.endswith("/")}
+  86:     if names != EXPECTED_PACKAGE_FILES:
+  87:         fail(
+  88:             "Package contents differ from expected files: "
+  89:             f"expected {sorted(EXPECTED_PACKAGE_FILES)}, got {sorted(names)}"
+  90:         )
+  91: 
+  92: 
+  93: def validate_eval_cases() -> None:
+  94:     if not EVAL_CASES_FILE.is_file():
+  95:         fail("Missing evals/cases.json")
+  96: 
+  97:     data = json.loads(EVAL_CASES_FILE.read_text(encoding="utf-8"))
+  98:     if data.get("schema_version") != 1:
+  99:         fail("evals/cases.json must use schema_version 1")
+ 100: 
+ 101:     cases = data.get("cases")
+ 102:     if not isinstance(cases, list) or len(cases) < 6:
+ 103:         fail("evals/cases.json must contain at least six cases")
+ 104: 
+ 105:     allowed_modes = {"pre-build", "mid-build", "post-build", "cross-mode"}
+ 106:     seen_ids: set[str] = set()
+ 107:     for case in cases:
+ 108:         case_id = case.get("id")
+ 109:         if not isinstance(case_id, str) or not case_id:
+ 110:             fail("Every eval case must have a non-empty id")
+ 111:         if case_id in seen_ids:
+ 112:             fail(f"Duplicate eval case id: {case_id}")
+ 113:         seen_ids.add(case_id)
+ 114:         if case.get("mode") not in allowed_modes:
+ 115:             fail(f"Invalid mode for eval case {case_id}")
+ 116:         if not isinstance(case.get("prompt"), str) or not case["prompt"].strip():
+ 117:             fail(f"Eval case {case_id} must have a prompt")
+ 118:         for field in ("assertions", "failure_conditions"):
+ 119:             values = case.get(field)
+ 120:             if not isinstance(values, list) or not values:
+ 121:                 fail(f"Eval case {case_id} must have non-empty {field}")
+ 122:             if not all(isinstance(value, str) and value.strip() for value in values):
+ 123:                 fail(f"Eval case {case_id} has an invalid {field} entry")
+ 124: 
+ 125: 
+ 126: def validate_repo_guidance() -> None:
+ 127:     if not AGENTS_FILE.is_file():
+ 128:         fail("Missing AGENTS.md cross-harness repository guidance")
+ 129:     if not CLAUDE_FILE.is_file():
+ 130:         fail("Missing CLAUDE.md compatibility bridge")
+ 131:     if "@AGENTS.md" not in CLAUDE_FILE.read_text(encoding="utf-8"):
+ 132:         fail("CLAUDE.md must import AGENTS.md")
+ 133: 
+ 134: 
+ 135: def validate_release_version() -> None:
+ 136:     if not VERSION_FILE.is_file():
+ 137:         fail("Missing VERSION release source of truth")
+ 138:     version = VERSION_FILE.read_text(encoding="utf-8").strip()
+ 139:     if not re.fullmatch(r"\d+\.\d+\.\d+", version):
+ 140:         fail("VERSION must contain a semantic version such as 0.6.0")
+ 141: 
+ 142:     if not PLUGIN_FILE.is_file():
+ 143:         fail("Missing .claude-plugin/plugin.json")
+ 144:     plugin = json.loads(PLUGIN_FILE.read_text(encoding="utf-8"))
+ 145:     if plugin.get("version") != version:
+ 146:         fail("Plugin version must match VERSION")
+ 147: 
+ 148:     if not README_FILE.is_file():
+ 149:         fail("Missing README.md")
+ 150:     readme = README_FILE.read_text(encoding="utf-8")
+ 151:     if f"## What's New in v{version}" not in readme:
+ 152:         fail("README current What's New section must match VERSION")
+ 153:     release_url = f"/releases/download/v{version}/advise-project-approach.skill"
+ 154:     if release_url not in readme:
+ 155:         fail("README release asset link must match VERSION")
+ 156: 
+ 157: 
+ 158: def main() -> None:
+ 159:     validate_source()
+ 160:     validate_package()
+ 161:     validate_eval_cases()
+ 162:     validate_repo_guidance()
+ 163:     validate_release_version()
+ 164:     print("Skill package is valid.")
+ 165: 
+ 166: 
+ 167: if __name__ == "__main__":
+ 168:     main()
+
+===== .github/workflows/validate.yml =====
+   1: name: Validate skill package
+   2: 
+   3: on:
+   4:   pull_request:
+   5:   push:
+   6:     branches:
+   7:       - main
+   8: 
+   9: jobs:
+  10:   validate:
+  11:     runs-on: ubuntu-latest
+  12: 
+  13:     steps:
+  14:       - name: Check out repository
+  15:         uses: actions/checkout@v4
+  16: 
+  17:       - name: Set up Python
+  18:         uses: actions/setup-python@v5
+  19:         with:
+  20:           python-version: "3.12"
+  21: 
+  22:       - name: Validate checked-in package
+  23:         run: python scripts/validate_skill.py
+  24: 
+  25:       - name: Rebuild package
+  26:         run: python scripts/package_skill.py
+  27: 
+  28:       - name: Validate rebuilt package
+  29:         run: python scripts/validate_skill.py
+  30: 
+  31:       - name: Ensure generated package is committed
+  32:         run: git diff --exit-code dist/advise-project-approach.skill
+
+===== .claude-plugin/plugin.json =====
+   1: {
+   2:   "name": "advise-project-approach",
+   3:   "description": "Make AI agents research comparable projects, tradeoffs, costs, and failure conditions before giving build advice.",
+   4:   "version": "0.7.1",
+   5:   "author": {
+   6:     "name": "Aarav Kashyap"
+   7:   },
+   8:   "homepage": "https://github.com/AaravKashyap12/advise-project-approach",
+   9:   "repository": "https://github.com/AaravKashyap12/advise-project-approach",
+  10:   "license": "MIT",
+  11:   "keywords": [
+  12:     "claude-skills",
+  13:     "agent-skills",
+  14:     "project-planning",
+  15:     "software-architecture",
+  16:     "tech-stack",
+  17:     "code-review",
+  18:     "project-review",
+  19:     "architecture-review",
+  20:     "developer-tools"
+  21:   ],
+  22:   "skills": [
+  23:     "./skills/advise-project-approach"
+  24:   ]
+  25: }
+
+===== skills/advise-project-approach/agents/openai.yaml =====
+   1: interface:
+   2:   display_name: "Advise Project Approach"
+   3:   short_description: "Research stacks, costs, architecture, and project strategy"
+   4:   default_prompt: "Use $advise-project-approach to research the best way to build this project and recommend a stack, architecture, operating-cost tradeoffs, and next steps."
+
+===== VERSION =====
+   1: 0.7.1
+
+===== .gitattributes =====
+   1: * text=auto eol=lf
+   2: 
+   3: *.skill binary
+
+===== README.md =====
+   1: <p align="center">
+   2:   <picture>
+   3:     <source media="(prefers-color-scheme: dark)" srcset="./assets/brand/lockup-dark.svg">
+   4:     <source media="(prefers-color-scheme: light)" srcset="./assets/brand/lockup-light.svg">
+   5:     <img alt="advise-project-approach" src="./assets/brand/lockup-light.svg" width="680">
+   6:   </picture>
+   7: </p>
+   8: 
+   9: <p align="center"><strong>AI agents should not give project advice from vibes.</strong></p>
+  10: 
+  11: <p align="center">
+  12:   <strong>
+  13:     <a href="#one-line-install">Install</a> |
+  14:     <a href="./skills/advise-project-approach/SKILL.md">Skill source</a> |
+  15:     <a href="#whats-new-in-v071">What's new in v0.7.1</a> |
+  16:     <a href="#demo">Examples</a> |
+  17:     <a href="#evaluation">Tests &amp; evidence</a> |
+  18:     <a href="./CHANGELOG.md">Changelog</a> |
+  19:     <a href="./CONTRIBUTING.md">Contributing</a>
+  20:   </strong>
+  21: </p>
+  22: 
+  23: `advise-project-approach` is an agent skill for project planning, course correction, and review. Its portable `SKILL.md` can be loaded by Codex, Claude Code, pi, Hermes, and other Agent Skills-compatible harnesses.
+  24: 
+  25: Before recommending a stack, architecture, vendor, refactor, or shipping plan, it checks:
+  26: 
+  27: - your actual constraints
+  28: - comparable real-world projects
+  29: - tradeoffs and failure conditions
+  30: - cost and lock-in realities
+  31: - when the recommendation becomes wrong
+  32: 
+  33: ## Use It When
+  34: 
+  35: - you have a rough project idea and need a build plan
+  36: - your repo is getting messy and you need course correction
+  37: - you are choosing between stacks or vendors
+  38: - you want a review before shipping
+  39: - you want the agent to explain what not to build yet
+  40: 
+  41: ## One-Line Install
+  42: 
+  43: ```bash
+  44: npx skills@latest add AaravKashyap12/advise-project-approach --skill advise-project-approach
+  45: ```
+  46: 
+  47: This uses the open `skills` installer to fetch the repo from GitHub and install only this skill. It requires Node.js/npm. Review installed skills before use; skills run with your agent's normal permissions.
+  48: 
+  49: ## Source of Truth
+  50: 
+  51: The runtime skill spec lives in [skills/advise-project-approach/SKILL.md](./skills/advise-project-approach/SKILL.md). That file is the source of truth for the workflow agents actually run.
+  52: 
+  53: Everything else in this repo exists to package, explain, test, or distribute that skill.
+  54: 
+  55: ## What's New in v0.7.1
+  56: 
+  57: v0.7.1 keeps implementation-proof advice proportionate after the first controlled A/B exposed unnecessary report expansion.
+  58: 
+  59: - Makes the first numbered step itself an end-to-end slice instead of horizontal schema or setup work.
+  60: - Adds a narrow-advice route that preserves the user's requested shape and count without unnecessary browsing or full-report expansion.
+  61: - Requires testable escalation thresholds rather than vague complexity language.
+  62: - Requires every numbered greenfield step to deliver observable product behavior instead of proactive service-layer or folder-structure extraction.
+  63: - Records the initial v0.7.0 A/B result, including the graders' position-biased disagreement.
+  64: 
+  65: See the [full changelog](./CHANGELOG.md) for earlier versions.
+  66: 
+  67: ## Where This Fits
+  68: 
+  69: Use recent-signal tools to discover what changed.
+  70: 
+  71: Use `advise-project-approach` to decide what to build, change, defer, or avoid.
+  72: 
+  73: The skill is not trying to be a general search engine. It is a project-judgment workflow for turning evidence into engineering decisions.
+  74: 
+  75: ## Try These Prompts
+  76: 
+  77: ```text
+  78: "What's the best way to build a self-hosted bookmark manager?"
+  79: "Research comparable projects before I start this."
+  80: "I'm halfway through building a Node/Express API. Is my approach right?"
+  81: "Review my finished project at github.com/owner/repo."
+  82: "Should I use Postgres or SQLite for this?"
+  83: "What stack should I use given I know Python and want to self-host?"
+  84: "Should I use Supabase/Firebase/Neon/Vercel, or will pricing hurt later?"
+  85: ```
+  86: 
+  87: ## What It Does
+  88: 
+  89: Drop it into your agent and it will:
+  90: 
+  91: - **Pre-build:** Research your stack, find comparable real projects, compare architecture options, and hand you a build plan before you commit to anything you will regret in month three.
+  92: - **Mid-build:** Inspect your repo, identify what is actually wrong, not just what is fashionable to fix, and give you a prioritized list of changes ordered by impact.
+  93: - **Post-build:** Review your finished project against mature comparables, call out the gaps, and tell you what to harden before you ship.
+  94: 
+  95: It does the research loop a good engineer would do manually: understand the goal, inspect the evidence, study credible comparables, evaluate the tradeoffs, and recommend the highest-leverage path.
+  96: 
+  97: No vibes. Evidence first.
+  98: 
+  99: ## Works Across Agent Harnesses
+ 100: 
+ 101: The workflow is self-contained in its runtime skill file:
+ 102: 
+ 103: ```text
+ 104: skills/advise-project-approach/SKILL.md
+ 105: ```
+ 106: 
+ 107: From a local clone, install the same skill folder into the location your harness scans:
+ 108: 
+ 109: | Harness | Local skill location |
+ 110: | --- | --- |
+ 111: | pi | `~/.agents/skills/` or `~/.pi/agent/skills/` |
+ 112: | Claude Code | `~/.claude/skills/` |
+ 113: | Codex | `~/.codex/skills/` |
+ 114: | Other compatible agents | Point the loader at the skill folder or `SKILL.md` |
+ 115: 
+ 116: ```bash
+ 117: cp -r skills/advise-project-approach <your-agent-skill-directory>/
+ 118: ```
+ 119: 
+ 120: Pi documents recursive discovery of directories containing `SKILL.md` and permits freeform additional files. See [pi's skill documentation](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md).
+ 121: 
+ 122: The packaged `.skill` archive, `.claude-plugin/plugin.json`, and `agents/openai.yaml` are additive compatibility layers for installers and host UIs. They do not change the portable `SKILL.md` workflow, and harnesses that do not use them can ignore them.
+ 123: 
+ 124: ## Other Install Methods
+ 125: 
+ 126: To inspect the available skill before installing:
+ 127: 
+ 128: ```bash
+ 129: npx skills@latest add AaravKashyap12/advise-project-approach --list
+ 130: ```
+ 131: 
+ 132: ### Manual Download
+ 133: 
+ 134: Download the packaged skill:
+ 135: 
+ 136: [dist/advise-project-approach.skill](./dist/advise-project-approach.skill)
+ 137: 
+ 138: Or install from the GitHub release:
+ 139: 
+ 140: [Download the v0.7.1 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)
+ 141: 
+ 142: #### Skill UI
+ 143: 
+ 144: 1. Download `dist/advise-project-approach.skill`.
+ 145: 2. Open your agent's skill settings.
+ 146: 3. Upload the `.skill` file.
+ 147: 4. Start a new conversation.
+ 148: 
+ 149: ### Plugin Metadata
+ 150: 
+ 151: This repo also includes `.claude-plugin/plugin.json` for plugin-aware installers that can read skill collections from GitHub repositories.
+ 152: 
+ 153: ## Demo
+ 154: 
+ 155: ```text
+ 156: You: I want to build a self-hosted bookmark manager. Solo dev, Python background, want tags and full-text search.
+ 157: 
+ 158: Agent, with skill: researches linkding, Linkwarden, LinkAce, official framework docs, and relevant search/storage options.
+ 159: 
+ 160: ## Project Approach: Self-Hosted Bookmark Manager
+ 161: 
+ 162: ### TL;DR
+ 163: Go with Django + SQLite FTS5 or Postgres full-text search, depending on your hosting target and expected scale. Keep the main UI server-rendered with HTMX, Turbo, or light JavaScript unless the UI needs true SPA complexity. This matches your Python skills, keeps deployment simple, and is backed by nearby real projects like linkding.
+ 164: 
+ 165: ### Comparable Projects
+ 166: 1. linkding - github.com/sissbruecker/linkding; Django, DRF, Huey, Turbo/Lit, Docker, optional Postgres; nearest domain match; limits: current details must be verified at review time.
+ 167: 2. Linkwarden - github.com/linkwarden/linkwarden; heavier collaborative bookmark manager; useful contrast for when archiving/collaboration matter more than simplicity.
+ 168: 3. LinkAce - linkace.org; mature self-hosted bookmark manager in a different stack; useful for feature comparison, less useful for implementation fit.
+ 169: ```
+ 170: 
+ 171: The demo avoids hard-coded star counts and "latest" dates because those decay. The skill requires the agent to verify those values at review time.
+ 172: 
+ 173: See more examples:
+ 174: 
+ 175: - [A/B comparisons against generic prompting](./examples/ab-comparisons.md)
+ 176: - [Pricing and operating-cost example](./examples/pricing-operating-cost.md)
+ 177: - [Pre-build bookmark manager](./examples/prebuild-bookmark-manager.md)
+ 178: - [Mid-build Express API](./examples/midbuild-express-api.md)
+ 179: - [Post-build FastAPI template](./examples/postbuild-fastapi-template.md)
+ 180: 
+ 181: ## Why This Is Different From Just Asking
+ 182: 
+ 183: Without the skill, an agent will usually give you an answer. This skill makes it give you an accountable answer:
+ 184: 
+ 185: - Every "active" or "maintained" claim needs an exact date or adoption signal.
+ 186: - Comparable projects are verified against real repos, docs, or other primary sources.
+ 187: - Comparables must be separated into what transfers and what should not be copied.
+ 188: - Pricing claims must distinguish "free to start" from "cheap to operate."
+ 189: - Vendor choices must consider storage, bandwidth, usage limits, add-ons, migration cost, and lock-in.
+ 190: - If no repo was provided, it says "advisory from description" instead of pretending it inspected files.
+ 191: - Large repos are mapped first, then sampled by relevance instead of read blindly.
+ 192: - The recommendation includes what you gain, what you give up, what becomes harder later, and when it becomes wrong.
+ 193: - A self-check runs before output: is this grounded in actual project constraints, or is it generic?
+ 194: 
+ 195: ## What It Produces
+ 196: 
+ 197: ### Pre-Build
+ 198: 
+ 199: ```text
+ 200: ## Project Approach: <name>
+ 201: TL;DR / Project Frame / Comparable Projects / Recommended Stack /
+ 202: Cost and Vendor Reality / Architecture Direction / Alternatives Considered / Build Plan /
+ 203: Validation Plan / Risks and Unknowns / References
+ 204: ```
+ 205: 
+ 206: ### Mid-Build or Post-Build
+ 207: 
+ 208: ```text
+ 209: ## Project Approach Review: <name>
+ 210: TL;DR / Project Summary / Evidence Reviewed, including evidence status /
+ 211: What Is Working / Comparable Projects / Gap Analysis /
+ 212: Recommended Changes, grouped High / Medium / Low /
+ 213: Validation Plan / Stack and Architecture Verdict / Cost and Vendor Reality / Risks and References
+ 214: ```
+ 215: 
+ 216: ## What It Will Not Do
+ 217: 
+ 218: - Invent star counts, last-commit dates, benchmark numbers, or production adoption claims.
+ 219: - Treat "free to start" as proof that a vendor is cheap to operate.
+ 220: - Invent prices, quotas, usage limits, or cost estimates without sources.
+ 221: - Pretend it reviewed files when you only gave it a description.
+ 222: - Tell you to add auth, tests, or Docker if you already have them.
+ 223: - Recommend something because it is trending instead of because it fits your constraints.
+ 224: - Give a production-grade review to a weekend prototype without calibrating the advice.
+ 225: 
+ 226: ## Repo Structure
+ 227: 
+ 228: ```text
+ 229: .
+ 230: |-- README.md
+ 231: |-- LICENSE
+ 232: |-- CHANGELOG.md
+ 233: |-- ROADMAP.md
+ 234: |-- CONTRIBUTING.md
+ 235: |-- SECURITY.md
+ 236: |-- AGENTS.md
+ 237: |-- CLAUDE.md
+ 238: |-- assets/
+ 239: |   `-- brand/
+ 240: |       |-- lockup-dark.svg
+ 241: |       `-- lockup-light.svg
+ 242: |-- .claude-plugin/
+ 243: |   `-- plugin.json
+ 244: |-- .github/
+ 245: |   `-- workflows/
+ 246: |       `-- validate.yml
+ 247: |-- dist/
+ 248: |   `-- advise-project-approach.skill
+ 249: |-- skills/
+ 250: |   `-- advise-project-approach/
+ 251: |       |-- SKILL.md
+ 252: |       `-- agents/
+ 253: |           `-- openai.yaml
+ 254: |-- examples/
+ 255: |   |-- ab-comparisons.md
+ 256: |   |-- pricing-operating-cost.md
+ 257: |   |-- prebuild-bookmark-manager.md
+ 258: |   |-- midbuild-express-api.md
+ 259: |   `-- postbuild-fastapi-template.md
+ 260: |-- evals/
+ 261: |   |-- README.md
+ 262: |   |-- cases.json
+ 263: |   |-- portability.md
+ 264: |   `-- results/
+ 265: |-- scripts/
+ 266: |   |-- package_skill.py
+ 267: |   `-- validate_skill.py
+ 268: ```
+ 269: 
+ 270: The packaged `.skill` file is a zip archive containing the `advise-project-approach/` skill folder.
+ 271: 
+ 272: ## Development
+ 273: 
+ 274: Validate and rebuild the package:
+ 275: 
+ 276: ```bash
+ 277: python scripts/validate_skill.py
+ 278: python scripts/package_skill.py
+ 279: python scripts/validate_skill.py
+ 280: ```
+ 281: 
+ 282: The GitHub Actions workflow runs the same checks and fails if the generated package differs from what is committed.
+ 283: 
+ 284: ## Evaluation
+ 285: 
+ 286: The skill is forward-tested across vague and detailed pre-build requests, vendor-cost decisions, mid-build repository reviews, large-repository sampling, and post-build launch reviews.
+ 287: 
+ 288: The first exploratory six-case run surfaced risks in intake enforcement, research completeness, repository permission boundaries, and stopping behavior. Later controlled A/B runs use the same prompt, model, isolation settings, and order-reversed blind graders. Rough and improved outputs are preserved rather than hidden.
+ 289: 
+ 290: [Methodology and rubric](./evals/README.md) | [Reusable cases](./evals/cases.json) | [Latest controlled A/B](./evals/results/2026-08-24-v0.7.1-ab-report.md) | [v0.7.0 inconclusive A/B](./evals/results/2026-08-24-v0.7.0-ab-report.md) | [Portability audit](./evals/portability.md) | [Initial failure run](./evals/results/2026-08-11-v0.4.0-forward-test.md)
+ 291: 
+ 292: The latest narrow-advice A/B is controlled and order-robust, but it covers one prompt and one model. No broad improvement percentage is claimed.
+ 293: 
+ 294: ## Contributing
+ 295: 
+ 296: Issues and PRs are welcome. The most useful contributions are:
+ 297: 
+ 298: - New repo test cases: a repo, what the skill got wrong, and what it should have said.
+ 299: - Evidence discipline failures: cases where a claim was made without a verifiable source.
+ 300: - Mode selection bugs: cases where the skill picked the wrong operating mode.
+ 301: 
+ 302: ## License
+ 303: 
+ 304: MIT
+ 305: 
+ 306: ---
+ 307: 
+ 308: ### Portfolio
+ 309: 
+ 310: See more of my work at [https://www.aaravkashyap.live/](https://www.aaravkashyap.live/).
+
+===== CHANGELOG.md =====
+   1: # Changelog
+   2: 
+   3: ## Unreleased
+   4: 
+   5: ## 0.7.1 - 2026-08-24
+   6: 
+   7: - Tightened narrow-answer proportionality after the v0.7.0 A/B treatment expanded three requested steps into a full report.
+   8: - Added an early narrow-advice route that bypasses unnecessary research and full-report contracts for bounded questions.
+   9: - Required the first numbered step itself to be an end-to-end vertical slice.
+  10: - Required testable escalation thresholds and rejected vague "awkward" or "complexity grows" triggers.
+  11: - Extended anti-fashion guidance to unsupported service-layer and folder-structure prescriptions.
+  12: - Required every numbered greenfield step to deliver observable product behavior and prevented abstraction extraction before duplication or a failed check is observed.
+  13: - Clarified portable support for Codex, Claude Code, pi, Hermes, and other Agent Skills-compatible harnesses.
+  14: - Recorded complete A/B outputs and order-reversed grading evidence.
+  15: 
+  16: ## 0.7.0 - 2026-08-24
+  17: 
+  18: - Added implementation-proof planning inspired by the strongest transferable ideas from `lean-engineering`.
+  19: - Required the first recommended slice or correction to include observable acceptance behavior and a focused falsification check.
+  20: - Added proportionate regression scope and measured escalation signals before recommending heavier architecture.
+  21: - Added guidance against speculative structural refactors and unverified claims that proposed checks passed.
+  22: - Added a behavioral evaluation case and rubric criterion for implementation-proof quality.
+  23: 
+  24: ## 0.6.0 - 2026-08-11
+  25: 
+  26: - Replaced the oversized README preview with a compact, theme-aware horizontal logo lockup.
+  27: - Added additive pi and generic Agent Skills installation guidance without removing Claude or Codex compatibility layers.
+  28: - Added `AGENTS.md` as cross-harness repository guidance while retaining `CLAUDE.md` as an import bridge.
+  29: - Added a portability evidence matrix that distinguishes structural compatibility from executed smoke tests.
+  30: - Added a canonical `VERSION` file and validation that keeps release metadata and the README current-version section aligned.
+  31: 
+  32: ## 0.5.0 - 2026-08-11
+  33: 
+  34: - Added a turn-ending intake gate so vague project ideas cannot receive invented product or stack recommendations before constraints are known.
+  35: - Added required evidence status, constraint fit, comparable evidence, alternatives, failure conditions, and next actions to every completed recommendation.
+  36: - Added an explicit permission boundary before running repository tests, builds, linters, audits, benchmarks, or dependency installation.
+  37: - Added bounded first-pass repository inspection and external-research stopping rules.
+  38: - Added a reusable behavioral evaluation matrix, rubric, and the first recorded six-case forward-test report.
+  39: - Replaced the growing README test-case list with links to the dedicated `evals/` evidence area.
+  40: - Added a theme-aware project mark and compact README navigation.
+  41: - Reduced the README release summary to the current version and moved older history to this changelog.
+  42: 
+  43: ## 0.4.0 - 2026-08-09
+  44: 
+  45: - Added a lightweight intake interview for vague pre-build requests while skipping unnecessary questions when constraints are already clear.
+  46: - Added user permission before researching current community signals from X, Reddit, and YouTube.
+  47: - Added capability routing, source fallback, and evidence-coverage disclosure for external research.
+  48: - Added optional Agent-Reach adapter guidance without bundling its dependencies or requiring installation.
+  49: - Added external-content prompt-injection and secret-handling guardrails.
+  50: 
+  51: ## 0.3.0 - 2026-06-01
+  52: 
+  53: - Added pricing and operating-cost analysis for managed services, hosting, storage, auth, AI APIs, observability, and vendor lock-in.
+  54: - Added explicit "free to start is not cheap to operate" safeguards for stack and vendor recommendations.
+  55: - Made tradeoffs more aggressive: what you gain, what you give up, what becomes harder later, and when the recommendation becomes wrong.
+  56: - Added vendor-agnostic README guidance for copying `SKILL.md` into non-Claude/non-Codex agent harnesses.
+  57: - Added a pricing-focused example showing how generic "use Supabase" advice should be challenged.
+  58: - Updated trigger metadata and package metadata for cost/vendor-choice use cases.
+  59: 
+  60: ## 0.2.0 - 2026-05-30
+  61: 
+  62: - Added an explicit decision methodology: constraints, comparables, transferable patterns, tradeoffs, recommendation, and failure conditions.
+  63: - Added comparable-project bias safeguards so popularity, stars, and mature-project infrastructure do not override user fit.
+  64: - Added repo-size and token-budget guidance for small, medium, large, and huge codebases.
+  65: - Added output requirements for inspection scope, skipped areas, transferable patterns, and limits.
+  66: - Added A/B comparison examples showing where the skill should change generic AI advice.
+  67: 
+  68: ## 0.1.0 - 2026-05-29
+  69: 
+  70: - Initial public package layout.
+  71: - Added `advise-project-approach` skill source under `skills/`.
+  72: - Added packaged `.skill` archive under `dist/`.
+  73: - Added examples and validation notes for launch/readme proof.
+  74: - Added repository maintenance docs: `CONTRIBUTING.md`, `SECURITY.md`, and `CLAUDE.md`.
+  75: - Added `.claude-plugin/plugin.json` metadata for plugin-aware installers.
+  76: - Added validation and packaging scripts plus a GitHub Actions validation workflow.
+  77: - Removed obsolete draft archives for `project-analyzer` and `review-codebase`.
+
+===== evals/README.md =====
+   1: # Behavioral Evaluations
+   2: 
+   3: This directory tests whether `advise-project-approach` changes agent behavior, not merely whether the `.skill` archive is valid.
+   4: 
+   5: ## Test Layers
+   6: 
+   7: 1. **Structural validation** runs in CI through `scripts/validate_skill.py`. It checks package layout, metadata, and the eval-case schema.
+   8: 2. **Behavioral forward tests** run fresh agent sessions against the prompts in `cases.json`.
+   9: 3. **Baseline comparisons** should use the same prompt, model, tool access, date, and repository revision with and without the skill.
+  10: 
+  11: Cross-harness packaging claims are tracked separately in [portability.md](./portability.md). Keep structural compatibility distinct from an executed installation or invocation test.
+  12: 
+  13: Behavioral runs may use live repositories and pricing pages, so their results are time-sensitive. Record the observed date, exact repository revision when available, research access, interruptions, and any unavailable tools.
+  14: 
+  15: ## Rubric
+  16: 
+  17: Judge only observable output. Do not reward an answer for sounding senior.
+  18: 
+  19: - **Mode and intake** - select the correct stage; stop for decision-critical missing information.
+  20: - **Evidence honesty** - distinguish inspected evidence from assumptions and disclose skipped areas.
+  21: - **Source traceability** - support material external claims and date time-sensitive evidence.
+  22: - **Comparable discipline** - use comparables for fit, not popularity; state what transfers and what does not.
+  23: - **Constraint fit** - connect the recommendation to the user's skills, scale, budget, deadline, and operating model.
+  24: - **Tradeoffs** - include a credible alternative and state what each option improves or worsens.
+  25: - **Failure conditions** - state what would make the recommendation wrong.
+  26: - **Permission safety** - do not install dependencies or execute repository code without approval.
+  27: - **Actionability** - provide proportionate, ordered next steps.
+  28: - **Implementation proof** - make the first step observable and falsifiable with a focused check and an escalation signal.
+  29: 
+  30: Mark each criterion `pass`, `partial`, `fail`, or `not-applicable`, with one sentence of evidence. Do not collapse results into a marketing percentage until runs are repeatable and independently graded.
+  31: 
+  32: ## Running A Forward Test
+  33: 
+  34: 1. Start a fresh agent session with no prior diagnosis or expected answer.
+  35: 2. Load only `skills/advise-project-approach/SKILL.md` and one case prompt.
+  36: 3. Preserve the complete response and tool/permission trace.
+  37: 4. Grade it against that case's assertions and failure conditions.
+  38: 5. Repeat without the skill using identical conditions before claiming improvement.
+  39: 
+  40: Results belong in `evals/results/<date>-<version>-forward-test.md`. Keep the README summary small and link here instead of listing every test in the project README.
+
+===== CONTRIBUTING.md =====
+   1: # Contributing
+   2: 
+   3: Thanks for helping improve `advise-project-approach`.
+   4: 
+   5: This repo is intentionally small. The best contributions make the skill more accurate, easier to install, or better tested against real project-review scenarios.
+   6: 
+   7: ## Useful Contributions
+   8: 
+   9: - **New test cases:** a repo, prompt, what the skill got wrong, and what it should have said.
+  10: - **Evidence discipline fixes:** places where the skill could invent or overstate claims without verification.
+  11: - **Mode selection fixes:** prompts where it chooses pre-build, mid-build, or post-build incorrectly.
+  12: - **Documentation fixes:** install instructions, examples, or release notes that are unclear.
+  13: - **Trigger improvements:** frontmatter wording that catches real user requests without over-triggering.
+  14: 
+  15: ## What To Avoid
+  16: 
+  17: - Broad rewrites that make the skill longer without improving behavior.
+  18: - Hard-coded star counts, release dates, or "latest" claims in examples.
+  19: - Adding dependencies or executable scripts inside the packaged skill unless there is a clear repeated task that needs deterministic execution.
+  20: - Adding README files inside `skills/advise-project-approach/`; keep repo docs outside the skill folder.
+  21: 
+  22: ## Local Workflow
+  23: 
+  24: 1. Edit the skill source or docs.
+  25: 2. Validate the source:
+  26: 
+  27: ```bash
+  28: python scripts/validate_skill.py
+  29: ```
+  30: 
+  31: 3. Rebuild the package:
+  32: 
+  33: ```bash
+  34: python scripts/package_skill.py
+  35: ```
+  36: 
+  37: 4. Validate again:
+  38: 
+  39: ```bash
+  40: python scripts/validate_skill.py
+  41: ```
+  42: 
+  43: 5. Commit with a clear message.
+  44: 
+  45: ## Pull Request Checklist
+  46: 
+  47: - [ ] The skill still validates.
+  48: - [ ] `dist/advise-project-approach.skill` was rebuilt if `SKILL.md` or `agents/openai.yaml` changed.
+  49: - [ ] Examples avoid stale time-sensitive claims.
+  50: - [ ] Changes preserve read-only behavior by default.
+  51: - [ ] New recommendations are tied to evidence, constraints, or real test cases.
+  52: - [ ] `CHANGELOG.md` is updated for user-visible changes.
+  53: 
+  54: ## Release Checklist
+  55: 
+  56: 1. Update version references in:
+  57:    - `.claude-plugin/plugin.json`
+  58:    - `CHANGELOG.md`
+  59: 2. Run validation and packaging.
+  60: 3. Commit the changes.
+  61: 4. Tag the release:
+  62: 
+  63: ```bash
+  64: git tag vX.Y.Z
+  65: git push origin main --tags
+  66: ```
+  67: 
+  68: 5. Attach `dist/advise-project-approach.skill` to the GitHub release.

@@ -9,6 +9,7 @@ This is a structural compatibility audit, not a claim that the skill has been ex
 | pi | Recursively discovers directories containing `SKILL.md` from `~/.agents/skills/`, `~/.pi/agent/skills/`, project paths, packages, settings, or `--skill` | Portable `SKILL.md`; no pi-only files required | Verified against pi documentation; runtime smoke test not yet recorded |
 | Claude Code | Loads skills from its skill directory; `CLAUDE.md` can import `AGENTS.md` with `@AGENTS.md` | Skill folder, optional plugin manifest, packaged archive, and documented `CLAUDE.md` bridge | Import pattern verified against Claude Code documentation; runtime smoke test not yet recorded |
 | Codex | Loads skills from its skill directory and supports recommended `agents/openai.yaml` UI metadata | Skill folder, `agents/openai.yaml`, and packaged archive | Validated by repository and official skill validators; fresh-install smoke test not yet recorded |
+| Hermes | Intended to consume the portable Agent Skills instructions | Plain `SKILL.md`; no Hermes-specific runtime dependency | No Hermes loader or end-to-end invocation test recorded; compatibility intent only |
 | Other Agent Skills-compatible harnesses | Load a directory containing a valid `SKILL.md` | Self-contained `SKILL.md` with only required frontmatter fields | Structurally portable; each harness still needs its own loader verification |
 
 ## Primary References

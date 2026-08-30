@@ -1,0 +1,10 @@
+1. Set up the thinnest end-to-end slice first: create a Django project, connect it to Postgres, define only the core models needed to prove booking works (`Provider`, `AvailabilityWindow`, `Appointment`), then expose one write path and one read path.
+What to prove early: you can create an appointment in Postgres and read back the provider’s remaining availability through Django, not just through the admin or shell.
+
+2. Implement booking rules in one explicit service layer before adding more endpoints: put slot selection, overlap prevention, and transaction handling in a dedicated Python module or app service, with the database enforcing what matters (`UNIQUE`/exclusion-style constraints, indexes, `select_for_update` where needed).
+What to prove early: concurrent booking attempts for the same slot behave correctly. If two requests race, only one should win. This is the first real architecture test for Django + Postgres in this product.
+
+3. Add a minimal executable verification harness: one integration test that hits the booking endpoint against a real Postgres test database, plus basic observability (`django.db` query logging, request logging, health check).
+What to prove early: a full request passes through HTTP -> Django view/service -> Postgres transaction -> response, and the query count / locking behavior is understandable. If this test is reliable, the architecture is viable; if it is flaky or hard to reason about, fix that before building more features.
+
+If you want, I can turn this into a concrete week-1 task list with Django app structure and model sketches.

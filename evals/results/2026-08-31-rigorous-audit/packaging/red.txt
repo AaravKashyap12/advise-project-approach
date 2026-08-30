@@ -1,0 +1,801 @@
+$ C:\Users\aarav\.agent-reach-venv\Scripts\python.exe -B -m unittest discover -s tests -v
+cwd=C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6
+exit=1
+stdout:
+
+stderr:
+test_bad_zip_reports_validation_error (test_packaging.ArchiveTests.test_bad_zip_reports_validation_error) ... FAIL
+test_crc_corruption_is_read_and_rejected (test_packaging.ArchiveTests.test_crc_corruption_is_read_and_rejected) ... FAIL
+test_crlf_payload_normalization (test_packaging.ArchiveTests.test_crlf_payload_normalization) ... ok
+test_extra_missing_and_duplicate_entries (test_packaging.ArchiveTests.test_extra_missing_and_duplicate_entries) ... 
+  test_extra_missing_and_duplicate_entries (test_packaging.ArchiveTests.test_extra_missing_and_duplicate_entries) (names=['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml', 'advise-project-approach/SKILL.md']) ... FAIL
+  test_extra_missing_and_duplicate_entries (test_packaging.ArchiveTests.test_extra_missing_and_duplicate_entries) (names=['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml', 'unexpected/']) ... FAIL
+  test_extra_missing_and_duplicate_entries (test_packaging.ArchiveTests.test_extra_missing_and_duplicate_entries) (names=['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml', '../outside/']) ... FAIL
+test_members_must_match_source_payloads (test_packaging.ArchiveTests.test_members_must_match_source_payloads) ... 
+  test_members_must_match_source_payloads (test_packaging.ArchiveTests.test_members_must_match_source_payloads) (payload=b'wrong payload') ... FAIL
+  test_members_must_match_source_payloads (test_packaging.ArchiveTests.test_members_must_match_source_payloads) (payload=b'') ... FAIL
+test_stale_archive_is_rejected (test_packaging.ArchiveTests.test_stale_archive_is_rejected) ... 
+  test_stale_archive_is_rejected (test_packaging.ArchiveTests.test_stale_archive_is_rejected) (relative='skills/advise-project-approach/SKILL.md') ... FAIL
+  test_stale_archive_is_rejected (test_packaging.ArchiveTests.test_stale_archive_is_rejected) (relative='skills/advise-project-approach/agents/openai.yaml') ... FAIL
+test_invalid_utf8_preserves_old_archive (test_packaging.PackagingTests.test_invalid_utf8_preserves_old_archive) ... FAIL
+test_packager_rejects_extra_source_files (test_packaging.PackagingTests.test_packager_rejects_extra_source_files) ... FAIL
+test_replace_failure_preserves_old_archive_and_removes_temporary_output (test_packaging.PackagingTests.test_replace_failure_preserves_old_archive_and_removes_temporary_output) ... FAIL
+test_reproducibility_and_minimal_archive (test_packaging.PackagingTests.test_reproducibility_and_minimal_archive) ... ok
+test_write_failure_preserves_old_archive_and_removes_temporary_output (test_packaging.PackagingTests.test_write_failure_preserves_old_archive_and_removes_temporary_output) ... FAIL
+test_case_field_invariants (test_validation.EvalSchemaTests.test_case_field_invariants) ... 
+  test_case_field_invariants (test_validation.EvalSchemaTests.test_case_field_invariants) (field='id', value=' ') ... FAIL
+test_invalid_case_shapes_are_rejected_without_tracebacks (test_validation.EvalSchemaTests.test_invalid_case_shapes_are_rejected_without_tracebacks) ... 
+  test_invalid_case_shapes_are_rejected_without_tracebacks (test_validation.EvalSchemaTests.test_invalid_case_shapes_are_rejected_without_tracebacks) (value=None) ... FAIL
+  test_invalid_case_shapes_are_rejected_without_tracebacks (test_validation.EvalSchemaTests.test_invalid_case_shapes_are_rejected_without_tracebacks) (value=[]) ... FAIL
+  test_invalid_case_shapes_are_rejected_without_tracebacks (test_validation.EvalSchemaTests.test_invalid_case_shapes_are_rejected_without_tracebacks) (value={'id': 'fixture', 'mode': []}) ... FAIL
+test_malformed_data_has_helpful_errors (test_validation.EvalSchemaTests.test_malformed_data_has_helpful_errors) ... 
+  test_malformed_data_has_helpful_errors (test_validation.EvalSchemaTests.test_malformed_data_has_helpful_errors) (document='{invalid') ... FAIL
+  test_malformed_data_has_helpful_errors (test_validation.EvalSchemaTests.test_malformed_data_has_helpful_errors) (document='[]') ... FAIL
+  test_malformed_data_has_helpful_errors (test_validation.EvalSchemaTests.test_malformed_data_has_helpful_errors) (document='null') ... FAIL
+test_schema_version_is_an_integer_not_boolean_or_float (test_validation.EvalSchemaTests.test_schema_version_is_an_integer_not_boolean_or_float) ... 
+  test_schema_version_is_an_integer_not_boolean_or_float (test_validation.EvalSchemaTests.test_schema_version_is_an_integer_not_boolean_or_float) (value=True) ... FAIL
+  test_schema_version_is_an_integer_not_boolean_or_float (test_validation.EvalSchemaTests.test_schema_version_is_an_integer_not_boolean_or_float) (value=1.0) ... FAIL
+test_conventional_yaml_strings (test_validation.MetadataTests.test_conventional_yaml_strings) ... 
+  test_conventional_yaml_strings (test_validation.MetadataTests.test_conventional_yaml_strings) (fields="name: 'advise-project-approach'\ndescription: >\n  A folded\n  description") ... FAIL
+test_description_budget_uses_decoded_value (test_validation.MetadataTests.test_description_budget_uses_decoded_value) ... ok
+test_duplicate_frontmatter_key (test_validation.MetadataTests.test_duplicate_frontmatter_key) ... FAIL
+test_frontmatter_exact_fields_and_name (test_validation.MetadataTests.test_frontmatter_exact_fields_and_name) ... ok
+test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) ... 
+  test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='null') ... FAIL
+  test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='true') ... FAIL
+  test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='123') ... FAIL
+  test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='[a, b]') ... FAIL
+  test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='{a: b}') ... FAIL
+  test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='"  "') ... FAIL
+  test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='') ... FAIL
+test_host_fields_are_optional_but_typed_when_present (test_validation.MetadataTests.test_host_fields_are_optional_but_typed_when_present) ... 
+  test_host_fields_are_optional_but_typed_when_present (test_validation.MetadataTests.test_host_fields_are_optional_but_typed_when_present) (document='interface: []') ... FAIL
+  test_host_fields_are_optional_but_typed_when_present (test_validation.MetadataTests.test_host_fields_are_optional_but_typed_when_present) (document='interface:\n  display_name: 3') ... FAIL
+  test_host_fields_are_optional_but_typed_when_present (test_validation.MetadataTests.test_host_fields_are_optional_but_typed_when_present) (document='interface:\n  default_prompt: "  "') ... FAIL
+test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) ... 
+  test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='interface: [unclosed') ... FAIL
+  test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='- not-a-mapping') ... FAIL
+  test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='interface: {}\ninterface: {}') ... FAIL
+  test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='interface:\n  display_name: A\n  display_name: B') ... FAIL
+  test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='!!python/object:builtins.object {}') ... FAIL
+test_invalid_frontmatter_yaml (test_validation.MetadataTests.test_invalid_frontmatter_yaml) ... 
+  test_invalid_frontmatter_yaml (test_validation.MetadataTests.test_invalid_frontmatter_yaml) (description='"unterminated') ... FAIL
+  test_invalid_frontmatter_yaml (test_validation.MetadataTests.test_invalid_frontmatter_yaml) (description='[unclosed') ... FAIL
+  test_invalid_frontmatter_yaml (test_validation.MetadataTests.test_invalid_frontmatter_yaml) (description='!!python/object:builtins.object {}') ... FAIL
+test_missing_metadata_and_extra_source_files (test_validation.MetadataTests.test_missing_metadata_and_extra_source_files) ... ok
+test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) ... 
+  test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) (document='{invalid') ... FAIL
+  test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) (document='[]') ... FAIL
+  test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) (document='null') ... FAIL
+  test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) (document='{"version": "a", "version": "b"}') ... FAIL
+test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) ... 
+  test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=[]) ... FAIL
+  test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths='not-a-list') ... FAIL
+  test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=[1]) ... FAIL
+  test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=['./skills/missing']) ... FAIL
+  test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=['../outside']) ... FAIL
+  test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=['C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-04135ea9528c4b06b1b2e39d6b2cd813\\skills\\advise-project-approach']) ... FAIL
+  test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=['./skills/advise-project-approach', './skills/advise-project-approach']) ... FAIL
+test_valid_repository (test_validation.MetadataTests.test_valid_repository) ... ok
+test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) ... 
+  test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='# Changelog\n') ... FAIL
+  test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='## 0.7.1 - 2026-02-30\n- Change\n') ... FAIL
+  test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='## 0.7.1 - 2026-01-01\n\n') ... FAIL
+  test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='<!-- ## 0.7.1 - 2026-01-01\n- Change\n -->\n') ... FAIL
+  test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='## 0.7.1 - 2026-01-01\n- Change\n## 0.7.1 - 2026-01-01\n- Change\n') ... FAIL
+test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) ... FAIL
+test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) ... 
+  test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) (version='00.1.2') ... FAIL
+  test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) (version='1.02.3') ... FAIL
+  test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) (version='1.2.03') ... FAIL
+  test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) (version='\u0661.2.3') ... FAIL
+test_plugin_version_must_match (test_validation.ReleaseTests.test_plugin_version_must_match) ... ok
+test_readme_ignores_nonvisible_historical_examples (test_validation.ReleaseTests.test_readme_ignores_nonvisible_historical_examples) ... ok
+test_readme_requires_a_visible_current_download_link (test_validation.ReleaseTests.test_readme_requires_a_visible_current_download_link) ... 
+  test_readme_requires_a_visible_current_download_link (test_validation.ReleaseTests.test_readme_requires_a_visible_current_download_link) (readme="# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n<!-- [Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n -->") ... FAIL
+  test_readme_requires_a_visible_current_download_link (test_validation.ReleaseTests.test_readme_requires_a_visible_current_download_link) (readme="# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n`[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)`\n") ... FAIL
+  test_readme_requires_a_visible_current_download_link (test_validation.ReleaseTests.test_readme_requires_a_visible_current_download_link) (readme="# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n![](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n") ... FAIL
+test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) ... 
+  test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) (readme="# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n\n## What's New in v999.0.0\nOld summary\n") ... FAIL
+  test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) (readme="# Test fixture\n\n## What's New in v999.0.0\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v999.0.0/advise-project-approach.skill)\n\n<!-- # Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n -->\n") ... FAIL
+  test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) (readme="```markdown\n# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n```\n") ... FAIL
+  test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) (readme="~~~markdown\n# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n~~~\n") ... FAIL
+test_version_changes_are_not_pinned_to_a_release (test_validation.ReleaseTests.test_version_changes_are_not_pinned_to_a_release) ... ok
+
+======================================================================
+FAIL: test_bad_zip_reports_validation_error (test_packaging.ArchiveTests.test_bad_zip_reports_validation_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 36, in test_bad_zip_reports_validation_error
+    self.assert_invalid("package")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-bb265a2a644f495fb8db035ca9f6dcfc\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-bb265a2a644f495fb8db035ca9f6dcfc\\scripts\\validate_skill.py", line 160, in main\n    validate_package()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-bb265a2a644f495fb8db035ca9f6dcfc\\scripts\\validate_skill.py", line 84, in validate_package\n    with ZipFile(PACKAGE_FILE) as archive:\n         ^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\zipfile\\__init__.py", line 1370, in __init__\n    self._RealGetContents()\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\zipfile\\__init__.py", line 1437, in _RealGetContents\n    raise BadZipFile("File is not a zip file")\nzipfile.BadZipFile: File is not a zip file\n'
+
+======================================================================
+FAIL: test_crc_corruption_is_read_and_rejected (test_packaging.ArchiveTests.test_crc_corruption_is_read_and_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 32, in test_crc_corruption_is_read_and_rejected
+    self.assert_invalid("package")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_extra_missing_and_duplicate_entries (test_packaging.ArchiveTests.test_extra_missing_and_duplicate_entries) (names=['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml', 'advise-project-approach/SKILL.md'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 23, in test_extra_missing_and_duplicate_entries
+    self.assert_invalid("package")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_extra_missing_and_duplicate_entries (test_packaging.ArchiveTests.test_extra_missing_and_duplicate_entries) (names=['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml', 'unexpected/'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 23, in test_extra_missing_and_duplicate_entries
+    self.assert_invalid("package")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_extra_missing_and_duplicate_entries (test_packaging.ArchiveTests.test_extra_missing_and_duplicate_entries) (names=['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml', '../outside/'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 23, in test_extra_missing_and_duplicate_entries
+    self.assert_invalid("package")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_members_must_match_source_payloads (test_packaging.ArchiveTests.test_members_must_match_source_payloads) (payload=b'wrong payload')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 14, in test_members_must_match_source_payloads
+    self.assert_invalid("package")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_members_must_match_source_payloads (test_packaging.ArchiveTests.test_members_must_match_source_payloads) (payload=b'')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 14, in test_members_must_match_source_payloads
+    self.assert_invalid("package")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_stale_archive_is_rejected (test_packaging.ArchiveTests.test_stale_archive_is_rejected) (relative='skills/advise-project-approach/SKILL.md')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 44, in test_stale_archive_is_rejected
+    self.assert_invalid("package")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_stale_archive_is_rejected (test_packaging.ArchiveTests.test_stale_archive_is_rejected) (relative='skills/advise-project-approach/agents/openai.yaml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 44, in test_stale_archive_is_rejected
+    self.assert_invalid("package")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_invalid_utf8_preserves_old_archive (test_packaging.PackagingTests.test_invalid_utf8_preserves_old_archive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 76, in test_invalid_utf8_preserves_old_archive
+    self.assertNotIn("Traceback", result.stderr)
+AssertionError: 'Traceback' unexpectedly found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-ccb2adabb94544e393ed98a787372c05\\scripts\\package_skill.py", line 47, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-ccb2adabb94544e393ed98a787372c05\\scripts\\package_skill.py", line 38, in main\n    data = path.read_text(encoding="utf-8").replace("\\r\\n", "\\n").encode(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\pathlib.py", line 1028, in read_text\n    return f.read()\n           ^^^^^^^^\n  File "<frozen codecs>", line 322, in decode\nUnicodeDecodeError: \'utf-8\' codec can\'t decode byte 0xff in position 0: invalid start byte\n'
+
+======================================================================
+FAIL: test_packager_rejects_extra_source_files (test_packaging.PackagingTests.test_packager_rejects_extra_source_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 106, in test_packager_rejects_extra_source_files
+    self.assertNotEqual(result.returncode, 0)
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_replace_failure_preserves_old_archive_and_removes_temporary_output (test_packaging.PackagingTests.test_replace_failure_preserves_old_archive_and_removes_temporary_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 96, in test_replace_failure_preserves_old_archive_and_removes_temporary_output
+    self.assertNotEqual(result.returncode, 0)
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_write_failure_preserves_old_archive_and_removes_temporary_output (test_packaging.PackagingTests.test_write_failure_preserves_old_archive_and_removes_temporary_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_packaging.py", line 87, in test_write_failure_preserves_old_archive_and_removes_temporary_output
+    self.assertNotIn("Traceback", result.stderr)
+AssertionError: 'Traceback' unexpectedly found in 'Traceback (most recent call last):\n  File "<string>", line 1, in <module>\n  File "<frozen runpy>", line 287, in run_path\n  File "<frozen runpy>", line 98, in _run_module_code\n  File "<frozen runpy>", line 88, in _run_code\n  File "scripts/package_skill.py", line 47, in <module>\n    main()\n  File "scripts/package_skill.py", line 41, in main\n    archive.writestr(info, data)\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py", line 1139, in __call__\n    return self._mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py", line 1143, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py", line 1198, in _execute_mock_call\n    raise effect\nOSError: injected write failure\n'
+
+======================================================================
+FAIL: test_case_field_invariants (test_validation.EvalSchemaTests.test_case_field_invariants) (field='id', value=' ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 180, in test_case_field_invariants
+    self.assert_invalid("case")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_invalid_case_shapes_are_rejected_without_tracebacks (test_validation.EvalSchemaTests.test_invalid_case_shapes_are_rejected_without_tracebacks) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 170, in test_invalid_case_shapes_are_rejected_without_tracebacks
+    self.assert_invalid("case")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-cb529e71f414452da2396102d36ab91e\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-cb529e71f414452da2396102d36ab91e\\scripts\\validate_skill.py", line 161, in main\n    validate_eval_cases()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-cb529e71f414452da2396102d36ab91e\\scripts\\validate_skill.py", line 108, in validate_eval_cases\n    case_id = case.get("id")\n              ^^^^^^^^\nAttributeError: \'NoneType\' object has no attribute \'get\'\n'
+
+======================================================================
+FAIL: test_invalid_case_shapes_are_rejected_without_tracebacks (test_validation.EvalSchemaTests.test_invalid_case_shapes_are_rejected_without_tracebacks) (value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 170, in test_invalid_case_shapes_are_rejected_without_tracebacks
+    self.assert_invalid("case")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-cb529e71f414452da2396102d36ab91e\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-cb529e71f414452da2396102d36ab91e\\scripts\\validate_skill.py", line 161, in main\n    validate_eval_cases()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-cb529e71f414452da2396102d36ab91e\\scripts\\validate_skill.py", line 108, in validate_eval_cases\n    case_id = case.get("id")\n              ^^^^^^^^\nAttributeError: \'list\' object has no attribute \'get\'\n'
+
+======================================================================
+FAIL: test_invalid_case_shapes_are_rejected_without_tracebacks (test_validation.EvalSchemaTests.test_invalid_case_shapes_are_rejected_without_tracebacks) (value={'id': 'fixture', 'mode': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 170, in test_invalid_case_shapes_are_rejected_without_tracebacks
+    self.assert_invalid("case")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-cb529e71f414452da2396102d36ab91e\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-cb529e71f414452da2396102d36ab91e\\scripts\\validate_skill.py", line 161, in main\n    validate_eval_cases()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-cb529e71f414452da2396102d36ab91e\\scripts\\validate_skill.py", line 114, in validate_eval_cases\n    if case.get("mode") not in allowed_modes:\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: unhashable type: \'list\'\n'
+
+======================================================================
+FAIL: test_malformed_data_has_helpful_errors (test_validation.EvalSchemaTests.test_malformed_data_has_helpful_errors) (document='{invalid')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 161, in test_malformed_data_has_helpful_errors
+    self.assert_invalid("cases.json")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-4114b5dde3424c18a8693c9469e9bc1c\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-4114b5dde3424c18a8693c9469e9bc1c\\scripts\\validate_skill.py", line 161, in main\n    validate_eval_cases()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-4114b5dde3424c18a8693c9469e9bc1c\\scripts\\validate_skill.py", line 97, in validate_eval_cases\n    data = json.loads(EVAL_CASES_FILE.read_text(encoding="utf-8"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\json\\__init__.py", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\json\\decoder.py", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\json\\decoder.py", line 354, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ^^^^^^^^^^^^^^^^^^^^^^\njson.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\n'
+
+======================================================================
+FAIL: test_malformed_data_has_helpful_errors (test_validation.EvalSchemaTests.test_malformed_data_has_helpful_errors) (document='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 161, in test_malformed_data_has_helpful_errors
+    self.assert_invalid("cases.json")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-4114b5dde3424c18a8693c9469e9bc1c\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-4114b5dde3424c18a8693c9469e9bc1c\\scripts\\validate_skill.py", line 161, in main\n    validate_eval_cases()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-4114b5dde3424c18a8693c9469e9bc1c\\scripts\\validate_skill.py", line 98, in validate_eval_cases\n    if data.get("schema_version") != 1:\n       ^^^^^^^^\nAttributeError: \'list\' object has no attribute \'get\'\n'
+
+======================================================================
+FAIL: test_malformed_data_has_helpful_errors (test_validation.EvalSchemaTests.test_malformed_data_has_helpful_errors) (document='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 161, in test_malformed_data_has_helpful_errors
+    self.assert_invalid("cases.json")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-4114b5dde3424c18a8693c9469e9bc1c\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-4114b5dde3424c18a8693c9469e9bc1c\\scripts\\validate_skill.py", line 161, in main\n    validate_eval_cases()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-4114b5dde3424c18a8693c9469e9bc1c\\scripts\\validate_skill.py", line 98, in validate_eval_cases\n    if data.get("schema_version") != 1:\n       ^^^^^^^^\nAttributeError: \'NoneType\' object has no attribute \'get\'\n'
+
+======================================================================
+FAIL: test_schema_version_is_an_integer_not_boolean_or_float (test_validation.EvalSchemaTests.test_schema_version_is_an_integer_not_boolean_or_float) (value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 155, in test_schema_version_is_an_integer_not_boolean_or_float
+    self.assert_invalid("schema_version")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_schema_version_is_an_integer_not_boolean_or_float (test_validation.EvalSchemaTests.test_schema_version_is_an_integer_not_boolean_or_float) (value=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 155, in test_schema_version_is_an_integer_not_boolean_or_float
+    self.assert_invalid("schema_version")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_conventional_yaml_strings (test_validation.MetadataTests.test_conventional_yaml_strings) (fields="name: 'advise-project-approach'\ndescription: >\n  A folded\n  description")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 16, in test_conventional_yaml_strings
+    self.assert_valid()
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 112, in assert_valid
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Validation failed: Invalid frontmatter line:   A folded
+
+
+======================================================================
+FAIL: test_duplicate_frontmatter_key (test_validation.MetadataTests.test_duplicate_frontmatter_key)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 26, in test_duplicate_frontmatter_key
+    self.assert_invalid("duplicate")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 32, in test_frontmatter_requires_nonempty_strings
+    self.assert_invalid("description")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 32, in test_frontmatter_requires_nonempty_strings
+    self.assert_invalid("description")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='123')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 32, in test_frontmatter_requires_nonempty_strings
+    self.assert_invalid("description")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='[a, b]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 32, in test_frontmatter_requires_nonempty_strings
+    self.assert_invalid("description")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='{a: b}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 32, in test_frontmatter_requires_nonempty_strings
+    self.assert_invalid("description")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='"  "')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 32, in test_frontmatter_requires_nonempty_strings
+    self.assert_invalid("description")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_frontmatter_requires_nonempty_strings (test_validation.MetadataTests.test_frontmatter_requires_nonempty_strings) (value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 32, in test_frontmatter_requires_nonempty_strings
+    self.assert_invalid("description")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_host_fields_are_optional_but_typed_when_present (test_validation.MetadataTests.test_host_fields_are_optional_but_typed_when_present) (document='interface: []')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 66, in test_host_fields_are_optional_but_typed_when_present
+    self.assert_invalid("interface")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_host_fields_are_optional_but_typed_when_present (test_validation.MetadataTests.test_host_fields_are_optional_but_typed_when_present) (document='interface:\n  display_name: 3')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 66, in test_host_fields_are_optional_but_typed_when_present
+    self.assert_invalid("interface")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_host_fields_are_optional_but_typed_when_present (test_validation.MetadataTests.test_host_fields_are_optional_but_typed_when_present) (document='interface:\n  default_prompt: "  "')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 66, in test_host_fields_are_optional_but_typed_when_present
+    self.assert_invalid("interface")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='interface: [unclosed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 56, in test_host_metadata_must_be_safe_unique_yaml_mapping
+    self.assert_invalid("openai.yaml")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='- not-a-mapping')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 56, in test_host_metadata_must_be_safe_unique_yaml_mapping
+    self.assert_invalid("openai.yaml")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='interface: {}\ninterface: {}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 56, in test_host_metadata_must_be_safe_unique_yaml_mapping
+    self.assert_invalid("openai.yaml")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='interface:\n  display_name: A\n  display_name: B')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 56, in test_host_metadata_must_be_safe_unique_yaml_mapping
+    self.assert_invalid("openai.yaml")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_host_metadata_must_be_safe_unique_yaml_mapping (test_validation.MetadataTests.test_host_metadata_must_be_safe_unique_yaml_mapping) (document='!!python/object:builtins.object {}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 56, in test_host_metadata_must_be_safe_unique_yaml_mapping
+    self.assert_invalid("openai.yaml")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_invalid_frontmatter_yaml (test_validation.MetadataTests.test_invalid_frontmatter_yaml) (description='"unterminated')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 22, in test_invalid_frontmatter_yaml
+    self.assert_invalid("YAML")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_invalid_frontmatter_yaml (test_validation.MetadataTests.test_invalid_frontmatter_yaml) (description='[unclosed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 22, in test_invalid_frontmatter_yaml
+    self.assert_invalid("YAML")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_invalid_frontmatter_yaml (test_validation.MetadataTests.test_invalid_frontmatter_yaml) (description='!!python/object:builtins.object {}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 22, in test_invalid_frontmatter_yaml
+    self.assert_invalid("YAML")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) (document='{invalid')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 89, in test_plugin_json_errors_are_helpful
+    self.assert_invalid("plugin.json")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-1e36273bf14142f9917460a85129caea\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-1e36273bf14142f9917460a85129caea\\scripts\\validate_skill.py", line 163, in main\n    validate_release_version()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-1e36273bf14142f9917460a85129caea\\scripts\\validate_skill.py", line 144, in validate_release_version\n    plugin = json.loads(PLUGIN_FILE.read_text(encoding="utf-8"))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\json\\__init__.py", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\json\\decoder.py", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\aarav\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\json\\decoder.py", line 354, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ^^^^^^^^^^^^^^^^^^^^^^\njson.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\n'
+
+======================================================================
+FAIL: test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) (document='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 89, in test_plugin_json_errors_are_helpful
+    self.assert_invalid("plugin.json")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-1e36273bf14142f9917460a85129caea\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-1e36273bf14142f9917460a85129caea\\scripts\\validate_skill.py", line 163, in main\n    validate_release_version()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-1e36273bf14142f9917460a85129caea\\scripts\\validate_skill.py", line 145, in validate_release_version\n    if plugin.get("version") != version:\n       ^^^^^^^^^^\nAttributeError: \'list\' object has no attribute \'get\'\n'
+
+======================================================================
+FAIL: test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) (document='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 89, in test_plugin_json_errors_are_helpful
+    self.assert_invalid("plugin.json")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 117, in assert_invalid
+    self.assertIn("Validation failed:", result.stderr)
+AssertionError: 'Validation failed:' not found in 'Traceback (most recent call last):\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-1e36273bf14142f9917460a85129caea\\scripts\\validate_skill.py", line 168, in <module>\n    main()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-1e36273bf14142f9917460a85129caea\\scripts\\validate_skill.py", line 163, in main\n    validate_release_version()\n  File "C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-1e36273bf14142f9917460a85129caea\\scripts\\validate_skill.py", line 145, in validate_release_version\n    if plugin.get("version") != version:\n       ^^^^^^^^^^\nAttributeError: \'NoneType\' object has no attribute \'get\'\n'
+
+======================================================================
+FAIL: test_plugin_json_errors_are_helpful (test_validation.MetadataTests.test_plugin_json_errors_are_helpful) (document='{"version": "a", "version": "b"}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 89, in test_plugin_json_errors_are_helpful
+    self.assert_invalid("plugin.json")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 118, in assert_invalid
+    self.assertIn(message.lower(), result.stderr.lower())
+AssertionError: 'plugin.json' not found in 'validation failed: plugin version must match version\n'
+
+======================================================================
+FAIL: test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 83, in test_plugin_paths_must_reference_the_local_skill
+    self.assert_invalid("skills")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths='not-a-list')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 83, in test_plugin_paths_must_reference_the_local_skill
+    self.assert_invalid("skills")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=[1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 83, in test_plugin_paths_must_reference_the_local_skill
+    self.assert_invalid("skills")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=['./skills/missing'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 83, in test_plugin_paths_must_reference_the_local_skill
+    self.assert_invalid("skills")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=['../outside'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 83, in test_plugin_paths_must_reference_the_local_skill
+    self.assert_invalid("skills")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=['C:\\Users\\aarav\\AppData\\Local\\Temp\\skill-test-04135ea9528c4b06b1b2e39d6b2cd813\\skills\\advise-project-approach'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 83, in test_plugin_paths_must_reference_the_local_skill
+    self.assert_invalid("skills")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_plugin_paths_must_reference_the_local_skill (test_validation.MetadataTests.test_plugin_paths_must_reference_the_local_skill) (paths=['./skills/advise-project-approach', './skills/advise-project-approach'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 83, in test_plugin_paths_must_reference_the_local_skill
+    self.assert_invalid("skills")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='# Changelog\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 143, in test_changelog_requires_current_real_date_and_body
+    self.assert_invalid("CHANGELOG")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='## 0.7.1 - 2026-02-30\n- Change\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 143, in test_changelog_requires_current_real_date_and_body
+    self.assert_invalid("CHANGELOG")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='## 0.7.1 - 2026-01-01\n\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 143, in test_changelog_requires_current_real_date_and_body
+    self.assert_invalid("CHANGELOG")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='<!-- ## 0.7.1 - 2026-01-01\n- Change\n -->\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 143, in test_changelog_requires_current_real_date_and_body
+    self.assert_invalid("CHANGELOG")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body) (changelog='## 0.7.1 - 2026-01-01\n- Change\n## 0.7.1 - 2026-01-01\n- Change\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 143, in test_changelog_requires_current_real_date_and_body
+    self.assert_invalid("CHANGELOG")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_changelog_requires_current_real_date_and_body (test_validation.ReleaseTests.test_changelog_requires_current_real_date_and_body)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 145, in test_changelog_requires_current_real_date_and_body
+    self.assert_invalid("CHANGELOG")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) (version='00.1.2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 102, in test_invalid_semver_core
+    self.assert_invalid("VERSION")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) (version='1.02.3')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 102, in test_invalid_semver_core
+    self.assert_invalid("VERSION")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) (version='1.2.03')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 102, in test_invalid_semver_core
+    self.assert_invalid("VERSION")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_invalid_semver_core (test_validation.ReleaseTests.test_invalid_semver_core) (version='\u0661.2.3')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 102, in test_invalid_semver_core
+    self.assert_invalid("VERSION")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_readme_requires_a_visible_current_download_link (test_validation.ReleaseTests.test_readme_requires_a_visible_current_download_link) (readme="# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n<!-- [Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n -->")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 128, in test_readme_requires_a_visible_current_download_link
+    self.assert_invalid("README")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_readme_requires_a_visible_current_download_link (test_validation.ReleaseTests.test_readme_requires_a_visible_current_download_link) (readme="# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n`[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)`\n")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 128, in test_readme_requires_a_visible_current_download_link
+    self.assert_invalid("README")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_readme_requires_a_visible_current_download_link (test_validation.ReleaseTests.test_readme_requires_a_visible_current_download_link) (readme="# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n![](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 128, in test_readme_requires_a_visible_current_download_link
+    self.assert_invalid("README")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) (readme="# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n\n## What's New in v999.0.0\nOld summary\n")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 117, in test_readme_requires_one_visible_current_section
+    self.assert_invalid("README")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) (readme="# Test fixture\n\n## What's New in v999.0.0\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v999.0.0/advise-project-approach.skill)\n\n<!-- # Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n -->\n")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 117, in test_readme_requires_one_visible_current_section
+    self.assert_invalid("README")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) (readme="```markdown\n# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n```\n")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 117, in test_readme_requires_one_visible_current_section
+    self.assert_invalid("README")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+======================================================================
+FAIL: test_readme_requires_one_visible_current_section (test_validation.ReleaseTests.test_readme_requires_one_visible_current_section) (readme="~~~markdown\n# Test fixture\n\n## What's New in v0.7.1\n\nFixture changes.\n\n[Download](https://github.com/example/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)\n~~~\n")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\test_validation.py", line 117, in test_readme_requires_one_visible_current_section
+    self.assert_invalid("README")
+  File "C:\Users\aarav\AppData\Local\Temp\skill-implementation-2bebb3da502b43f1b09a7705c8a60fd6\tests\support.py", line 116, in assert_invalid
+    self.assertNotEqual(result.returncode, 0, "Validator accepted invalid fixture")
+AssertionError: 0 == 0 : Validator accepted invalid fixture
+
+----------------------------------------------------------------------
+Ran 34 tests in 15.619s
+
+FAILED (failures=70)

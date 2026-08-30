@@ -1,0 +1,391 @@
+{
+  "rubric": "Judge answer utility against the original user request, not against an imagined skill or a preferred format.\nFor each dimension give pass, partial, fail, or not-applicable with a brief quote or specific evidence:\n- Intent and scope: answers the request, respects constraints and explicit limits.\n- Evidence calibration: inspected facts versus assumptions, no fake research or test success.\n- Technical correctness: proposed behavior, calculations, and causal claims are sound.\n- Actionability or intake: the response moves the user forward appropriately; a necessary question can be the right next step.\n- Risk and validation: material risks are acknowledged, checks actually test the claim, and failure is not overdiagnosed.\n- Clarity and proportionality: useful signal without unnecessary work or verbosity.\nDo not reward length, section counts, or test terminology by themselves. Do not demand a build plan or tests from an appropriate intake-only answer. Do not penalize a useful testing/foundation step merely because it is not a product feature. A single racing request is not automatically a deterministic concurrency test. A failing local check alone does not prove the architecture is wrong.\nUse only the supplied answers, request, environment and tool evidence. Pick A, B or Tie for overall user utility and give confidence plus material flaws. Scores are qualitative; do not manufacture a success percentage.\n",
+  "pairs": [
+    {
+      "id": "P01",
+      "user_request": "I want to build a platform that helps university students study better. What is the best way to approach it?",
+      "environment": "External research unavailable; local files are synthetic fixtures. Both candidates had identical fixture tools and access.",
+      "A": {
+        "answer": "1. What are you trying to build for university students, and who is the primary user: individual students, study groups, tutors, or universities?\n2. Is this just an idea, an active project, or something close to launch?\n3. What must it do in version one, and what is explicitly out of scope for now?\n4. Are you building solo or with a team, and what languages/tools are you comfortable with?\n5. What matters most here: speed, low cost, simplicity, scale, control, or flexibility?\n6. Where do you expect to run it, and what would you strongly prefer to avoid?\n\nIf you want, you can also say \u201cskip questions and proceed,\u201d and I\u2019ll give a provisional recommendation with visible assumptions.",
+        "tools": []
+      },
+      "B": {
+        "answer": "Start narrower than \u201chelp students study better.\u201d That framing is too broad to build well. The best approach is to pick one painful, frequent job students already struggle with and solve it unusually well.\n\nA strong sequence is:\n\n1. Pick a wedge.\nGood starting wedges are:\n- turning lecture notes/slides into study material\n- planning what to study each week\n- spaced repetition and revision tracking\n- group study and accountability\n- exam-specific practice with feedback\n\n2. Validate the pain before building much.\nTalk to 20-30 students across 2-3 disciplines and ask:\n- What part of studying wastes the most time?\n- What do you currently use?\n- What do you avoid because it\u2019s too much effort?\n- What happens right before exams that breaks down?\n\nYou want repeated complaints, not polite interest.\n\n3. Build the smallest product that creates repeat use.\nA good MVP is not \u201call-in-one study OS.\u201d It is one loop students come back to weekly. For example:\n- upload class material\n- platform generates flashcards, quiz questions, and study plan\n- student studies for 15 minutes\n- system tracks weak areas and schedules review\n\nIf they return without being pushed, you have something.\n\n4. Optimize for retention, not feature count.\nThe key metric is whether students keep using it after the first week. Track:\n- weekly active users\n- number of study sessions per user\n- 2-week and 4-week retention\n- materials uploaded per user\n- completion of recommended review sessions\n\n5. Choose a user segment.\n\u201cUniversity students\u201d is still too broad. Pick one:\n- first-year STEM students\n- medical students\n- law students\n- students preparing for high-stakes finals\n- students in large lecture-based courses\n\nDifferent groups study very differently.\n\nA practical MVP concept would be: \u201cAI study companion for course materials,\u201d focused on lecture PDFs, notes, and exam prep. That is concrete, easy to test, and aligned with real workflow. But the real differentiator is not AI generation by itself; it\u2019s whether your product reliably helps students decide what to study next and remember more with less friction.\n\nAvoid these mistakes:\n- building a generic dashboard with notes, tasks, calendar, and chat\n- relying on novelty instead of habit formation\n- trying to serve every subject at once\n- assuming students want social features before core study value exists\n\nIf you want, I can turn this into a concrete 30-day MVP plan, including features, user interviews, and a first product spec.",
+        "tools": []
+      }
+    },
+    {
+      "id": "P02",
+      "user_request": "I want to build a platform that helps university students study better. What is the best way to approach it?",
+      "environment": "External research unavailable; local files are synthetic fixtures. Both candidates had identical fixture tools and access.",
+      "A": {
+        "answer": "The best approach is to avoid starting with \u201ca study platform\u201d and instead start with one high-value student problem you can measurably improve.\n\nA strong path is:\n\n1. Pick a narrow outcome.\nExamples: better exam retention, less time wasted organizing notes, stronger consistency in weekly study habits, or better performance in problem-solving courses.\nIf you try to solve \u201cstudying\u201d broadly, you will build a weak bundle of generic features.\n\n2. Choose one target user segment.\nFor example: first-year engineering students, medical students preparing for exams, or students in large lecture-based courses. Different students study differently, so a focused wedge matters.\n\n3. Validate the problem before building much.\nTalk to 15-30 students and ask:\n- What do you struggle with most when studying?\n- What tools do you use now?\n- What have you already tried that failed?\n- When do you feel most unprepared?\nYou want repeated pain, not polite interest.\n\n4. Build around behavior change, not content storage.\nMost study products fail because they become note repositories. Better outcomes usually come from:\n- spaced repetition\n- active recall\n- practice testing\n- study planning with accountability\n- progress feedback\nIf the product does not change student behavior, it will not materially help learning.\n\n5. Start with a very small MVP.\nA good first version could do only three things:\n- turn notes/slides into practice questions\n- schedule review sessions automatically\n- show students what to study today\nThat is much stronger than launching notes, chat, flashcards, calendar, groups, and analytics all at once.\n\n6. Define one core metric.\nExamples:\n- weekly active students who complete 3+ study sessions\n- practice question completion rate\n- retention improvement on repeated quizzes\n- 4-week user retention\nIf you cannot measure improved study behavior, you cannot know if the platform works.\n\n7. Test in one real university workflow.\nThe best distribution is usually through:\n- a single course\n- a student society\n- a tutoring center\n- a professor or TA pilot\nStudents rarely adopt standalone tools for long without being pulled by a real academic context.\n\n8. Add platform features only after the core loop works.\nCore loop:\n- student uploads material or selects a course topic\n- platform generates a study task\n- student completes active recall/practice\n- platform adapts the next session\nOnce that loop retains users, then add collaboration, dashboards, integrations, or marketplace ideas.\n\nIf I were building this from scratch, I would start with this product thesis:\n\n\u201cHelp students know exactly what to study today, and force active recall instead of passive rereading.\u201d\n\nThat leads to a practical MVP:\n- course/lesson input\n- AI-generated quiz or flashcards\n- spaced review planner\n- lightweight progress dashboard\n- reminders tied to upcoming exams\n\nThe main risks are clear:\n- building too broad\n- relying on generic AI summaries instead of learning science\n- no distribution channel\n- no proof that outcomes improve\n\nIf you want, I can turn this into a concrete 30-day MVP plan, a feature roadmap, or a business model/options comparison.",
+        "tools": []
+      },
+      "B": {
+        "answer": "1. What are you trying to build for students, specifically, and who is the primary user at launch: individual students, study groups, tutors, or universities?\n2. Is this still an idea, or are you already building it?\n3. What must the first version do, and what is explicitly out of scope for now?\n4. Are you building solo or with a team, and what languages/tools are you comfortable with?\n5. What matters most for v1: speed to launch, low cost, simplicity, scale, control, or flexibility?\n6. Where do you expect to run it, and what would you strongly prefer to avoid?\n\nIf you want, you can also say: `skip questions and proceed with assumptions`.",
+        "tools": []
+      }
+    },
+    {
+      "id": "P03",
+      "user_request": "I have chosen Django and Postgres for a small appointment-booking product. Give me the first three implementation steps, but make sure I can tell early whether the architecture is actually working.",
+      "environment": "External research unavailable; local files are synthetic fixtures. Both candidates had identical fixture tools and access.",
+      "A": {
+        "answer": "Assuming a greenfield Django app with no existing repo constraints, keep the first slice in plain Django apps/models/forms/views/admin and use Postgres directly before adding any service layer or async infrastructure.\n\n1. Build the end-to-end booking slice for one staff calendar: create models for `Service`, `Staff`, `AvailabilityWindow`, and `Appointment`, then ship one user flow that shows open slots for the next 7 days and lets a customer submit a booking. Acceptance behavior: from a browser, you can create availability in admin, visit the booking page, see only valid open slots, submit once, and immediately see the appointment persisted in Postgres. Focused check: add one integration test that seeds availability, posts a booking, and asserts exactly one `Appointment` row is created for the chosen slot.\n\n2. Prove the architecture prevents double-booking before adding more features: enforce slot uniqueness in the database and handle the collision cleanly in the Django request path. Acceptance behavior: if two requests try to book the same staff/time, one succeeds and the other gets a clear \u201cslot no longer available\u201d response, with no duplicate rows. Focused check: write a transactional test that attempts the same booking twice and asserts the database constraint, final row count, and user-visible error path.\n\n3. Add the operator workflow that will expose whether your boundaries are still sane: a staff/admin view to list upcoming appointments, cancel one, and reopen that slot for booking. Acceptance behavior: staff can see today\u2019s bookings, cancel one actionably, and the public booking page shows that slot available again without manual repair. Focused check: one request-level test that books a slot, cancels it through the operator flow, then confirms the slot reappears in the public availability query.\n\nEscalate the architecture only if the same booking rules or availability calculations are duplicated across two entry points or the double-booking/concurrency check cannot be kept correct with model/query logic plus a DB constraint; that is the point to extract a dedicated booking domain module, not earlier.",
+        "tools": []
+      },
+      "B": {
+        "answer": "1. Create the thinnest end-to-end vertical slice: a Django project with Postgres connected, one `Appointment` model, one migration, and one write/read path.\nUse a minimal flow like: create appointment via POST, store in Postgres, fetch it back in an admin page or JSON endpoint. If this works locally and in your deployment environment, you\u2019ve already validated the core stack: Django config, DB connectivity, migrations, request handling, and basic persistence.\n\n2. Model the booking constraints before adding features.\nDefine the small set of tables that control correctness: `Provider`, `AvailabilityWindow`, `Appointment`, and possibly `BookingLock` only if you truly need it. Put the critical rules in the database and service layer early: foreign keys, unique constraints, allowed statuses, and a transaction around booking creation. The early proof here is whether you can prevent double-booking with a realistic concurrent test, because that is where \u201carchitecture works\u201d becomes measurable rather than theoretical.\n\n3. Add one production-shaped integration test path and one observability path.\nWrite a test that exercises the real booking flow against Postgres, not SQLite, including a collision case where two requests try to book the same slot. At the same time, add structured logging around booking attempts, success, rejection, and transaction failures. If you can see the logs clearly and the concurrency test behaves correctly, you\u2019ll know very early whether the architecture is sound enough to keep building on.\n\nA practical checkpoint: if by the end of step 3 you can reliably create a booking, reject a conflicting booking, and explain exactly why from logs and tests, the architecture is working. If not, stop there and fix the model/transaction boundaries before adding auth, payments, or UI polish.",
+        "tools": []
+      }
+    },
+    {
+      "id": "P04",
+      "user_request": "I have chosen Django and Postgres for a small appointment-booking product. Give me the first three implementation steps, but make sure I can tell early whether the architecture is actually working.",
+      "environment": "External research unavailable; local files are synthetic fixtures. Both candidates had identical fixture tools and access.",
+      "A": {
+        "answer": "1. Set up the thinnest end-to-end slice first: create a Django project, connect it to Postgres, define only the core models needed to prove booking works (`Provider`, `AvailabilityWindow`, `Appointment`), then expose one write path and one read path.\nWhat to prove early: you can create an appointment in Postgres and read back the provider\u2019s remaining availability through Django, not just through the admin or shell.\n\n2. Implement booking rules in one explicit service layer before adding more endpoints: put slot selection, overlap prevention, and transaction handling in a dedicated Python module or app service, with the database enforcing what matters (`UNIQUE`/exclusion-style constraints, indexes, `select_for_update` where needed).\nWhat to prove early: concurrent booking attempts for the same slot behave correctly. If two requests race, only one should win. This is the first real architecture test for Django + Postgres in this product.\n\n3. Add a minimal executable verification harness: one integration test that hits the booking endpoint against a real Postgres test database, plus basic observability (`django.db` query logging, request logging, health check).\nWhat to prove early: a full request passes through HTTP -> Django view/service -> Postgres transaction -> response, and the query count / locking behavior is understandable. If this test is reliable, the architecture is viable; if it is flaky or hard to reason about, fix that before building more features.\n\nIf you want, I can turn this into a concrete week-1 task list with Django app structure and model sketches.",
+        "tools": []
+      },
+      "B": {
+        "answer": "Assuming a small first release with staff-managed availability, one business timezone, and no payments yet.\n\n1. Build one end-to-end booking slice: a customer can choose a service, pick one real timeslot, submit contact details, and create an appointment in Postgres through a single Django flow. Acceptance behavior: a real user can book one slot from the browser, see a confirmation page, and the slot is no longer offered afterward. Focused check: create two simultaneous booking requests for the same slot and verify only one row is committed; if both succeed, your core architecture is already wrong.\n\n2. Add staff-side availability management in the same vertical path: staff can open/close slots and see upcoming appointments using ordinary Django models, forms, and admin/views before introducing extra layers. Acceptance behavior: when staff removes or changes availability, the public booking page reflects it immediately and existing bookings remain valid or are explicitly blocked from illegal edits. Focused check: change availability for a day with existing appointments and verify the invariants hold in one place only, not separately in the public form and staff form.\n\n3. Add the first lifecycle change that stresses the model: customer or staff cancels/reschedules an appointment, with status history and slot release rules. Acceptance behavior: a booked slot can be cancelled or moved, the old slot becomes reusable only when it should, and staff can see the updated state without manual cleanup. Focused check: reschedule the same appointment through both customer and staff entry points and confirm the same rules, validations, and resulting database state apply.\n\nEscalate the architecture only if the same booking invariants are duplicated across two entry points or the concurrent booking check fails; that is the point to extract a dedicated booking-domain function/service and enforce transactional locking explicitly.",
+        "tools": []
+      }
+    },
+    {
+      "id": "P05",
+      "user_request": "I've chosen Python's standard library for an offline command-line tool that renames photos using their dates. I'm solo, this is for my own 500 photos, and I need it this weekend. Give me exactly two implementation steps. Avoid data loss and let me verify the design before renaming real files.",
+      "environment": "External research unavailable; local files are synthetic fixtures. Both candidates had identical fixture tools and access.",
+      "A": {
+        "answer": "1. Build a `plan` mode that scans a target folder, reads each photo\u2019s best-available date from standard-library metadata sources you can access safely, proposes the new filename, detects collisions, and writes a preview report to stdout plus a CSV or text file without changing any files.\nAcceptance behavior: pointing it at a test folder shows `old name -> new name` for every supported file, flags missing dates and duplicate target names, and exits with a nonzero status if any rename would be ambiguous.\nFocused check: create a small fixture set with 5-10 copied photos, including two files that would map to the same timestamp and one file with no usable date; confirm the report shows the exact rename plan and refuses unsafe cases.\n\n2. Add an explicit `apply` mode that only executes a previously reviewed plan, renames files with `os.replace` in a deterministic order, logs every completed rename, and supports a `--backup-log` or `--undo-log` file so you can reverse the batch if needed.\nAcceptance behavior: after reviewing the dry-run output, running `apply` against the same fixture folder changes only the approved files, leaves skipped/conflicting files untouched, and produces a machine-readable log that can drive an undo command or manual reversal.\nFocused check: run `plan`, inspect the output, then run `apply` on copied test files and verify filename changes, log contents, and that rerunning `apply` does not rename already-renamed files differently.\n\nIf the preview step shows more than a few files with missing or conflicting dates, stop and switch from \u201crename by date only\u201d to \u201cdate plus sequence suffix\u201d before touching the real 500-file folder.",
+        "tools": []
+      },
+      "B": {
+        "answer": "1. Build a read-only planning pass first: scan the target folder, read each photo\u2019s timestamp from the filesystem or available metadata using the standard library, generate the proposed new name in a deterministic format like `YYYY-MM-DD_HH-MM-SS_original.ext`, detect collisions, and write a preview report to the terminal or a CSV instead of renaming anything. This gives you a full dry run you can inspect before touching real files.\n\n2. Add a separate apply step that only runs when you explicitly confirm it, and make it conservative: rename files one at a time, skip anything with conflicts, log every old/new path, and test it first on a small copied folder of 10 to 20 photos. Once the preview output and test batch look correct, run it on the real 500 files.",
+        "tools": []
+      }
+    },
+    {
+      "id": "P06",
+      "user_request": "I've chosen Python's standard library for an offline command-line tool that renames photos using their dates. I'm solo, this is for my own 500 photos, and I need it this weekend. Give me exactly two implementation steps. Avoid data loss and let me verify the design before renaming real files.",
+      "environment": "External research unavailable; local files are synthetic fixtures. Both candidates had identical fixture tools and access.",
+      "A": {
+        "answer": "1. Build a `--plan` mode first: scan the target folder with `pathlib`, read each photo\u2019s timestamp from the safest available source in order (`os.stat().st_mtime` as baseline, plus EXIF only if you later decide to parse it), generate the proposed new name, detect collisions, and print or write a CSV manifest like `old_path,new_name,status` without changing any files. This gives you a full preview you can inspect on your 500 photos before anything is renamed.\n\n2. Add a separate `--apply` mode that only executes from a previously reviewed manifest, renames with `Path.rename()` in a deterministic order, skips anything unexpected, and writes a rollback log mapping `new_path -> old_path`. Before using it on real files, test the full flow on a copy of a small sample folder so you verify naming, collision handling, and rollback behavior without risking data loss.",
+        "tools": []
+      },
+      "B": {
+        "answer": "Assumption: with Python standard library only, use filesystem timestamps (`st_mtime`) as the rename source unless your filenames already contain reliable dates, because stdlib alone is not a robust EXIF parser.\n\n1. Build a `plan` mode that scans the target folder, derives each photo\u2019s proposed new name, detects collisions, and writes a CSV manifest with `original_path, proposed_name, timestamp_used, conflict_status` without changing any files. Acceptance behavior: running the tool on your 500-photo folder produces a manifest and reports `0 files renamed`. Focused check: manually inspect 20 mixed files in the CSV and confirm the proposed names match the dates you expect before proceeding.\n\n2. Add an `apply` mode that only consumes a previously generated manifest, skips any row marked conflicted, renames with `os.replace` in a deterministic order, and writes a rollback CSV mapping `new_path -> original_path` as it succeeds. Acceptance behavior: after a small trial on a copied test folder, filenames change exactly as listed in the manifest and the rollback file can restore them. Focused check: run `plan` then `apply` on 5 copied photos, confirm the names changed correctly, then run rollback and verify every original name returns.\n\nIf more than a few sampled files show wrong dates because filesystem timestamps are unreliable, this standard-library approach is the wrong one and you should either switch the date source rule or allow an EXIF-capable dependency.",
+        "tools": []
+      }
+    },
+    {
+      "id": "P07",
+      "user_request": "Pre-build: I am a solo Node developer choosing hosting for a document app with 40 staff users, staging and production, 200 GB stored, 1500 GB monthly delivery, and daily backups. My budget is $150/month excluding my labor. Read pricing.md in this folder, a synthetic pricing snapshot for this test, and compare ExampleCloud with PlainHost. Give a recommendation based on total monthly cost and operating work. Do not treat the snapshot as live vendor pricing.",
+      "environment": "External research unavailable; local files are synthetic fixtures. Both candidates had identical fixture tools and access.",
+      "A": {
+        "answer": "## Project Approach: Hosting Choice\n\n### TL;DR\nRecommend `ExampleCloud` for this case. It costs more on the snapshot, but still fits the `$150/month` budget and has materially lower operating work for a solo developer.\n\n### Evidence Reviewed\n- Local snapshot only: [pricing.md](fixture/pricing.md:1)\n- External research: not performed, per environment constraints\n- Evidence limit: this is a synthetic pricing snapshot, not live vendor pricing\n\n### Cost Comparison\n- `ExampleCloud`\n  - Org subscription: `$20`\n  - Compute for `staging` + `production`: `2 x $10 = $20`\n  - Storage: `200 GB` total, `100 GB` included, `100 GB` overage at `$0.02/GB` = `$2`\n  - Delivery: `1500 GB/month` total, `500 GB` included, `1000 GB` overage at `$0.08/GB` = `$80`\n  - Daily backups: `$8`\n  - Total: `$130/month`\n\n- `PlainHost`\n  - One server for both environments: `$30`\n  - External backups: `$12`\n  - Delivery/CDN: `$50`\n  - Total: `$92/month`\n\n### Recommendation\nChoose `ExampleCloud`.\n\nConstraint fit:\n- Both options fit the `$150/month` cap.\n- `PlainHost` is cheaper by `$38/month`.\n- `ExampleCloud` is the better overall fit because you are solo and `PlainHost` explicitly makes you responsible for upgrades, access hardening, backup restoration, monitoring, and capacity planning.\n\nTradeoff:\n- What you gain with `ExampleCloud`: lower operator burden and less ongoing infrastructure work.\n- What you give up: `$38/month` higher spend on this snapshot.\n- Credible alternative: `PlainHost` if minimizing cash spend matters more than your time and you are comfortable owning routine ops.\n\nWhen this recommendation becomes wrong:\n- If your real budget needs to stay under about `$100/month`, `PlainHost` becomes the practical choice.\n- If you already have strong server-ops automation and monitoring in place, the operating-work advantage of `ExampleCloud` shrinks.\n- If monthly delivery grows well beyond `1.5 TB`, `ExampleCloud` becomes more exposed to bandwidth overage growth on this snapshot.\n\n### Next Actions\n1. Price your target setup using `ExampleCloud` as the default planning option and keep `PlainHost` as the fallback if budget tightens.\n2. Validate that `staging` and `production` really need separate paid environments; if staging can be reduced or made ephemeral, `ExampleCloud` cost drops.\n3. Before committing, list the exact operational tasks you would personally own on `PlainHost`; if that list is more than routine patching plus restore drills, the `$38` delta is likely justified.\n\n### Validation Plan\nFirst slice:\n- Model one month of expected usage with `200 GB` stored, `1500 GB` delivery, `2` environments, and daily backups.\n\nAcceptance behavior:\n- The chosen host stays under `$150/month` and does not require you to take on regular server maintenance you do not want.\n\nFocused check:\n- Compare one realistic monthly runbook for each option: deploys, upgrades, restore procedure, monitoring, and access hardening.\n\nEscalation signal:\n- If you cannot keep the hosting runbook for `PlainHost` to a small, predictable checklist, prefer `ExampleCloud` even with the higher monthly price`.",
+        "tools": [
+          {
+            "tool": "read_file",
+            "arguments": {
+              "path": "pricing.md",
+              "start_line": 1,
+              "line_count": 250
+            },
+            "result": {
+              "path": "pricing.md",
+              "total_lines": 13,
+              "lines": [
+                {
+                  "number": 1,
+                  "text": "# Synthetic pricing snapshot (2026-08-31)"
+                },
+                {
+                  "number": 2,
+                  "text": "All figures are fabricated test data in USD per month, not any real vendor."
+                },
+                {
+                  "number": 3,
+                  "text": ""
+                },
+                {
+                  "number": 4,
+                  "text": "ExampleCloud: organization subscription $20. Compute is $10 for EACH project/environment."
+                },
+                {
+                  "number": 5,
+                  "text": "Organization-wide storage allowance: 100 GB, then $0.02 per GB-month above that."
+                },
+                {
+                  "number": 6,
+                  "text": "Organization-wide delivery allowance: 500 GB/month, then $0.08 per GB above that."
+                },
+                {
+                  "number": 7,
+                  "text": "Daily backup add-on: $8 per organization. No other fees in this fictional scenario."
+                },
+                {
+                  "number": 8,
+                  "text": ""
+                },
+                {
+                  "number": 9,
+                  "text": "PlainHost: one $30 server hosts both environments and includes 250 GB disk."
+                },
+                {
+                  "number": 10,
+                  "text": "For this workload, external backups are $12/month and delivery/CDN is $50/month."
+                },
+                {
+                  "number": 11,
+                  "text": "No other fees in this fictional scenario. Operator is responsible for upgrades,"
+                },
+                {
+                  "number": 12,
+                  "text": "access hardening, backup restoration, monitoring and capacity planning."
+                },
+                {
+                  "number": 13,
+                  "text": "Exclude taxes, labor and features not requested. Do not claim prices were browsed."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "B": {
+        "answer": "Using the synthetic snapshot in [pricing.md](fixture/pricing.md:1), both options fit your `$150/month` budget, but they optimize for different things.\n\n`ExampleCloud` comes to `$130/month`:\n- `$20` organization subscription\n- `$20` compute for `staging` and `production` (`2 x $10`)\n- `$2` extra storage for `200 GB` total (`100 GB` over included)\n- `$80` extra delivery for `1500 GB/month` total (`1000 GB` over included)\n- `$8` daily backups\n\n`PlainHost` comes to `$92/month`:\n- `$30` server\n- `$12` external backups\n- `$50` delivery/CDN\n\nRecommendation: choose `ExampleCloud` if you want the better solo-developer operating model. It is `$38/month` more, but still inside budget, and the snapshot does not assign you the same explicit ops burden. `PlainHost` is cheaper, but the file makes clear that you would own upgrades, access hardening, restore procedures, monitoring, and capacity planning. For a solo Node developer, that operational load is the main cost driver even if labor is excluded from the budget.\n\nSo the short version is: `PlainHost` wins on raw monthly price, `ExampleCloud` wins on lower operating work. Given your budget cap and solo-operator constraint, I would pick `ExampleCloud`.",
+        "tools": [
+          {
+            "tool": "read_file",
+            "arguments": {
+              "path": "pricing.md",
+              "start_line": 1,
+              "line_count": 200
+            },
+            "result": {
+              "path": "pricing.md",
+              "total_lines": 13,
+              "lines": [
+                {
+                  "number": 1,
+                  "text": "# Synthetic pricing snapshot (2026-08-31)"
+                },
+                {
+                  "number": 2,
+                  "text": "All figures are fabricated test data in USD per month, not any real vendor."
+                },
+                {
+                  "number": 3,
+                  "text": ""
+                },
+                {
+                  "number": 4,
+                  "text": "ExampleCloud: organization subscription $20. Compute is $10 for EACH project/environment."
+                },
+                {
+                  "number": 5,
+                  "text": "Organization-wide storage allowance: 100 GB, then $0.02 per GB-month above that."
+                },
+                {
+                  "number": 6,
+                  "text": "Organization-wide delivery allowance: 500 GB/month, then $0.08 per GB above that."
+                },
+                {
+                  "number": 7,
+                  "text": "Daily backup add-on: $8 per organization. No other fees in this fictional scenario."
+                },
+                {
+                  "number": 8,
+                  "text": ""
+                },
+                {
+                  "number": 9,
+                  "text": "PlainHost: one $30 server hosts both environments and includes 250 GB disk."
+                },
+                {
+                  "number": 10,
+                  "text": "For this workload, external backups are $12/month and delivery/CDN is $50/month."
+                },
+                {
+                  "number": 11,
+                  "text": "No other fees in this fictional scenario. Operator is responsible for upgrades,"
+                },
+                {
+                  "number": 12,
+                  "text": "access hardening, backup restoration, monitoring and capacity planning."
+                },
+                {
+                  "number": 13,
+                  "text": "Exclude taxes, labor and features not requested. Do not claim prices were browsed."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "P08",
+      "user_request": "Pre-build: I am a solo Node developer choosing hosting for a document app with 40 staff users, staging and production, 200 GB stored, 1500 GB monthly delivery, and daily backups. My budget is $150/month excluding my labor. Read pricing.md in this folder, a synthetic pricing snapshot for this test, and compare ExampleCloud with PlainHost. Give a recommendation based on total monthly cost and operating work. Do not treat the snapshot as live vendor pricing.",
+      "environment": "External research unavailable; local files are synthetic fixtures. Both candidates had identical fixture tools and access.",
+      "A": {
+        "answer": "Using the synthetic snapshot in [pricing.md](/fixture/pricing.md:1), both options fit your `$150/month` budget.\n\n`ExampleCloud`\n- Org subscription: `$20`\n- Compute for `staging` and `production`: `2 x $10 = $20`\n- Storage: `200 GB - 100 GB included = 100 GB overage`, so `$2`\n- Delivery: `1500 GB - 500 GB included = 1000 GB overage`, so `$80`\n- Daily backups: `$8`\n- Total: `$130/month`\n\n`PlainHost`\n- Server for both environments: `$30`\n- External backups: `$12`\n- Delivery/CDN: `$50`\n- Total: `$92/month`\n\nRecommendation: choose `ExampleCloud` if you want the better fit as a solo developer. It costs `$38/month` more, but it clearly carries less operating work than `PlainHost`, where you are explicitly responsible for upgrades, access hardening, backup restores, monitoring, and capacity planning. If your priority is absolute lowest cash spend and you are willing to own that systems work, `PlainHost` is cheaper. If the decision is based on both monthly cost and operating effort, `ExampleCloud` is the more pragmatic choice.",
+        "tools": [
+          {
+            "tool": "read_file",
+            "arguments": {
+              "path": "pricing.md",
+              "start_line": 1,
+              "line_count": 200
+            },
+            "result": {
+              "path": "pricing.md",
+              "total_lines": 13,
+              "lines": [
+                {
+                  "number": 1,
+                  "text": "# Synthetic pricing snapshot (2026-08-31)"
+                },
+                {
+                  "number": 2,
+                  "text": "All figures are fabricated test data in USD per month, not any real vendor."
+                },
+                {
+                  "number": 3,
+                  "text": ""
+                },
+                {
+                  "number": 4,
+                  "text": "ExampleCloud: organization subscription $20. Compute is $10 for EACH project/environment."
+                },
+                {
+                  "number": 5,
+                  "text": "Organization-wide storage allowance: 100 GB, then $0.02 per GB-month above that."
+                },
+                {
+                  "number": 6,
+                  "text": "Organization-wide delivery allowance: 500 GB/month, then $0.08 per GB above that."
+                },
+                {
+                  "number": 7,
+                  "text": "Daily backup add-on: $8 per organization. No other fees in this fictional scenario."
+                },
+                {
+                  "number": 8,
+                  "text": ""
+                },
+                {
+                  "number": 9,
+                  "text": "PlainHost: one $30 server hosts both environments and includes 250 GB disk."
+                },
+                {
+                  "number": 10,
+                  "text": "For this workload, external backups are $12/month and delivery/CDN is $50/month."
+                },
+                {
+                  "number": 11,
+                  "text": "No other fees in this fictional scenario. Operator is responsible for upgrades,"
+                },
+                {
+                  "number": 12,
+                  "text": "access hardening, backup restoration, monitoring and capacity planning."
+                },
+                {
+                  "number": 13,
+                  "text": "Exclude taxes, labor and features not requested. Do not claim prices were browsed."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "B": {
+        "answer": "Based on the snapshot in [pricing.md](fixture/pricing.md:1), I\u2019d recommend `ExampleCloud`.\n\n`ExampleCloud` comes to `$130/month`: `$20` org subscription, `$20` compute for staging + production, `$2` for 100 GB over the 100 GB storage allowance, `$80` for 1000 GB over the 500 GB delivery allowance, and `$8` for daily backups. `PlainHost` comes to `$92/month`: `$30` server, `$12` backups, `$50` delivery/CDN. So `PlainHost` is `$38/month` cheaper.\n\nThe reason I still recommend `ExampleCloud` is operating work. Your budget cap is `$150/month`, and `ExampleCloud` stays under it while avoiding the self-managed work explicitly assigned to you on `PlainHost`: upgrades, access hardening, backup restore responsibility, monitoring, and capacity planning. For a solo developer with 40 internal users, that reduction in operational burden is worth more than the `$38/month` savings unless you are strongly optimizing for cash over time.\n\nWhen this recommendation becomes wrong: choose `PlainHost` instead if keeping recurring spend as low as possible matters more than your ops time, or if you already have solid server-management automation and are comfortable owning restore drills and hardening. Focused check: before committing, verify whether your real app needs separate staging infrastructure beyond the included assumptions, because any extra environment-specific compute would widen `ExampleCloud`\u2019s cost gap.",
+        "tools": [
+          {
+            "tool": "list_files",
+            "arguments": {
+              "pattern": "*pricing*",
+              "limit": 20
+            },
+            "result": {
+              "total": 1,
+              "returned": [
+                "pricing.md"
+              ],
+              "truncated": false
+            }
+          },
+          {
+            "tool": "read_file",
+            "arguments": {
+              "path": "pricing.md",
+              "start_line": 1,
+              "line_count": 200
+            },
+            "result": {
+              "path": "pricing.md",
+              "total_lines": 13,
+              "lines": [
+                {
+                  "number": 1,
+                  "text": "# Synthetic pricing snapshot (2026-08-31)"
+                },
+                {
+                  "number": 2,
+                  "text": "All figures are fabricated test data in USD per month, not any real vendor."
+                },
+                {
+                  "number": 3,
+                  "text": ""
+                },
+                {
+                  "number": 4,
+                  "text": "ExampleCloud: organization subscription $20. Compute is $10 for EACH project/environment."
+                },
+                {
+                  "number": 5,
+                  "text": "Organization-wide storage allowance: 100 GB, then $0.02 per GB-month above that."
+                },
+                {
+                  "number": 6,
+                  "text": "Organization-wide delivery allowance: 500 GB/month, then $0.08 per GB above that."
+                },
+                {
+                  "number": 7,
+                  "text": "Daily backup add-on: $8 per organization. No other fees in this fictional scenario."
+                },
+                {
+                  "number": 8,
+                  "text": ""
+                },
+                {
+                  "number": 9,
+                  "text": "PlainHost: one $30 server hosts both environments and includes 250 GB disk."
+                },
+                {
+                  "number": 10,
+                  "text": "For this workload, external backups are $12/month and delivery/CDN is $50/month."
+                },
+                {
+                  "number": 11,
+                  "text": "No other fees in this fictional scenario. Operator is responsible for upgrades,"
+                },
+                {
+                  "number": 12,
+                  "text": "access hardening, backup restoration, monitoring and capacity planning."
+                },
+                {
+                  "number": 13,
+                  "text": "Exclude taxes, labor and features not requested. Do not claim prices were browsed."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

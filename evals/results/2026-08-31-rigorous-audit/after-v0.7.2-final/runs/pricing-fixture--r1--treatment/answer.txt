@@ -1,0 +1,27 @@
+Recommendation: choose `ExampleCloud` if your real goal is staying under `$150/month` while minimizing solo operator work. Choose `PlainHost` only if you are comfortable owning server admin and recovery procedures yourself in exchange for lower cash spend.
+
+Evidence status: I only inspected the local synthetic snapshot at [pricing.md](</C:/Users/aarav/AppData/Local/Temp/apa-rigorous-2jmr2b4r/fixtures/pricing-fixture--r1--treatment/pricing.md:1>). No external pricing was browsed, per your instruction, and this is not treated as live vendor pricing.
+
+From the snapshot:
+- `ExampleCloud` charges `$20` org subscription, `$10` per environment/project, `100 GB` included storage then `$0.02/GB`, `500 GB` included delivery then `$0.08/GB`, and `$8` daily backups ([pricing.md](</C:/Users/aarav/AppData/Local/Temp/apa-rigorous-2jmr2b4r/fixtures/pricing-fixture--r1--treatment/pricing.md:4>)).
+- `PlainHost` is `$30` for one server hosting both environments, plus `$12` external backups and `$50` delivery/CDN, with the operator responsible for upgrades, hardening, restore, monitoring, and capacity planning ([pricing.md](</C:/Users/aarav/AppData/Local/Temp/apa-rigorous-2jmr2b4r/fixtures/pricing-fixture--r1--treatment/pricing.md:9>)).
+
+Monthly totals for your stated workload:
+- `ExampleCloud`: `$20` org + `$20` for staging and production + `$2` storage overage (`200 - 100`) + `$80` delivery overage (`1500 - 500`) + `$8` backups = `$130/month`.
+- `PlainHost`: `$30` server + `$12` backups + `$50` delivery = `$92/month`.
+
+Constraint fit:
+- `PlainHost` wins on raw monthly cost by `$38`.
+- `ExampleCloud` is still within budget and clearly wins on operating work because the snapshot places backup/restoration, hardening, monitoring, and capacity planning onto you for `PlainHost`.
+- For a solo Node developer, that operating burden matters more than the cash delta unless you already want to self-manage infrastructure.
+
+Tradeoff:
+- `ExampleCloud` gains simpler operations and cleaner environment separation; you give up `$38/month`.
+- `PlainHost` gains lower spend; you give up time, safer defaults, and some isolation since both environments sit on one server.
+
+When this recommendation becomes wrong:
+- If your hard budget ceiling drops below about `$130`, `ExampleCloud` stops fitting.
+- If you already have strong server ops discipline and want full control, `PlainHost` becomes the better value.
+- If delivery grows materially beyond `1500 GB/month`, `ExampleCloud` gets more expensive faster because of the metered bandwidth overage.
+
+First validation step: model one month of expected usage in a simple spreadsheet with rows for `2 environments`, `200 GB storage`, `1500 GB delivery`, and `daily backups`, then add one operational checklist column for patching, restore testing, monitoring, and capacity review. Acceptance is that one option is both under budget and acceptable to you on monthly operator chores. If the `PlainHost` checklist looks like work you would routinely defer, that is the signal to pay the extra `$38` and use `ExampleCloud`.

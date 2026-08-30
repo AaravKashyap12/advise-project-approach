@@ -1,0 +1,64 @@
+## Project Approach: Hosting Choice
+
+### TL;DR
+Recommend `ExampleCloud` if you want the better solo-developer fit. It is `$130/month` from the synthetic snapshot, versus `$92/month` for `PlainHost`, so you pay `$38/month` more to avoid owning more of the operational surface yourself. Since both fit your `$150/month` cap, the deciding factor is operating work, not raw affordability.
+
+### Project Frame
+You’re a solo Node developer choosing hosting for a document app with `40 staff users`, `staging + production`, `200 GB` stored, `1500 GB/month` delivery, and `daily backups`, with a hard budget of `$150/month` excluding labor.
+
+### Evidence Reviewed
+Local evidence only:
+- [pricing.md](/C:/Users/aarav/AppData/Local/Temp/apa-rigorous-oc3cfwgi/fixtures/pricing-fixture--r2--treatment/pricing.md:1)
+
+External research was not performed because this run is controlled and you explicitly asked to use the local synthetic snapshot only.
+
+### Cost Comparison
+`ExampleCloud`
+- Org subscription: `$20`
+- Compute: `2 environments x $10 = $20`
+- Storage overage: `(200 GB - 100 GB included) x $0.02 = $2`
+- Delivery overage: `(1500 GB - 500 GB included) x $0.08 = $80`
+- Daily backups: `$8`
+- Total: `$130/month`
+
+`PlainHost`
+- Server for both environments: `$30`
+- External backups: `$12`
+- Delivery/CDN: `$50`
+- Storage: included within `250 GB` disk
+- Total: `$92/month`
+
+### Recommendation
+Choose `ExampleCloud` unless your priority is maximizing budget headroom and you are willing to own server operations.
+
+Why this fits better:
+- It stays within budget at `$130/month`.
+- The extra cost over `PlainHost` is only `$38/month`.
+- The snapshot explicitly assigns more operator responsibility to `PlainHost`: upgrades, access hardening, backup restoration, monitoring, and capacity planning. For a solo developer, that is the more important cost even if labor is excluded from the budget.
+
+### Alternative and Tradeoff
+`PlainHost` is the credible alternative.
+- What you gain: lower monthly bill, more budget slack (`$58` remaining instead of `$20`).
+- What you give up: more operational work and more responsibility for reliability tasks.
+- What becomes harder later: safe maintenance, recovery drills, and staying ahead of capacity issues as storage/delivery grow.
+- When `PlainHost` is the better choice: if you are comfortable running and hardening a server yourself, or if keeping at least `$40-$50` of monthly budget buffer matters more than reducing ops work.
+
+### Failure Conditions
+This recommendation becomes wrong if:
+- Your actual traffic exceeds the snapshot assumptions enough that `ExampleCloud` bandwidth overages rise materially above budget.
+- You are already operating similar servers comfortably, making `PlainHost`’s extra work low-friction for you.
+- You need more than two environments or materially more backup/control features that the snapshot does not price.
+
+### Next Actions
+1. Confirm whether your real priority is `lowest invoice` or `least operational responsibility`.
+2. If it is ops minimization, choose `ExampleCloud` and validate that the two-environment setup and backup workflow cover your release process.
+3. If it is budget margin, choose `PlainHost` and define who handles patching, restore drills, monitoring, and capacity review before launch.
+
+### Validation Plan
+First slice: model one month of expected usage with your likely `production + staging` split and confirm the bill still lands under budget.
+
+Acceptance behavior: the chosen host supports both environments, `200 GB` stored, `1500 GB/month` delivery, and daily backups without exceeding `$150/month`.
+
+Focused check: recalculate with a conservative buffer, for example `20%` higher delivery (`1800 GB/month`), because delivery is the largest cost driver here.
+
+Escalation signal: if that buffered scenario pushes `ExampleCloud` over budget or makes `PlainHost` operationally unacceptable, revisit the hosting choice before implementation.

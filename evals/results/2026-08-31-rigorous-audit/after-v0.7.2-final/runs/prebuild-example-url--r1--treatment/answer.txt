@@ -1,0 +1,9 @@
+Recommendation: build a single-process Django app with SQLite FTS5 first, then switch to Postgres only if the checks fail. For 5,000 bookmarks, self-hosted, solo Python, and a weekend MVP, this minimizes setup, ops, and schema friction while still giving tags, saved URLs, titles, and title search.
+
+Evidence status: no local repo files were present in the fixture, and external research was unavailable, so this is provisional advice from your stated constraints only. The linkding URL was inspiration, not inspected evidence. Comparable evidence is therefore unavailable; I would not copy a larger production architecture blindly anyway.
+
+What fits: Django admin plus a small custom UI/API gets you auth, forms, ORM, and deploy simplicity fast. Model: `Bookmark(url unique, title, notes optional, created_at)` and `Tag(name unique)` with many-to-many. Use SQLite FTS5 for title search, storing normalized titles on write. Avoid async workers, browser extensions, full-text engines, and unreadability features in MVP.
+
+Alternative: Flask/FastAPI is lighter, but you will rebuild admin, auth, and form plumbing, which is the wrong trade for a weekend.
+
+First slice: add bookmark, tag it, search by title, list results. Acceptance: 100 imported test bookmarks return correct title matches and tag filters. Escalate to Postgres if search correctness is awkward, concurrent writes matter, or import/search latency becomes noticeable.

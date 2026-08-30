@@ -1,0 +1,23 @@
+Recommendation: do not choose either `Vendor A` or `Vendor B` for migration yet. On the available evidence, neither is verified against both mandatory gates, and your six-week / solo-maintainer window is too short to absorb a post-migration surprise on failover or tenant-isolated restore.
+
+Evidence status: I inspected the local fixture first and it contains no repository files, so there was no local architecture or migration evidence to review. I then used the synthetic public-search fixture on `2026-08-31`. It returned the same unresolved contradiction across repeated searches:
+- `Vendor A`: its plan page says regional failover is included, while its limits page says regional failover is excluded from that same plan.
+- `Vendor B`: its plan page says tenant-isolated backup restore is included, while its limits page says tenant-isolated restore is excluded from that same plan.
+- The fixture explicitly says repeated searches do not resolve the contradiction.
+
+Constraint fit: your hard constraint is not “best overall Postgres vendor,” it is “must have regional failover and tenant-isolated restores before migration” under `~$100/month`, `60 users`, `6 weeks`, and a solo operator. On that basis:
+- `Vendor A` has contradictory evidence on one mandatory feature and no verified evidence on the other.
+- `Vendor B` has contradictory evidence on one mandatory feature and no verified evidence on the other.
+- Because both are missing a clean pass on mandatory capabilities, the bounded first-pass answer is `neither is ready for approval`.
+
+Alternative and tradeoff: the credible alternative is to pause vendor selection until each vendor gives plan-specific written confirmation plus a scoped proof path. That costs time now, but it is cheaper than migrating onto a platform that cannot do per-tenant restore or regional failover inside your budget/plan.
+
+First action and proof:
+1. Ask each vendor for plan-specific confirmation of `regional failover` and `tenant-isolated restore`, including whether both are included under the exact budgeted plan.
+2. Require a restore runbook and failover runbook, not just sales copy.
+3. Approve a vendor only if you can define and schedule this proof:
+   - Acceptance behavior: restore one disposable tenant without affecting another tenant, and complete a documented regional failover exercise.
+   - Focused check: verify tenant A can be restored to a point in time while tenant B remains unchanged; verify application reconnect/recovery behavior during failover.
+   - Escalation signal: if either vendor cannot provide unambiguous written support plus an executable drill plan within the first week, the six-week migration window is no longer credible.
+
+What would reverse this recommendation: only new evidence that cleanly resolves the contradictions for one vendor, on the exact plan you would buy, and confirms both mandatory capabilities within budget. Without that, there is no defensible first-pass winner.

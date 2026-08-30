@@ -1,0 +1,18 @@
+`PlainHost` is the better fit for your stated budget if you are willing to own more operations. `ExampleCloud` is the lower-ops choice, but it lands at about `$130/month` versus `$92/month` for `PlainHost`, so you would be paying roughly `$38/month` extra for less operator work.
+
+Evidence status: I inspected [pricing.md](C:/Users/aarav/AppData/Local/Temp/apa-rigorous-2jmr2b4r/fixtures/pricing-fixture--r2--treatment/pricing.md:1). No external research was performed, per your instruction, and I am treating this as a synthetic snapshot rather than live vendor pricing.
+
+Cost model for your workload:
+- `ExampleCloud`: `$20` org subscription + `2 x $10` environments for staging and production + `(200 GB - 100 GB) x $0.02 = $2` storage overage + `(1500 GB - 500 GB) x $0.08 = $80` delivery overage + `$8` backups = `$130/month`
+- `PlainHost`: `$30` server including both environments + `$12` external backups + `$50` delivery/CDN = `$92/month`
+
+Recommendation: choose `PlainHost` if your real priority is minimizing monthly spend under the `$150` cap and you are comfortable handling routine ops yourself as a solo Node developer. What you gain is lower fixed cost and more budget headroom. What you give up is time: the snapshot explicitly puts upgrades, access hardening, restore responsibility, monitoring, and capacity planning on you. `ExampleCloud` is the second-best option if you want to reduce operator burden and accept a higher monthly bill that is still within budget.
+
+What would make this recommendation wrong: if your bandwidth grows materially beyond `1500 GB/month`, if you want to avoid self-managed operations almost entirely, or if your staging/prod setup on `PlainHost` starts requiring separate servers or managed add-ons not priced in this snapshot.
+
+Next action: price your first month using the same assumptions in a simple worksheet, then define the minimum ops checklist for `PlainHost` before committing:
+1. Backups: verify daily backup creation and one test restore into staging.
+2. Access hardening: define patching, SSH/access policy, and secrets handling.
+3. Monitoring: define disk, bandwidth, uptime, and backup-failure alerts.
+
+Validation plan for the first step: the first useful slice is a staging and production deployment with daily backup enabled. Acceptance is that both environments run from the same host plan, a backup is created daily, and a restore into staging succeeds without touching production. If that restore drill fails or the ops checklist feels too heavy for your weekly maintenance tolerance, switch the recommendation to `ExampleCloud`.

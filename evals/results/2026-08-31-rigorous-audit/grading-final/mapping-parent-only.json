@@ -1,0 +1,74 @@
+{
+  "P01": {
+    "case": "booking-known-case",
+    "repeat": 1,
+    "order1": {
+      "A": "candidate",
+      "B": "control"
+    },
+    "order2": {
+      "A": "control",
+      "B": "candidate"
+    }
+  },
+  "P02": {
+    "case": "booking-known-case",
+    "repeat": 2,
+    "order1": {
+      "A": "control",
+      "B": "candidate"
+    },
+    "order2": {
+      "A": "candidate",
+      "B": "control"
+    }
+  },
+  "P03": {
+    "case": "cli-holdout",
+    "repeat": 1,
+    "order1": {
+      "A": "candidate",
+      "B": "control"
+    },
+    "order2": {
+      "A": "control",
+      "B": "candidate"
+    }
+  },
+  "P04": {
+    "case": "cli-holdout",
+    "repeat": 2,
+    "order1": {
+      "A": "control",
+      "B": "candidate"
+    },
+    "order2": {
+      "A": "candidate",
+      "B": "control"
+    }
+  },
+  "P05": {
+    "case": "pricing-fixture",
+    "repeat": 1,
+    "order1": {
+      "A": "candidate",
+      "B": "control"
+    },
+    "order2": {
+      "A": "control",
+      "B": "candidate"
+    }
+  },
+  "P06": {
+    "case": "pricing-fixture",
+    "repeat": 2,
+    "order1": {
+      "A": "control",
+      "B": "candidate"
+    },
+    "order2": {
+      "A": "candidate",
+      "B": "control"
+    }
+  }
+}

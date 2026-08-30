@@ -1,6 +1,6 @@
-# A/B Comparisons
+# Illustrative Advice Contrasts
 
-These examples show the difference between generic prompting and the behavior `advise-project-approach` is designed to enforce.
+These are hand-written illustrations of intended behavior, not outputs from a measured A/B experiment. For actual prompts, model outputs, limitations, and comparisons, see [evaluations](../evals/README.md).
 
 ## Example 1: Pre-Build Stack Choice
 

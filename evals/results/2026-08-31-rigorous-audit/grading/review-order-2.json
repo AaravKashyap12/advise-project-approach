@@ -1,0 +1,861 @@
+{
+  "schema_version": "1.0",
+  "evaluation": "Independent blind answer-utility evaluation",
+  "input_packet": "C:\\Users\\aarav\\Desktop\\skills\\evals\\results\\2026-08-31-rigorous-audit\\grading\\packet-order-2.json",
+  "evidence_boundary": {
+    "source": "Only the supplied packet: original requests, identical environments, verbatim answers, recorded fixture tool calls, and frozen rubric.",
+    "excluded": "No network, mapping files, treatment identity, runtime skill, other graders, source reports, historical results, or further agents.",
+    "execution": "Fixture tools were not replayed. No candidate implementation or test was run. API hazards are assessments of the proposed operations, not observations of actual file loss.",
+    "platform": "The evaluator workspace's OS is not assumed to be the intended target OS of the proposed photo tool."
+  },
+  "rubric": "Judge answer utility against the original user request, not against an imagined skill or a preferred format.\nFor each dimension give pass, partial, fail, or not-applicable with a brief quote or specific evidence:\n- Intent and scope: answers the request, respects constraints and explicit limits.\n- Evidence calibration: inspected facts versus assumptions, no fake research or test success.\n- Technical correctness: proposed behavior, calculations, and causal claims are sound.\n- Actionability or intake: the response moves the user forward appropriately; a necessary question can be the right next step.\n- Risk and validation: material risks are acknowledged, checks actually test the claim, and failure is not overdiagnosed.\n- Clarity and proportionality: useful signal without unnecessary work or verbosity.\nDo not reward length, section counts, or test terminology by themselves. Do not demand a build plan or tests from an appropriate intake-only answer. Do not penalize a useful testing/foundation step merely because it is not a product feature. A single racing request is not automatically a deterministic concurrency test. A failing local check alone does not prove the architecture is wrong.\nUse only the supplied answers, request, environment and tool evidence. Pick A, B or Tie for overall user utility and give confidence plus material flaws. Scores are qualitative; do not manufacture a success percentage.\n",
+  "rating_scale": [
+    "pass",
+    "partial",
+    "fail",
+    "N/A"
+  ],
+  "confidence_scale": [
+    "low",
+    "medium",
+    "high"
+  ],
+  "interpretation": "Qualitative ratings are not summed into a success percentage. N/A is neutral. Intake-only responses need not provide plans or tests. Foundation work can be useful. Proposed or uncontrolled races are not deterministic validation, and a failed check alone does not establish an architectural cause.",
+  "pairs": [
+    {
+      "id": "P01",
+      "user_request": "I want to build a platform that helps university students study better. What is the best way to approach it?",
+      "verdict": "A",
+      "confidence": "medium",
+      "confidence_reason": "The request supports either useful discovery advice or intake; the preference is about immediate usefulness, not a required answer format.",
+      "rationale": "A supplies a usable problem-discovery sequence, candidate study workflows, and a small repeat-use experiment. B is legitimate intake, but its broad team/tool/hosting questions provide less immediate help identifying the student problem. A's advantage is actionable domain guidance, not length or the presence of a plan; its measures still need to distinguish engagement from learning.",
+      "fixture_tool_evidence": {
+        "A": {
+          "recorded_calls": 0,
+          "tools": []
+        },
+        "B": {
+          "recorded_calls": 0,
+          "tools": []
+        }
+      },
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "pick one painful, frequent job",
+              "assessment": "Directly addresses how to approach the broad idea, with example segments and workflows rather than a mandatory stack."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "A practical MVP concept would be",
+              "assessment": "Presents the concept as a proposal and recommends interviews. No research, student feedback, or implementation success is claimed."
+            },
+            "technical_correctness": {
+              "rating": "pass",
+              "evidence_quote": "weekly active users",
+              "assessment": "The discovery and retention advice is technically coherent. These are engagement measures, not established evidence of better learning."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "Talk to 20-30 students",
+              "assessment": "Provides concrete interview questions and a small study loop the user can investigate before committing to a platform."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "Optimize for retention, not feature count.",
+              "assessment": "Addresses overbuilding and weak repeat use, but the proposed AI study material lacks an accuracy check and the metrics mostly measure engagement."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "A good MVP is not",
+              "assessment": "The examples and warnings support the open-ended request. Some overlap between narrowing the problem and choosing a segment is tolerable."
+            }
+          },
+          "material_technical_errors": [],
+          "other_material_flaws": [
+            "The proposed AI-generated study loop needs content-quality checks and a learning-outcome measure; returning users alone would not establish that studying improved."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "what is explicitly out of scope for now?",
+              "assessment": "Appropriate intake for an underspecified platform idea. It does not need to supply a build plan in the same turn."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "a provisional recommendation with visible assumptions",
+              "assessment": "Does not invent a project stage, technical background, or inspected evidence; offers an assumption-based path if the user prefers."
+            },
+            "technical_correctness": {
+              "rating": "N/A",
+              "evidence_quote": "what languages/tools are you comfortable with?",
+              "assessment": "Only asks questions; no proposed implementation, calculation, or technical causal claim to assess."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "who is the primary user",
+              "assessment": "Questions about audience, stage, constraints, and resources can materially change the eventual recommendation."
+            },
+            "risk_and_validation": {
+              "rating": "N/A",
+              "evidence_quote": "What must it do in version one",
+              "assessment": "Intake-only response recommends no operation or architecture to validate. Tests and a risk register are not required here."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "speed, low cost, simplicity, scale, control, or flexibility?",
+              "assessment": "Compact, answerable intake, although the deployment preference is less urgent than understanding the study problem."
+            }
+          },
+          "material_technical_errors": [],
+          "other_material_flaws": []
+        }
+      }
+    },
+    {
+      "id": "P02",
+      "user_request": "I want to build a platform that helps university students study better. What is the best way to approach it?",
+      "verdict": "B",
+      "confidence": "medium",
+      "confidence_reason": "B's product-discovery utility outweighs its overstatements, but a user seeking tailored technical advice could reasonably prefer A's intake.",
+      "rationale": "B turns the idea into a narrow student outcome, a course-level pilot, and a practice/review loop with candidate learning measures. A asks useful scoping questions and is not deficient for stopping at intake. B offers more immediate direction on this open advisory request, although its sweeping product-failure and learning claims should be treated as hypotheses, not findings.",
+      "fixture_tool_evidence": {
+        "A": {
+          "recorded_calls": 0,
+          "tools": []
+        },
+        "B": {
+          "recorded_calls": 0,
+          "tools": []
+        }
+      },
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "who is the primary user at launch",
+              "assessment": "Clarifies the audience and stage without imposing a solution on the vague request."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "skip questions and proceed with assumptions",
+              "assessment": "Explicitly distinguishes an informed recommendation from one based on assumptions; no evidence or success is fabricated."
+            },
+            "technical_correctness": {
+              "rating": "N/A",
+              "evidence_quote": "what languages/tools are you comfortable with?",
+              "assessment": "No technical design or factual implementation claim is made."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "What must the first version do",
+              "assessment": "Obtains scope, resources, and priorities that would help tailor a subsequent recommendation."
+            },
+            "risk_and_validation": {
+              "rating": "N/A",
+              "evidence_quote": "what is explicitly out of scope for now?",
+              "assessment": "No implementation is proposed yet. A validation plan would be premature to demand from this intake."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "What matters most for v1",
+              "assessment": "Concise and easy to respond to; some technical-context questions could wait until the study need is clearer."
+            }
+          },
+          "material_technical_errors": [],
+          "other_material_flaws": []
+        },
+        "B": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "Pick a narrow outcome.",
+              "assessment": "Answers the request with a focused product-development approach rather than treating all university students as one market."
+            },
+            "evidence_calibration": {
+              "rating": "partial",
+              "evidence_quote": "Most study products fail because they become note repositories.",
+              "assessment": "No tool evidence supports this prevalence/causation claim or the broad adoption claims. The answer does not pretend to have researched them."
+            },
+            "technical_correctness": {
+              "rating": "partial",
+              "evidence_quote": "If the product does not change student behavior, it will not materially help learning.",
+              "assessment": "Active recall and review are reasonable proposals, but behavior change is asserted as a necessary condition without justification."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "Test in one real university workflow.",
+              "assessment": "Gives an interview path, a small MVP, concrete distribution contexts, and candidate outcome measures."
+            },
+            "risk_and_validation": {
+              "rating": "pass",
+              "evidence_quote": "no proof that outcomes improve",
+              "assessment": "Explicitly identifies outcome and distribution risks and proposes a pilot and repeated-quiz measures. These are proposed checks, not claimed validation."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "Add platform features only after the core loop works.",
+              "assessment": "Longer than the intake, but most detail supports product discovery. Repeated MVP/core-loop descriptions could be condensed."
+            }
+          },
+          "material_technical_errors": [
+            {
+              "severity": "moderate",
+              "kind": "causal_overstatement",
+              "evidence_quote": "If the product does not change student behavior, it will not materially help learning.",
+              "issue": "Treats behavior change as necessary for any material learning benefit.",
+              "impact": "Improved correctness or relevance of study material could help within an unchanged study routine. This is not a sound universal criterion for accepting or rejecting product ideas."
+            }
+          ],
+          "other_material_flaws": [
+            "Claims about why most study products fail and how rarely students adopt standalone tools are unsupported by the supplied evidence; they should be framed as hypotheses."
+          ]
+        }
+      }
+    },
+    {
+      "id": "P03",
+      "user_request": "I have chosen Django and Postgres for a small appointment-booking product. Give me the first three implementation steps, but make sure I can tell early whether the architecture is actually working.",
+      "verdict": "A",
+      "confidence": "medium",
+      "confidence_reason": "Both provide useful three-step paths. A has stronger explicit Postgres/concurrency verification, though neither specifies deterministic transaction coordination.",
+      "rationale": "A prioritizes a thin persistence slice, booking invariants, and an actual-Postgres integration/observability foundation. That foundation is useful work, even though it is not another product feature. B adds a valuable cancellation workflow, but attempting the same booking twice does not itself test the concurrent request behavior promised in its acceptance condition.",
+      "fixture_tool_evidence": {
+        "A": {
+          "recorded_calls": 0,
+          "tools": []
+        },
+        "B": {
+          "recorded_calls": 0,
+          "tools": []
+        }
+      },
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "one write/read path",
+              "assessment": "Gives exactly three implementation steps on the chosen stack and focuses them on early evidence of a working booking system."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "If this works locally and in your deployment environment",
+              "assessment": "Keeps validation conditional; no inspection or executed test success is claimed."
+            },
+            "technical_correctness": {
+              "rating": "pass",
+              "evidence_quote": "Put the critical rules in the database and service layer early",
+              "assessment": "Database-enforced rules plus transactional booking and real Postgres testing are sound. Specific slot/overlap constraints still need implementation decisions."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "against Postgres, not SQLite",
+              "assessment": "Provides concrete slice, invariant, testing, and logging tasks with an understandable checkpoint."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "prevent double-booking with a realistic concurrent test",
+              "assessment": "Targets the right risk, but does not specify separate connections, forced overlap, or response assertions. A passing uncontrolled race would not prove safety."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "A practical checkpoint",
+              "assessment": "Compact three-step sequence with a useful stop point. Testing and observability are proportionate to the user's explicit architecture-verification goal."
+            }
+          },
+          "material_technical_errors": [],
+          "other_material_flaws": [
+            "The concurrency test is a useful requirement, not yet a deterministic test recipe; the outcome should not be read as proof of the entire architecture."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "keep the first slice in plain Django",
+              "assessment": "Respects the selected stack and gives exactly three steps, including a meaningful booking lifecycle change."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "Assuming a greenfield Django app",
+              "assessment": "Labels the greenfield assumption and proposes future checks without asserting they ran."
+            },
+            "technical_correctness": {
+              "rating": "partial",
+              "evidence_quote": "a transactional test that attempts the same booking twice",
+              "assessment": "A repeated sequential booking can test uniqueness, but it cannot establish the two-concurrent-request behavior stated above it."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "books a slot, cancels it through the operator flow",
+              "assessment": "The initial booking and cancel/reopen checks are concrete and useful, not merely abstract architecture guidance."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "one succeeds and the other gets a clear",
+              "assessment": "States the desired race outcome, but the described check need not overlap transactions or exercise race-specific error handling."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "Escalate the architecture only if",
+              "assessment": "The three steps are coherent and avoid unnecessary infrastructure; the extraction trigger is tied to duplicated rules or demonstrated correctness difficulty."
+            }
+          },
+          "material_technical_errors": [
+            {
+              "severity": "moderate",
+              "kind": "validation_gap",
+              "evidence_quote": "a transactional test that attempts the same booking twice",
+              "issue": "Presents a duplicate-submission test as the focused check for concurrent double-booking behavior.",
+              "impact": "Two sequential attempts may pass while raced requests return the wrong response or miss an application-level race. A transactional test is not automatically a concurrent one."
+            }
+          ],
+          "other_material_flaws": []
+        }
+      }
+    },
+    {
+      "id": "P04",
+      "user_request": "I have chosen Django and Postgres for a small appointment-booking product. Give me the first three implementation steps, but make sure I can tell early whether the architecture is actually working.",
+      "verdict": "B",
+      "confidence": "medium",
+      "confidence_reason": "B avoids A's explicit architecture diagnosis from a local failure, but its own minimal harness is not a complete concurrency proof.",
+      "rationale": "B more directly connects booking correctness to database overlap/uniqueness enforcement and an executable Postgres request path. A's staff and rescheduling checks are useful, but it overdiagnoses a failed double-submit check as an architectural fault and prescribes a service/locking change without first locating the cause. Neither answer earns credit for deterministic concurrency evidence it does not supply.",
+      "fixture_tool_evidence": {
+        "A": {
+          "recorded_calls": 0,
+          "tools": []
+        },
+        "B": {
+          "recorded_calls": 0,
+          "tools": []
+        }
+      },
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "Assuming a small first release",
+              "assessment": "Gives three stack-consistent steps and states the timezone, availability, and payment assumptions."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "Focused check: create two simultaneous booking requests",
+              "assessment": "Describes a proposed check, not an executed experiment. No tool-backed success or project inspection is fabricated."
+            },
+            "technical_correctness": {
+              "rating": "partial",
+              "evidence_quote": "if both succeed, your core architecture is already wrong.",
+              "assessment": "Duplicate bookings would establish a correctness failure, not its architectural cause or the necessity of extracting a service."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "customer or staff cancels/reschedules an appointment",
+              "assessment": "Booking, availability edits, and lifecycle changes are concrete probes of shared rules and database state."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "or the concurrent booking check fails",
+              "assessment": "An uncontrolled simultaneous attempt is not deterministic evidence. Failure should trigger diagnosis, not automatically new layering and explicit locking."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "existing bookings remain valid or are explicitly blocked from illegal edits",
+              "assessment": "Clearly describes observable invariants within three steps. The issue is the escalation logic, not the amount of detail."
+            }
+          },
+          "material_technical_errors": [
+            {
+              "severity": "moderate",
+              "kind": "unsupported_diagnosis",
+              "evidence_quote": "if both succeed, your core architecture is already wrong.",
+              "issue": "Infers an architectural cause from a local correctness failure.",
+              "impact": "A missing constraint, flawed validation, test setup, or transaction bug can fail the check without making Django/Postgres or the overall architecture unsuitable."
+            },
+            {
+              "severity": "moderate",
+              "kind": "unsupported_remedy",
+              "evidence_quote": "that is the point to extract a dedicated booking-domain function/service and enforce transactional locking explicitly.",
+              "issue": "Makes a failed concurrency check a sufficient trigger for a service extraction and locking remedy.",
+              "impact": "Moving code into a service does not itself prevent races; an appropriate database constraint or a targeted implementation fix may be sufficient."
+            }
+          ],
+          "other_material_flaws": []
+        },
+        "B": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "Set up the thinnest end-to-end slice first",
+              "assessment": "Exactly three steps on Django/Postgres, with architecture verification explicitly included."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "What to prove early",
+              "assessment": "Checks are prospective. There is no claim that the project was read or that tests passed."
+            },
+            "technical_correctness": {
+              "rating": "pass",
+              "evidence_quote": "overlap prevention, and transaction handling",
+              "assessment": "Names the actual booking concerns and appropriate database mechanisms. A small dedicated Python module is a reasonable option, not inherently overengineering."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "a full request passes through HTTP",
+              "assessment": "Makes the request-to-database path, service responsibilities, and minimal executable harness concrete."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "If this test is reliable, the architecture is viable",
+              "assessment": "One reliable endpoint integration test does not by itself prove overlapping bookings are safe. The harness needs explicit invariants and coordinated concurrent requests."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "one integration test that hits the booking endpoint",
+              "assessment": "Foundation/testing work directly serves the user's request. It remains a proportionate three-step plan."
+            }
+          },
+          "material_technical_errors": [],
+          "other_material_flaws": [
+            "The proposed endpoint harness is under-specified for concurrency and only supports a limited viability conclusion, not a general architecture guarantee."
+          ]
+        }
+      }
+    },
+    {
+      "id": "P05",
+      "user_request": "I've chosen Python's standard library for an offline command-line tool that renames photos using their dates. I'm solo, this is for my own 500 photos, and I need it this weekend. Give me exactly two implementation steps. Avoid data loss and let me verify the design before renaming real files.",
+      "verdict": "A",
+      "confidence": "high",
+      "confidence_reason": "The safety requirement is decisive: B explicitly chooses an overwriting primitive without an adequate apply-time guard.",
+      "rationale": "A supplies the requested two-step dry-run/apply workflow and a trial on copies without prescribing a destructive overwrite primitive. B has useful manifest, ambiguity, and repeat-run checks, but os.replace can destroy an occupied destination and its rename log cannot recover that content. Its suggested suffix fallback also does not solve missing dates. A is the better starting answer, not a complete no-data-loss implementation.",
+      "fixture_tool_evidence": {
+        "A": {
+          "recorded_calls": 0,
+          "tools": []
+        },
+        "B": {
+          "recorded_calls": 0,
+          "tools": []
+        }
+      },
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "Build a read-only planning pass first",
+              "assessment": "Exactly two implementation steps, offline and standard-library compatible, scaled to the small weekend task."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "test it first on a small copied folder",
+              "assessment": "Clearly proposes future verification; does not claim tests or file inspection occurred."
+            },
+            "technical_correctness": {
+              "rating": "pass",
+              "evidence_quote": "skip anything with conflicts, log every old/new path",
+              "assessment": "The conservative planning/apply design is coherent and does not assert a nonexistent stdlib EXIF API. The exact date policy remains unspecified."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "a small copied folder of 10 to 20 photos",
+              "assessment": "Gives a practical preview and small trial before the 500-file real batch."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "only runs when you explicitly confirm it",
+              "assessment": "Dry-run, conflict skipping, and copies reduce risk, but fresh target/source checks and preservation of all originals are not made explicit."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "write a preview report to the terminal or a CSV",
+              "assessment": "Two compact, usable steps without infrastructure or unnecessary feature work."
+            }
+          },
+          "material_technical_errors": [],
+          "other_material_flaws": [
+            "The timestamp source and semantics need clarification, and conflict checks should be repeated at apply time. The answer is a sound outline, not a guaranteed safe implementation."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "partial",
+              "evidence_quote": "only executes a previously reviewed plan",
+              "assessment": "Keeps the two main steps and respects the tooling limit, but the prescribed apply primitive undermines the explicit data-loss constraint."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "create a small fixture set with 5-10 copied photos",
+              "assessment": "Describes proposed tests and acceptance behavior; no fixture execution or research success is claimed."
+            },
+            "technical_correctness": {
+              "rating": "fail",
+              "evidence_quote": "renames files with `os.replace`",
+              "assessment": "os.replace overwrites an existing file destination. A previously reviewed plan and a path log do not make that safe or restore overwritten contents."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "flags missing dates and duplicate target names",
+              "assessment": "The manifest, refusal conditions, copied fixtures, and repeat-apply check are concrete improvements to workflow definition."
+            },
+            "risk_and_validation": {
+              "rating": "fail",
+              "evidence_quote": "supports a `--backup-log` or `--undo-log` file",
+              "assessment": "A path log is not a content backup. The checks omit an occupied/stale destination at apply time and therefore do not establish the promised no-data-loss behavior."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "running `apply` against the same fixture folder",
+              "assessment": "More detailed than A, but most of the added detail concerns the requested preview and safe trial rather than unrelated work."
+            }
+          },
+          "material_technical_errors": [
+            {
+              "severity": "high",
+              "kind": "unsafe_api_choice",
+              "evidence_quote": "renames files with `os.replace`",
+              "issue": "Uses an overwriting rename operation without an explicit apply-time no-clobber mechanism.",
+              "impact": "If a destination exists or appears after planning, its contents can be replaced. A log of old/new names cannot restore those overwritten bytes, even when the fixture trial and deterministic ordering pass."
+            },
+            {
+              "severity": "moderate",
+              "kind": "invalid_fallback",
+              "evidence_quote": "date plus sequence suffix",
+              "issue": "Suggests a date-plus-sequence suffix as a remedy for both missing dates and name conflicts.",
+              "impact": "A suffix can distinguish duplicate target names but cannot recover or choose a usable date for a file that lacks one. Missing dates need a separate source rule or refusal/skip behavior."
+            }
+          ],
+          "other_material_flaws": []
+        }
+      }
+    },
+    {
+      "id": "P06",
+      "user_request": "I've chosen Python's standard library for an offline command-line tool that renames photos using their dates. I'm solo, this is for my own 500 photos, and I need it this weekend. Give me exactly two implementation steps. Avoid data loss and let me verify the design before renaming real files.",
+      "verdict": "B",
+      "confidence": "medium",
+      "confidence_reason": "B is relatively safer in intent, but Path.rename is not a portable no-clobber guarantee. Neither is fully satisfactory on data loss.",
+      "rationale": "B stays within the two-step weekend scope and explicitly says to skip unexpected apply-time conditions. A offers clearer filesystem-date caveats and a real rollback trial, but trusting recorded conflict flags before os.replace is hazardous. B still requires explicit portable destination protection; its relative advantage is the apply-time safety intent, not a demonstrated no-data-loss guarantee.",
+      "fixture_tool_evidence": {
+        "A": {
+          "recorded_calls": 0,
+          "tools": []
+        },
+        "B": {
+          "recorded_calls": 0,
+          "tools": []
+        }
+      },
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "partial",
+              "evidence_quote": "with Python standard library only, use filesystem timestamps",
+              "assessment": "Uses the chosen toolkit and two main steps, but the unsafe apply behavior conflicts with the user's primary safety constraint."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "because stdlib alone is not a robust EXIF parser.",
+              "assessment": "States the filesystem-date assumption and the library limitation rather than inventing inspected metadata or successful tests."
+            },
+            "technical_correctness": {
+              "rating": "fail",
+              "evidence_quote": "renames with `os.replace` in a deterministic order",
+              "assessment": "Marked-conflict skipping does not protect against changed/occupied destinations at apply time. A rollback name mapping cannot undo overwritten file contents."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "original_path, proposed_name, timestamp_used, conflict_status",
+              "assessment": "The manifest fields, manual date sample, and copied-folder rollback trial are concrete and readily implementable."
+            },
+            "risk_and_validation": {
+              "rating": "fail",
+              "evidence_quote": "the rollback file can restore them",
+              "assessment": "A happy-path name rollback does not validate no-clobber safety or recover overwritten destination contents. The date-source caveat is useful; changing that rule need not require abandoning the standard library."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "confirm the names changed correctly, then run rollback",
+              "assessment": "Well organized around two steps and a clear trial. The closing toolkit criticism is too broad, but its suggested date-source correction partly qualifies it."
+            }
+          },
+          "material_technical_errors": [
+            {
+              "severity": "high",
+              "kind": "unsafe_api_choice",
+              "evidence_quote": "renames with `os.replace` in a deterministic order",
+              "issue": "Uses an operation that replaces an existing destination while relying on previously recorded conflict flags.",
+              "impact": "The filesystem can differ from the reviewed manifest. Replacement can destroy destination contents that the rollback CSV cannot reconstruct."
+            }
+          ],
+          "other_material_flaws": []
+        },
+        "B": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "partial",
+              "evidence_quote": "a separate `--apply` mode",
+              "assessment": "Gives exactly two stdlib-oriented steps and a copied trial, but the no-data-loss requirement still needs a stronger portable guarantee."
+            },
+            "evidence_calibration": {
+              "rating": "pass",
+              "evidence_quote": "`os.stat().st_mtime` as baseline",
+              "assessment": "Names the baseline date source and leaves EXIF as optional future parsing. Does not claim filesystem dates are verified capture dates."
+            },
+            "technical_correctness": {
+              "rating": "partial",
+              "evidence_quote": "renames with `Path.rename()`",
+              "assessment": "Path.rename can replace an existing file on POSIX; on Windows an existing target normally raises FileExistsError. No candidate OS is supplied, so portability matters."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "only executes from a previously reviewed manifest",
+              "assessment": "The plan/apply split, unexpected-condition handling, log, and small copied sample provide a usable implementation sequence."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "skips anything unexpected",
+              "assessment": "This is a useful safety intent, but no concrete no-clobber enforcement or stale-manifest test is stated. A rollback log does not preserve overwritten bytes."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "test the full flow on a copy of a small sample folder",
+              "assessment": "Concise and proportionate to 500 photos and a weekend; additional test-framework or architecture work is unnecessary."
+            }
+          },
+          "material_technical_errors": [
+            {
+              "severity": "moderate",
+              "kind": "conditional_portability_hazard",
+              "evidence_quote": "renames with `Path.rename()`",
+              "issue": "The proposed API does not enforce no-overwrite semantics on all supported platforms.",
+              "impact": "On POSIX, an occupied file destination can be overwritten unless additional protection implements the vague 'skips anything unexpected' rule. On Windows the occupied-target behavior is safer; the packet does not specify the tool's target OS."
+            }
+          ],
+          "other_material_flaws": [
+            "Filesystem mtime can differ from the desired photo date. The sample trial should explicitly confirm the intended date semantics before real renaming."
+          ]
+        }
+      }
+    },
+    {
+      "id": "P07",
+      "user_request": "Pre-build: I am a solo Node developer choosing hosting for a document app with 40 staff users, staging and production, 200 GB stored, 1500 GB monthly delivery, and daily backups. My budget is $150/month excluding my labor. Read pricing.md in this folder, a synthetic pricing snapshot for this test, and compare ExampleCloud with PlainHost. Give a recommendation based on total monthly cost and operating work. Do not treat the snapshot as live vendor pricing.",
+      "verdict": "A",
+      "confidence": "medium",
+      "confidence_reason": "Both baseline comparisons are correct. A is preferable for a direct recommendation; B's extra guidance includes an unsupported savings claim.",
+      "rationale": "Both correctly total ExampleCloud at $130/month and PlainHost at $92/month, with both environments and backups included. A delivers the price/operating-work tradeoff directly. B adds useful bandwidth sensitivity, but also repeats completed costing work and assumes ephemeral/reduced staging lowers the fictional bill. Both infer ExampleCloud's operational advantage from duties assigned only to PlainHost, rather than from an explicit ExampleCloud service guarantee.",
+      "fixture_tool_evidence": {
+        "A": {
+          "recorded_calls": 1,
+          "tools": [
+            "read_file"
+          ]
+        },
+        "B": {
+          "recorded_calls": 1,
+          "tools": [
+            "read_file"
+          ]
+        }
+      },
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "Using the synthetic snapshot",
+              "assessment": "Uses the supplied fictional pricing, includes the required environments/workload/backups, and recommends on cash plus operating work."
+            },
+            "evidence_calibration": {
+              "rating": "partial",
+              "evidence_quote": "the snapshot does not assign you the same explicit ops burden",
+              "assessment": "The recorded read_file result supports the prices and PlainHost duties. This caveat is useful, but absent ExampleCloud duties do not establish its actual service scope."
+            },
+            "technical_correctness": {
+              "rating": "pass",
+              "evidence_quote": "`ExampleCloud` comes to `$130/month`",
+              "assessment": "Correct: 20 + 20 + 2 + 80 + 8 = 130; PlainHost is 30 + 12 + 50 = 92; difference 38. No invented seat or backup multiplier."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "I would pick `ExampleCloud`.",
+              "assessment": "Makes a clear within-budget recommendation and explains when lower cash spend favors PlainHost."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "upgrades, access hardening, restore procedures, monitoring, and capacity planning",
+              "assessment": "Names the material self-hosting work. The inferred reduction for ExampleCloud should remain conditional on which responsibilities it actually covers."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "`PlainHost` wins on raw monthly price",
+              "assessment": "Concise breakdown and decision rationale; the level of detail matches the requested comparison."
+            }
+          },
+          "material_technical_errors": [],
+          "other_material_flaws": [
+            "The snapshot specifies PlainHost's operator duties but not ExampleCloud's service responsibilities, so lower ExampleCloud operating work remains an assumption."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "this is a synthetic pricing snapshot, not live vendor pricing",
+              "assessment": "Respects the fictional-pricing boundary and compares the specified deployment and workload."
+            },
+            "evidence_calibration": {
+              "rating": "partial",
+              "evidence_quote": "has materially lower operating work for a solo developer",
+              "assessment": "The local read and synthetic disclaimer are supported, but the operational advantage is asserted more strongly than the fixture establishes."
+            },
+            "technical_correctness": {
+              "rating": "partial",
+              "evidence_quote": "if staging can be reduced or made ephemeral, `ExampleCloud` cost drops.",
+              "assessment": "The $130/$92 baseline and $38 difference are correct. The snapshot gives $10 per environment per month, with no scaling or ephemeral-use discount."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "Credible alternative: `PlainHost`",
+              "assessment": "Provides a decision, a cash-priority alternative, and useful conditions such as existing ops automation."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "more exposed to bandwidth overage growth",
+              "assessment": "Correctly identifies overage sensitivity and proposes a runbook comparison, but does not establish ExampleCloud's remaining duties or the suggested staging savings."
+            },
+            "clarity_and_proportionality": {
+              "rating": "partial",
+              "evidence_quote": "Model one month of expected usage",
+              "assessment": "The extra validation task repeats the cost model already completed. Multiple restatements of the same recommendation add work without materially resolving the remaining evidence gap."
+            }
+          },
+          "material_technical_errors": [
+            {
+              "severity": "moderate",
+              "kind": "unsupported_pricing_behavior",
+              "evidence_quote": "if staging can be reduced or made ephemeral, `ExampleCloud` cost drops.",
+              "issue": "Assumes a billing reduction not specified by the fictional snapshot.",
+              "impact": "Two environments are requested and billed at $10 each. Reduced or ephemeral use has no stated discount/proration, so savings require a changed requirement or new pricing evidence."
+            }
+          ],
+          "other_material_flaws": [
+            "Claims materially lower ExampleCloud operating work without an explicit description of that provider's managed responsibilities."
+          ]
+        }
+      }
+    },
+    {
+      "id": "P08",
+      "user_request": "Pre-build: I am a solo Node developer choosing hosting for a document app with 40 staff users, staging and production, 200 GB stored, 1500 GB monthly delivery, and daily backups. My budget is $150/month excluding my labor. Read pricing.md in this folder, a synthetic pricing snapshot for this test, and compare ExampleCloud with PlainHost. Give a recommendation based on total monthly cost and operating work. Do not treat the snapshot as live vendor pricing.",
+      "verdict": "Tie",
+      "confidence": "high",
+      "confidence_reason": "The answers agree on all supplied cost inputs, totals, and the central cash-versus-operations tradeoff; their differences do not materially change the decision.",
+      "rationale": "Both give the same correct $130 versus $92 comparison and recommend ExampleCloud subject to valuing time over the $38 saving. A adds a useful exception for existing server automation; B more explicitly labels the numbers synthetic and makes the cost breakdown easier to scan. Neither claims live research. Both overstate how much operational work the fixture establishes ExampleCloud removes, so neither has a decisive utility advantage.",
+      "fixture_tool_evidence": {
+        "A": {
+          "recorded_calls": 2,
+          "tools": [
+            "list_files",
+            "read_file"
+          ]
+        },
+        "B": {
+          "recorded_calls": 1,
+          "tools": [
+            "read_file"
+          ]
+        }
+      },
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "Based on the snapshot",
+              "assessment": "Covers the specified workload, both environments, backups, and budget. It does not present the local snapshot as live vendor pricing."
+            },
+            "evidence_calibration": {
+              "rating": "partial",
+              "evidence_quote": "while avoiding the self-managed work",
+              "assessment": "The recorded list_files/read_file calls support the costing. The claim of avoiding all named work is stronger than the fixture's evidence about ExampleCloud."
+            },
+            "technical_correctness": {
+              "rating": "pass",
+              "evidence_quote": "`PlainHost` is `$38/month` cheaper.",
+              "assessment": "All arithmetic is correct: ExampleCloud 130, PlainHost 92, with storage and delivery allowances counted organization-wide."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "if you already have solid server-management automation",
+              "assessment": "Provides a recommendation and a meaningful circumstance in which PlainHost may be the better personal choice."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "backup restore responsibility, monitoring, and capacity planning",
+              "assessment": "Identifies relevant work but treats its removal as established. Additional environments would add cost, although the two requested environments are already included."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "When this recommendation becomes wrong",
+              "assessment": "The compact narrative and exceptions are useful. The extra staging check is low priority, not a material costing error."
+            }
+          },
+          "material_technical_errors": [],
+          "other_material_flaws": [
+            "ExampleCloud's managed duties are not stated in the fixture. The answer cannot establish that backup-restore, monitoring, and hardening responsibilities disappear."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "intent_and_scope": {
+              "rating": "pass",
+              "evidence_quote": "Using the synthetic snapshot",
+              "assessment": "Directly follows the requested fictional comparison and includes all priced requirements."
+            },
+            "evidence_calibration": {
+              "rating": "partial",
+              "evidence_quote": "it clearly carries less operating work",
+              "assessment": "Accurately relies on the recorded local read and disclaims live pricing, but infers lower operating work without an explicit ExampleCloud responsibilities statement."
+            },
+            "technical_correctness": {
+              "rating": "pass",
+              "evidence_quote": "Compute for `staging` and `production`: `2 x $10 = $20`",
+              "assessment": "Correct environment charge, pooled allowances, backup charge, totals of 130 and 92, and 38 difference."
+            },
+            "actionability_or_intake": {
+              "rating": "pass",
+              "evidence_quote": "If your priority is absolute lowest cash spend",
+              "assessment": "Makes the hosting choice and alternative depend on the relevant cash-versus-operator-time preference."
+            },
+            "risk_and_validation": {
+              "rating": "partial",
+              "evidence_quote": "you are willing to own that systems work",
+              "assessment": "Recognizes the material PlainHost burden. The alternative's reduced duties are assumed rather than verified by the snapshot."
+            },
+            "clarity_and_proportionality": {
+              "rating": "pass",
+              "evidence_quote": "both options fit your `$150/month` budget",
+              "assessment": "Easy-to-scan arithmetic and concise recommendation. It does not invent a validation project the user did not request."
+            }
+          },
+          "material_technical_errors": [],
+          "other_material_flaws": [
+            "The inference that ExampleCloud has less operating work is plausible but not explicitly established by the supplied service description."
+          ]
+        }
+      }
+    }
+  ]
+}

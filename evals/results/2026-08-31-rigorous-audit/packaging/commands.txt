@@ -1,0 +1,2970 @@
+[001] ENV cwd=C:\Users\aarav\Desktop\skills
+$ git rev-parse HEAD
+exit=0
+stdout:
+c4885d2f0155fbf912f3ad2489ac75d637545ba1
+
+stderr:
+
+
+[002] ENV cwd=C:\Users\aarav\Desktop\skills
+$ git --version
+exit=0
+stdout:
+git version 2.49.0.windows.1
+
+stderr:
+
+
+[003] ENV cwd=C:\Users\aarav\Desktop\skills
+$ python -c "import sys; print(sys.executable); print(sys.version)"
+exit=0
+stdout:
+C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]
+
+stderr:
+
+
+[004] ENV cwd=C:\Users\aarav\Desktop\skills
+$ git status --short
+exit=0
+stdout:
+?? evals/results/2026-08-31-rigorous-audit/
+
+stderr:
+
+
+[005] B01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\B01
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[006] B01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\B01
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[007] B01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\B01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[008] B01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\B01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[009] B01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\B01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[010] B01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\B01
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[011] F01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[012] F01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F01
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing frontmatter fields: ['name']
+
+
+[013] F01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F01
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[014] F01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F01
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[015] F01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F01
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing frontmatter fields: ['name']
+
+
+[016] F02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F02
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[017] F02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F02
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing frontmatter fields: ['description']
+
+
+[018] F02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F02
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[019] F02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F02
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[020] F02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F02
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing frontmatter fields: ['description']
+
+
+[021] F03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F03
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[022] F03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F03
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Unexpected frontmatter fields: ['extra']
+
+
+[023] F03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F03
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[024] F03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F03
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[025] F03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F03
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Unexpected frontmatter fields: ['extra']
+
+
+[026] F04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F04
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[027] F04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F04
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Frontmatter name must match skill folder name
+
+
+[028] F04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F04
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[029] F04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F04
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[030] F04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F04
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Frontmatter name must match skill folder name
+
+
+[031] F05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F05
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[032] F05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F05
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Frontmatter description must be 1024 characters or fewer
+
+
+[033] F05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F05
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[034] F05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F05
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[035] F05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F05
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Frontmatter description must be 1024 characters or fewer
+
+
+[036] F06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F06
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[037] F06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F06
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[038] F06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F06
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[039] F06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F06
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[040] F06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F06
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[041] F06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F06
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[042] F06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F06
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[043] F06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F06
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[044] F07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F07
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[045] F07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[046] F07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F07
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[047] F07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F07
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[048] F07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[049] F07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F07
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[050] F07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[051] F07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F07
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[052] F08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F08
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[053] F08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F08
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[054] F08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F08
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[055] F08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F08
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[056] F08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F08
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[057] F08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F08
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[058] F08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F08
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[059] F08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F08
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[060] F09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F09
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[061] F09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F09
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[062] F09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F09
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[063] F09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F09
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[064] F09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F09
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[065] F09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F09
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[066] F09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F09
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[067] F09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F09
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[068] F10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F10
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[069] F10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F10
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[070] F10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F10
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[071] F10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F10
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[072] F10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F10
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[073] F10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F10
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[074] F10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F10
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[075] F10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F10
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[076] F11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F11
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[077] F11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F11
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[078] F11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F11
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[079] F11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F11
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[080] F11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F11
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[081] F11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F11
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[082] F11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F11
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[083] F11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F11
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[084] F12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F12
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[085] F12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F12
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Frontmatter name must match skill folder name
+
+
+[086] F12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F12
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[087] F12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F12
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[088] F12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F12
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Frontmatter name must match skill folder name
+
+
+[089] F13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F13
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[090] F13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F13
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Invalid frontmatter line:   Audit fixture
+
+
+[091] F13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F13
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[092] F13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F13
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[093] F13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F13
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Invalid frontmatter line:   Audit fixture
+
+
+[094] F14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F14
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[095] F14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F14
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[096] F14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F14
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[097] F14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F14
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[098] F14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F14
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[099] F14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F14
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[100] F14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F14
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[101] F14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F14
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[102] F15 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F15
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: SKILL.md must start with YAML frontmatter
+
+
+[103] F16 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\F16
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: SKILL.md must start with YAML frontmatter
+
+
+[104] M01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M01
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing skills/advise-project-approach/agents/openai.yaml
+
+
+[105] M02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M02
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing .claude-plugin/plugin.json
+
+
+[106] M03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M03
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing VERSION release source of truth
+
+
+[107] M04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M04
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing AGENTS.md cross-harness repository guidance
+
+
+[108] M05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M05
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing CLAUDE.md compatibility bridge
+
+
+[109] M06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M06
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing README.md
+
+
+[110] M07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M07
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing skills/advise-project-approach/SKILL.md
+
+
+[111] M08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M08
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing package: dist\advise-project-approach.skill
+
+
+[112] M09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M09
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Missing evals/cases.json
+
+
+[113] M10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M10
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[114] M10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M10
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[115] M10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M10
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[116] M10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M10
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[117] M10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M10
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[118] M10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M10
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[119] M10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M10
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[120] M10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M10
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[121] M11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M11
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[122] M11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M11
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[123] M11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M11
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[124] M11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M11
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[125] M11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M11
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[126] M11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M11
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[127] M11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M11
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[128] M11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M11
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[129] M12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M12
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[130] M12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M12
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[131] M12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M12
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[132] M12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M12
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[133] M12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M12
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[134] M12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M12
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[135] M12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M12
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[136] M13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M13
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[137] M13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M13
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[138] M13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M13
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[139] M13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M13
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[140] M13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M13
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[141] M13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M13
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[142] M13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M13
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[143] M14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M14
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: CLAUDE.md must import AGENTS.md
+
+
+[144] M15 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\M15
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Unexpected files inside skill package: ['extra.txt']
+
+
+[145] A01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A01
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Package contents differ from expected files: expected ['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml'], got ['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml', 'advise-project-approach/extra.txt']
+
+
+[146] A01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A01
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[147] A01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A01
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[148] A01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A01
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Package contents differ from expected files: expected ['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml'], got ['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml', 'advise-project-approach/extra.txt']
+
+
+[149] A02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A02
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Package contents differ from expected files: expected ['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml'], got ['advise-project-approach/agents/openai.yaml']
+
+
+[150] A02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A02
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[151] A02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A02
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[152] A02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A02
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Package contents differ from expected files: expected ['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml'], got ['advise-project-approach/agents/openai.yaml']
+
+
+[153] A03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A03
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[154] A03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A03
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[155] A03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A03
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[156] A03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A03
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[157] A03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A03
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[158] A03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A03
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[159] A03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A03
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=1
+stdout:
+diff --git a/dist/advise-project-approach.skill b/dist/advise-project-approach.skill
+index 52fc320..8da4daf 100644
+Binary files a/dist/advise-project-approach.skill and b/dist/advise-project-approach.skill differ
+
+stderr:
+
+
+[160] A04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A04
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[161] A04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A04
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[162] A04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A04
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[163] A04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A04
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[164] A04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A04
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[165] A04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A04
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[166] A04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A04
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=1
+stdout:
+diff --git a/dist/advise-project-approach.skill b/dist/advise-project-approach.skill
+index be6365e..8da4daf 100644
+Binary files a/dist/advise-project-approach.skill and b/dist/advise-project-approach.skill differ
+
+stderr:
+
+
+[167] A05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A05
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[168] A05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A05
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[169] A05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A05
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[170] A05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A05
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[171] A05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A05
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[172] A05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A05
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[173] A05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A05
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=1
+stdout:
+diff --git a/dist/advise-project-approach.skill b/dist/advise-project-approach.skill
+index a467eef..8da4daf 100644
+Binary files a/dist/advise-project-approach.skill and b/dist/advise-project-approach.skill differ
+
+stderr:
+
+
+[174] A06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A06
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[175] A06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A06
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[176] A06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A06
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[177] A06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A06
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[178] A06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A06
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[179] A06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A06
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[180] A06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A06
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=1
+stdout:
+diff --git a/dist/advise-project-approach.skill b/dist/advise-project-approach.skill
+index 77c37f8..8da4daf 100644
+Binary files a/dist/advise-project-approach.skill and b/dist/advise-project-approach.skill differ
+
+stderr:
+
+
+[181] A07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[182] A07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A07
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[183] A07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A07
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[184] A07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[185] A07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A07
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[186] A07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[187] A07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A07
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=1
+stdout:
+diff --git a/dist/advise-project-approach.skill b/dist/advise-project-approach.skill
+index 5d2b2da..8da4daf 100644
+Binary files a/dist/advise-project-approach.skill and b/dist/advise-project-approach.skill differ
+
+stderr:
+
+
+[188] A08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A08
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[189] A08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A08
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[190] A08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A08
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[191] A08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A08
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[192] A08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A08
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[193] A08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A08
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[194] A08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A08
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=1
+stdout:
+diff --git a/dist/advise-project-approach.skill b/dist/advise-project-approach.skill
+index ed43d80..8da4daf 100644
+Binary files a/dist/advise-project-approach.skill and b/dist/advise-project-approach.skill differ
+
+stderr:
+
+
+[195] A09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09\scripts\validate_skill.py", line 168, in <module>
+    main()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09\scripts\validate_skill.py", line 160, in main
+    validate_package()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09\scripts\validate_skill.py", line 84, in validate_package
+    with ZipFile(PACKAGE_FILE) as archive:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\zipfile\__init__.py", line 1370, in __init__
+    self._RealGetContents()
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\zipfile\__init__.py", line 1437, in _RealGetContents
+    raise BadZipFile("File is not a zip file")
+zipfile.BadZipFile: File is not a zip file
+
+
+[196] A09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[197] A09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[198] A09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09\scripts\validate_skill.py", line 168, in <module>
+    main()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09\scripts\validate_skill.py", line 160, in main
+    validate_package()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A09\scripts\validate_skill.py", line 84, in validate_package
+    with ZipFile(PACKAGE_FILE) as archive:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\zipfile\__init__.py", line 1370, in __init__
+    self._RealGetContents()
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\zipfile\__init__.py", line 1437, in _RealGetContents
+    raise BadZipFile("File is not a zip file")
+zipfile.BadZipFile: File is not a zip file
+
+
+[199] A10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A10
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Package contents differ from expected files: expected ['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml'], got ['wrong-root/SKILL.md', 'wrong-root/agents/openai.yaml']
+
+
+[200] A10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A10
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[201] A10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A10
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[202] A10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\A10
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Package contents differ from expected files: expected ['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml'], got ['wrong-root/SKILL.md', 'wrong-root/agents/openai.yaml']
+
+
+[203] S01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[204] S01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S01
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[205] S01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S01
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[206] S01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[207] S01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[208] S01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[209] S01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S01
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=1
+stdout:
+diff --git a/dist/advise-project-approach.skill b/dist/advise-project-approach.skill
+index 8da4daf..6efa5a3 100644
+Binary files a/dist/advise-project-approach.skill and b/dist/advise-project-approach.skill differ
+
+stderr:
+
+
+[210] S02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S02
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[211] S02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S02
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[212] S02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S02
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[213] S02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S02
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[214] S02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S02
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[215] S02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S02
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[216] S02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\S02
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=1
+stdout:
+diff --git a/dist/advise-project-approach.skill b/dist/advise-project-approach.skill
+index 8da4daf..a858933 100644
+Binary files a/dist/advise-project-approach.skill and b/dist/advise-project-approach.skill differ
+
+stderr:
+
+
+[217] V01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V01
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Plugin version must match VERSION
+
+
+[218] V01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V01
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[219] V01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V01
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[220] V01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V01
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Plugin version must match VERSION
+
+
+[221] V02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V02
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: README current What's New section must match VERSION
+
+
+[222] V02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V02
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[223] V02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V02
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[224] V02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V02
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: README current What's New section must match VERSION
+
+
+[225] V03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V03
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: README release asset link must match VERSION
+
+
+[226] V03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V03
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[227] V03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V03
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[228] V03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V03
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: README release asset link must match VERSION
+
+
+[229] V04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V04
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: VERSION must contain a semantic version such as 0.6.0
+
+
+[230] V05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V05
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[231] V05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V05
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[232] V05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V05
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[233] V05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V05
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[234] V05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V05
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[235] V05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V05
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[236] V05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V05
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[237] V06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V06
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[238] V06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V06
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[239] V06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V06
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[240] V06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V06
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[241] V06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V06
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[242] V06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V06
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[243] V06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V06
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[244] V07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[245] V07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V07
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[246] V07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V07
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[247] V07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[248] V07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V07
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[249] V07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[250] V07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V07
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[251] V08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V08
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[252] V08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V08
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[253] V08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V08
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[254] V08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V08
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[255] V08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V08
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[256] V08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V08
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[257] V08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V08
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[258] V09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V09
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[259] V09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V09
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[260] V09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V09
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[261] V09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V09
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[262] V09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V09
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[263] V09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V09
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[264] V09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V09
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[265] V10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V10
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[266] V10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V10
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[267] V10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V10
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[268] V10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V10
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[269] V10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V10
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[270] V10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V10
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[271] V10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V10
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[272] V11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V11
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V11\scripts\validate_skill.py", line 168, in <module>
+    main()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V11\scripts\validate_skill.py", line 163, in main
+    validate_release_version()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V11\scripts\validate_skill.py", line 144, in validate_release_version
+    plugin = json.loads(PLUGIN_FILE.read_text(encoding="utf-8"))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+
+
+[273] V12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V12
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V12\scripts\validate_skill.py", line 168, in <module>
+    main()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V12\scripts\validate_skill.py", line 163, in main
+    validate_release_version()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\V12\scripts\validate_skill.py", line 145, in validate_release_version
+    if plugin.get("version") != version:
+       ^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+
+
+[274] E01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E01
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: evals/cases.json must use schema_version 1
+
+
+[275] E02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E02
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[276] E02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E02
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[277] E02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E02
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[278] E02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E02
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[279] E02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E02
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[280] E02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E02
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[281] E02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E02
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[282] E03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E03
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[283] E03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E03
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[284] E03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E03
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[285] E03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E03
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[286] E03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E03
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[287] E03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E03
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[288] E03 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E03
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[289] E04 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E04
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: evals/cases.json must contain at least six cases
+
+
+[290] E05 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E05
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Duplicate eval case id: vague-prebuild-intake
+
+
+[291] E06 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E06
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Every eval case must have a non-empty id
+
+
+[292] E07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[293] E07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E07
+$ git init -q --template=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\empty-git-template
+exit=0
+stdout:
+
+stderr:
+
+
+[294] E07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E07
+$ git -c core.autocrlf=false add -- dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[295] E07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[296] E07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E07
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[297] E07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E07
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[298] E07 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E07
+$ git diff --exit-code dist/advise-project-approach.skill
+exit=0
+stdout:
+
+stderr:
+
+
+[299] E08 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E08
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Invalid mode for eval case vague-prebuild-intake
+
+
+[300] E09 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E09
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Eval case vague-prebuild-intake must have a prompt
+
+
+[301] E10 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E10
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Eval case vague-prebuild-intake must have a prompt
+
+
+[302] E11 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E11
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Eval case vague-prebuild-intake must have non-empty assertions
+
+
+[303] E12 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E12
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Eval case vague-prebuild-intake has an invalid assertions entry
+
+
+[304] E13 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E13
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Eval case vague-prebuild-intake has an invalid failure_conditions entry
+
+
+[305] E14 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E14
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Eval case vague-prebuild-intake must have non-empty failure_conditions
+
+
+[306] E15 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E15
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: evals/cases.json must contain at least six cases
+
+
+[307] E16 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E16
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E16\scripts\validate_skill.py", line 168, in <module>
+    main()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E16\scripts\validate_skill.py", line 161, in main
+    validate_eval_cases()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E16\scripts\validate_skill.py", line 108, in validate_eval_cases
+    case_id = case.get("id")
+              ^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+
+[308] E17 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E17
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E17\scripts\validate_skill.py", line 168, in <module>
+    main()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E17\scripts\validate_skill.py", line 161, in main
+    validate_eval_cases()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E17\scripts\validate_skill.py", line 114, in validate_eval_cases
+    if case.get("mode") not in allowed_modes:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+
+
+[309] E18 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E18
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E18\scripts\validate_skill.py", line 168, in <module>
+    main()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E18\scripts\validate_skill.py", line 161, in main
+    validate_eval_cases()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E18\scripts\validate_skill.py", line 97, in validate_eval_cases
+    data = json.loads(EVAL_CASES_FILE.read_text(encoding="utf-8"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+
+
+[310] E19 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E19
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E19\scripts\validate_skill.py", line 168, in <module>
+    main()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E19\scripts\validate_skill.py", line 161, in main
+    validate_eval_cases()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\E19\scripts\validate_skill.py", line 98, in validate_eval_cases
+    if data.get("schema_version") != 1:
+       ^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+
+
+[311] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[312] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[313] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[314] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[315] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[316] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[317] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[318] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[319] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[320] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[321] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[322] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[323] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/package_skill.py
+exit=0
+stdout:
+Built dist\advise-project-approach.skill
+
+stderr:
+
+
+[324] R01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\R01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[325] P01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\P01
+$ python scripts/validate_skill.py
+exit=0
+stdout:
+Skill package is valid.
+
+stderr:
+
+
+[326] P01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\P01
+$ python scripts/package_skill.py
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\P01\scripts\package_skill.py", line 47, in <module>
+    main()
+  File "C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\P01\scripts\package_skill.py", line 38, in main
+    data = path.read_text(encoding="utf-8").replace("\r\n", "\n").encode(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1028, in read_text
+    return f.read()
+           ^^^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+
+
+[327] P01 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\P01
+$ python scripts/validate_skill.py
+exit=1
+stdout:
+
+stderr:
+Validation failed: Package contents differ from expected files: expected ['advise-project-approach/SKILL.md', 'advise-project-approach/agents/openai.yaml'], got []
+
+
+[328] P02 cwd=C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\P02
+$ python scripts/package_skill.py
+exit=1
+stdout:
+
+stderr:
+Missing skill source: C:\Users\aarav\AppData\Local\Temp\advise-packaging-audit-241b8e0b6cdd41458b20b53b123088ba\P02\skills\advise-project-approach
+
+
+[329] ENV cwd=C:\Users\aarav\Desktop\skills
+$ git status --short
+exit=0
+stdout:
+?? evals/results/2026-08-31-rigorous-audit/
+
+stderr:
+

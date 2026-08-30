@@ -1,0 +1,8 @@
+1. What are you trying to build for students, and who is the first target user: undergrads generally, a specific major, exam-prep users, or university partners?
+2. Is this just an idea right now, or do you already have a prototype, team, or existing code?
+3. What must the first version do, and what is explicitly out of scope for now?
+4. Are you building solo or with a team, and what languages/tools are you already comfortable with?
+5. What matters most for the first version: speed to launch, low cost, simplicity, learning outcomes, or ability to scale later?
+6. Where do you expect it to run, and what would you strongly prefer to avoid: mobile apps, browser extensions, AI costs, university integrations, or heavy ops?
+
+If you want, you can also say `skip questions and proceed`, and I’ll make the assumptions visible.

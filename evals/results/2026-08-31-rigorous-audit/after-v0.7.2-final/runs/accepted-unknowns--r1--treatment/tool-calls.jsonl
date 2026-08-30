@@ -1,0 +1,4 @@
+{"tool": "list_files", "arguments": {"limit": 100, "pattern": "README*"}, "result": {"total": 0, "returned": [], "truncated": false}}
+{"tool": "list_files", "arguments": {"limit": 100}, "result": {"total": 0, "returned": [], "truncated": false}}
+{"tool": "list_files", "arguments": {"limit": 100, "pattern": "*.py"}, "result": {"total": 0, "returned": [], "truncated": false}}
+{"tool": "list_files", "arguments": {"limit": 100, "pattern": "pyproject.toml"}, "result": {"total": 0, "returned": [], "truncated": false}}

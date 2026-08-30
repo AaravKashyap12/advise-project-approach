@@ -1,0 +1,8 @@
+1. What are you trying to build, and who is it for within the student population?
+2. Is this still an idea, or have you already started building something?
+3. What must it do in version one, and what is explicitly out of scope for now?
+4. Are you building solo or with a team, and what languages/tools are you comfortable with?
+5. What matters most right now: speed, low cost, simplicity, scale, control, or flexibility?
+6. Where do you expect to run it, and what would you strongly prefer to avoid?
+
+If you want, you can also say `skip questions and proceed`, and I’ll give you a provisional approach with explicit assumptions.

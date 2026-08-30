@@ -1,0 +1,11 @@
+Recommendation: keep this as a server-rendered Python monolith on one EU host with a relational DB and authorization enforced in the write path, not a separate SPA/API/queue stack.
+
+Evidence status: local evidence came from `README.md` and `docs/architecture.md`; I kept private customer details out of the analysis. Public research used `search_public` only, so all external references below are fixture evidence, not real vendor claims. Pricing was not verifiable beyond your stated `$25/month` target.
+
+Constraint fit: the repo describes `40` internal users, `6` weeks, one server, Python, low maintenance, and coordinator-created shifts with relational ownership checks. That strongly favors Django-style CRUD, server-rendered forms, and Postgres or SQLite-first development with a Postgres production target.
+
+Comparable fixture evidence: `scheduler-a` supports the small single-server pattern with relational storage and per-record ownership; that transfers well. `scheduler-b` uses SPA/API/queues for multi-region coordination; do not copy that overhead here.
+
+Alternative: FastAPI plus a frontend gives cleaner API boundaries, but it slows delivery, increases auth/state complexity, and is harder to justify for an internal 40-user scheduler.
+
+Next actions: build one vertical slice first: coordinator creates a shift, assigns eligible staff, and unauthorized reassignment is rejected at save time. Acceptance: authorized users can assign; non-owners get denied even if they bypass the UI. Focused check: attempt the same write through a direct POST with tampered IDs. Reconsider the monolith only if you need offline/mobile clients, complex optimization, or sustained multi-site concurrency.

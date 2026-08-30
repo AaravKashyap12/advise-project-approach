@@ -1,0 +1,43 @@
+Do not copy the most-starred comparable’s stack. In this environment that would be guesswork, and even with browsing it would still be a bad decision rule: stars do not tell you whether the stack fits B2B inventory workflows, operator UX, auditability, or operating cost.
+
+For a default B2B inventory product, I would choose `PostgreSQL + Django + Django REST Framework + React + TypeScript`, deployed first as a modular monolith. If you want the fastest path with the least frontend complexity, replace React with Django server-rendered templates and add a light admin UI first.
+
+**Why this fits**
+Assumptions: solo or small team, web app, standard B2B inventory flows, no hard real-time requirements, no stated mobile-first or offline requirement.
+Constraint fit: inventory systems usually need relational integrity, transactions, searchable tables, role-based access, audit-friendly change history, import/export, and back-office forms more than they need ultra-custom frontend infrastructure.
+What you gain: fast CRUD and admin delivery, strong relational model support, mature auth/permissions, straightforward reporting queries, lower operational complexity than microservices.
+What you give up: less frontend unification than a full TypeScript stack, slower path to highly interactive client-heavy UX than a Next.js-first build.
+What becomes harder later: if you later need offline warehouse scanning, real-time sync across devices, or a public API ecosystem, you may need a dedicated event/outbox path and possibly a separate mobile client.
+
+**Evidence status**
+I inspected the local workspace and it contains no files, so there is no repo evidence to review.
+External research and comparable inspection were not performed because browsing is unavailable here.
+Because no comparable repos were accessible, I am explicitly not claiming “most-starred” anything.
+
+**Comparable evidence**
+Unavailable in this run. That matters because I cannot responsibly tell you to copy a specific public repo’s stack without seeing it.
+Transferable general pattern from mature inventory products: start with a transactional relational core and a monolith unless scale or org structure proves otherwise.
+What not to copy from large comparables, even if they were available: microservices, Kafka-heavy eventing, separate search clusters, and complex CQRS before you have proven throughput or multi-team coordination needs.
+
+**Alternative**
+Second-best option: `PostgreSQL + Next.js + TypeScript + Prisma`.
+It improves stack consistency and frontend hiring familiarity.
+It worsens admin/back-office speed and tends to invite premature API/frontend split complexity for a B2B ops product.
+I would choose it only if your product’s main value is a richer customer-facing web experience, not internal operations efficiency.
+
+**When this recommendation becomes wrong**
+If you need offline-first warehouse scanning with unreliable connectivity.
+If you already know the team is much stronger in TypeScript than Python.
+If tenant-level custom workflows, event integrations, or very high write concurrency are first-order requirements.
+If you need native mobile as a primary surface from day one.
+
+**Next actions**
+1. Build a vertical slice for `products`, `locations`, `stock movements`, and `on-hand quantity` in one app with PostgreSQL transactions.
+2. Add role-based permissions and an append-only movement log before building forecasting, procurement, or analytics.
+3. Validate import/export and reconciliation workflows early; those usually expose the real data model pressures.
+
+**Validation plan**
+First slice: receive stock into a location, transfer it, and view current on-hand by SKU and location.
+Acceptance behavior: after a receive and transfer, the user can see correct on-hand counts and a complete movement history.
+Focused check: create concurrent stock adjustments against the same SKU/location and verify the persisted quantity and movement ledger remain consistent.
+Escalation signal: if that invariant cannot be maintained cleanly inside a monolith transaction boundary, or if read/query load forces separate reporting paths, then introduce outbox/eventing or a dedicated read model.

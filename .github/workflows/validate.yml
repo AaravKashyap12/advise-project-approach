@@ -19,6 +19,15 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install development dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Run deterministic regression tests
+        run: python -B -m unittest discover -s tests -v
+
+      - name: Run deterministic eval fixture tests
+        run: python -m unittest discover -s evals -p "test_*.py" -v
+
       - name: Validate checked-in package
         run: python scripts/validate_skill.py
 

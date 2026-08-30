@@ -1,0 +1,71 @@
+## Project Approach: B2B Inventory Product
+
+### TL;DR
+I would not copy “whatever the most-starred comparable uses.” Stars are not a fit test, and in this environment I cannot verify any comparable anyway. Provisional recommendation: `React + Next.js` for the app, `TypeScript` end-to-end, `Postgres` as the primary database, `Prisma` or `Drizzle` for schema/querying, and a single deployable backend in the same codebase using Next.js server routes or a conventional Node service if the team already prefers that shape.
+
+### Project Frame
+Assumptions: this is a typical B2B inventory system for internal business users, with CRUD-heavy workflows, role-based access, purchase/sales adjustments, stock movements, auditability, CSV import/export, and moderate scale rather than consumer-scale traffic.
+
+What matters most under those assumptions: shipping speed, correctness of stock mutations, maintainability by a small team, and low operational overhead.
+
+### Evidence Reviewed
+Local evidence: the provided fixture contained no accessible project files.
+External research: not performed; browsing is unavailable in this environment.
+Comparable evidence: unavailable, so this recommendation is provisional rather than benchmark-backed.
+
+### Recommended Stack
+Frontend: `Next.js` + `React` + `TypeScript`
+Backend: start in the same codebase, keep one deployment unit
+Database: `Postgres`
+ORM/query layer: `Prisma` or `Drizzle`
+Auth: business SSO later if needed; start with a mature auth library rather than building auth yourself
+Infra: one web app + one Postgres instance; avoid microservices, queues, and event buses initially
+Testing: schema-level tests for stock mutation rules, a few API integration tests, and one end-to-end flow for receive/adjust/ship
+
+Why this fits:
+- B2B inventory is mostly transactional software, so database integrity matters more than exotic frontend or distributed architecture.
+- `Postgres` gives you transactions, constraints, row locking, and audit-friendly modeling.
+- A TypeScript web stack reduces context switching for a small team and keeps the first version simple.
+
+### Alternatives and Tradeoffs
+1. `Django + Postgres`
+   Gain: faster admin tooling, strong CRUD ergonomics, mature server-rendered business app path.
+   Give up: less frontend flexibility if you want a richer app-like UI.
+   Better choice when: the team is stronger in Python or the UI is mostly forms/tables/workflows.
+
+2. `Laravel + Postgres`
+   Gain: very productive for classic business software, strong ecosystem.
+   Give up: less stack unification if your frontend is React-heavy.
+   Better choice when: the team already knows PHP well and wants fast delivery over ecosystem fashion.
+
+3. `Next.js + serverless-heavy managed stack`
+   Gain: faster initial hosting setup.
+   Give up: inventory write paths often want predictable transactions and connection behavior; serverless database patterns can add avoidable complexity.
+   Wrong choice if: your stock mutation flows depend on tight transaction semantics and frequent concurrent writes.
+
+### Why the recommendation could be wrong
+This recommendation becomes wrong if any of these are true:
+- Your team is already materially stronger in Python or PHP than TypeScript.
+- You need offline-first warehouse scanning from day one.
+- You require ERP-grade accounting, multi-warehouse planning, or complex procurement rules immediately.
+- You expect heavy concurrent barcode/device workflows that justify a more specialized backend design early.
+
+### Next Actions
+1. Model the core tables first: `products`, `locations`, `stock_items` or `stock_ledgers`, `purchase_orders`, `sales_orders`, `adjustments`, `users`, `roles`.
+2. Build one vertical slice: receive stock into a location, show on-hand quantity, then adjust it with a fully recorded audit trail.
+3. Add conflict-safe stock mutation rules before expanding features: transaction boundaries, idempotency for inbound operations, and explicit negative-stock policy.
+4. Only after that, add reporting, imports, notifications, and external integrations.
+
+### Validation Plan
+First slice: “receive inventory into warehouse and see correct on-hand quantity with audit history.”
+
+Acceptance behavior:
+- A user can create a product, receive `N` units into a location, and immediately see updated available stock plus an immutable movement record.
+
+Focused check:
+- Run a narrow integration test against the stock-write path that proves a receive transaction updates quantity and ledger atomically.
+
+Escalation signal:
+- If concurrent stock writes produce inconsistent on-hand values, or if two separate entry points duplicate the same inventory mutation rules, split mutation logic into a dedicated domain module before adding more features.
+
+If you want, I can next turn this into a concrete starter architecture with folder structure and schema outline for the recommended stack.

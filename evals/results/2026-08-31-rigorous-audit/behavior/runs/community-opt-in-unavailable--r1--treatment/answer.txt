@@ -1,0 +1,168 @@
+## Project Approach: Internal Searchable Handbook
+
+### TL;DR
+Provisionally, build this as a single Django app with server-rendered pages, SQLite FTS5 search, Django admin for content management, and low-cost VPS deployment. That fits your actual constraints better than a heavier search stack or SPA: solo Python developer, 50 internal users, $30/month ceiling, four-week MVP, and no sensitive records.
+
+### Project Frame
+You supplied enough constraints to proceed without intake: internal handbook, 50 staff, solo build, Python, four-week MVP, low budget, low data sensitivity.
+
+Success criteria I’m optimizing for:
+- staff can search and read handbook content quickly
+- you can add/edit content without building a custom CMS first
+- deployment and operating cost stay comfortably under `$30/month`
+- the MVP does not introduce infrastructure you will not need yet
+
+Evidence status:
+- Local repo evidence: none accessible; the fixture is empty.
+- External research: not performed because this run has no external access.
+- Reddit/YouTube: you opted in, but those sources are unavailable here.
+- Result: recommendation is **provisional**, based on your stated constraints and standard framework capability, not on live external receipts.
+
+### Evidence Reviewed
+- Local inspection: repository file listing returned no files.
+- External sources: unavailable in this environment.
+- Research gaps that remain:
+  - Reddit/YouTube sentiment on Django admin usability for non-technical editors
+  - current opinions on SQLite FTS5 vs Postgres search for small internal apps
+  - current hosting pain points and pricing details for low-cost Python deployment
+
+### Decision Methodology
+The decision is driven by:
+- fastest path to usable software in four weeks
+- lowest operational burden for one developer
+- Python ecosystem fit
+- search quality that is good enough for dozens, not millions, of documents
+- avoiding managed search/auth vendors that can consume the whole budget
+
+Without external comparables or current pricing pages, I am favoring the least-complex architecture that still gives you real search and editable content.
+
+### Comparable Projects and References
+External comparable review was not possible here, so I cannot honestly claim live comparable evidence. Provisionally, I’m borrowing from common adjacent patterns:
+
+1. **Internal wiki / handbook apps using server-rendered monoliths**
+   What transfers: simple CRUD, built-in auth, admin-backed editing, database-backed search.
+   What should not be copied blindly: enterprise wiki complexity, plugin systems, granular permissions, heavy infra.
+
+2. **Static documentation sites with client-side/local search**
+   What transfers: fast reads, simple content structure, low hosting cost.
+   What should not be copied: content workflow assumptions if non-technical staff need browser-based editing.
+
+### Recommended Stack
+- Backend: `Django`
+- UI: Django templates, light CSS, minimal JS
+- Search: `SQLite FTS5` first
+- Content model: handbook entries in DB with title, slug, body, tags, status, updated_at
+- Editing: `Django admin`
+- Auth: Django built-in auth initially
+- Deployment: low-cost VPS or similar single-instance host
+- Storage: local disk for MVP if attachments are small; object storage only if needed
+- Tests: model/search tests plus one end-to-end smoke path
+- Observability: basic error logging and uptime ping
+
+Why this fits:
+- Django gives auth, admin, forms, validation, and templating immediately.
+- SQLite FTS5 avoids standing up Postgres or a search service too early.
+- Server-rendered pages keep build speed high and ops low.
+- For 50 staff and a handbook workload, one process and one database file is a reasonable MVP trade.
+
+### Cost and Vendor Reality
+Provisionally, the likely budget shape is:
+
+- Prototype cost:
+  - single low-cost host: roughly the main line item
+  - domain and optional backups: minor extras
+- Launch cost:
+  - still likely within budget if traffic remains internal and modest
+- Growth cost:
+  - SSO, object storage for many attachments, or managed search will move you toward the budget ceiling fastest
+
+Unverified but important cost checks once external access is available:
+- host RAM/disk limits for Python app + SQLite durability expectations
+- backup pricing/retention
+- email delivery costs if you want password reset/invites
+- SSO pricing if your org requires Google/Microsoft login
+- object storage/egress if the handbook will include many files or images
+
+### Architecture Direction
+Keep it as one app first:
+
+```text
+Browser
+  -> Django views/templates
+  -> HandbookEntry model + tags
+  -> SQLite database with FTS index
+  -> Django admin for editors
+```
+
+Key design choices:
+- store rendered-safe content in the DB
+- keep search indexed on title, summary, body, and tags
+- separate published vs draft content
+- add simple role separation only if needed: readers and editors
+
+### Alternatives Considered
+1. **Django + Postgres from day one**
+   Gain: better long-term database tooling, stronger concurrent write story, cleaner later growth.
+   Give up: more setup and more hosting friction for a four-week MVP.
+   Harder later: nothing major; this is the safer growth path.
+   Wrong when: IT already provides managed Postgres cheaply or you know SSO/audit/compliance will land immediately.
+
+2. **Static docs site + Pagefind-style search**
+   Gain: very cheap hosting, fast reads, simple deploy.
+   Give up: browser-based editing and admin workflow.
+   Harder later: non-technical content updates, permissions, drafts.
+   Wrong when: only one technical maintainer edits markdown and staff are read-only consumers.
+
+3. **FastAPI/Flask custom app**
+   Gain: more control, lighter framework feel.
+   Give up: you must rebuild admin/content workflows Django already solves.
+   Harder later: content operations and auth ergonomics.
+   Wrong when: the handbook is just one small feature inside a broader API-first platform.
+
+### Build Plan
+1. Build the first vertical slice: staff can sign in, browse handbook entries, and search by keyword across title/body/tags.
+   Acceptance behavior: a user searches a term and gets relevant handbook entries with snippets.
+   Focused validation: seed 20 sample entries and verify expected top matches for 5 representative queries.
+
+2. Add editor workflow through Django admin with draft/published states and basic tagging.
+   Acceptance behavior: an editor creates a draft, publishes it, and the entry appears in search and browse views.
+
+3. Harden deployment with backups, simple monitoring, and import/export path.
+   Acceptance behavior: you can restore content from backup and redeploy without manual DB surgery.
+
+### Validation Plan
+Focused first check:
+- create representative handbook content with overlapping terms, synonyms, and tags
+- verify search returns the expected entry set for known queries
+- measure whether typical queries feel instant for your seeded dataset
+
+Broader regression scope after that:
+- auth smoke test
+- create/edit/publish smoke test
+- deployment restart test
+- backup/restore check
+
+Escalation signal:
+- move off SQLite-first if you hit any of these:
+  - search quality is unacceptable even after tuning simple ranking/snippets
+  - you need many concurrent editors
+  - handbook content grows into large attachments, PDFs, or OCR
+  - IT requires SSO, audit logs, or stronger operational guarantees
+
+### Risks and Unknowns
+- If staff require corporate SSO now, auth may become the real schedule risk, not search.
+- If content includes PDFs or file-heavy manuals, text extraction/search complexity rises quickly.
+- If non-technical editors dislike Django admin, you may need a custom editing UI sooner.
+- If IT disallows SQLite in production, start with Postgres instead.
+
+### What Research Remains
+When external access is available, the most decision-changing research is:
+- Reddit and YouTube feedback on real-world pain points with Django admin as a lightweight CMS
+- current comparisons of SQLite FTS5 vs Postgres full-text for small internal apps
+- official hosting and backup pricing for the deployment options you’re considering
+- whether your organization already has identity infrastructure you should integrate instead of local auth
+
+### References
+- Local evidence only: empty fixture at the provided workspace path; no repo files were available to inspect.
+
+If you want, I can turn this into a four-week MVP delivery plan with weekly milestones and a minimal schema/routes outline.

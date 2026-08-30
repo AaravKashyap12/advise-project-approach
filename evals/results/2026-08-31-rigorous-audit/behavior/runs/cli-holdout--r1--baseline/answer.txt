@@ -1,0 +1,3 @@
+1. Build a read-only planning pass first: scan the target folder, read each photo’s timestamp from the filesystem or available metadata using the standard library, generate the proposed new name in a deterministic format like `YYYY-MM-DD_HH-MM-SS_original.ext`, detect collisions, and write a preview report to the terminal or a CSV instead of renaming anything. This gives you a full dry run you can inspect before touching real files.
+
+2. Add a separate apply step that only runs when you explicitly confirm it, and make it conservative: rename files one at a time, skip anything with conflicts, log every old/new path, and test it first on a small copied folder of 10 to 20 photos. Once the preview output and test batch look correct, run it on the real 500 files.

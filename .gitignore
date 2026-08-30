@@ -7,6 +7,8 @@ Thumbs.db
 # Temporary validation output
 *.tmp
 *.log
+__pycache__/
+*.py[cod]
 
 # Local skill installer output
 .agents/

@@ -1,0 +1,9 @@
+{"type":"thread.started","thread_id":"01a054ed-1829-7d92-9fbd-1dc111b541e7"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in C:\\Users\\aarav\\AppData\\Local\\Temp\\apa-rigorous-oc3cfwgi\\codex-home\\config.toml."}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"I’m checking which skills are actually present in this session, then I’ll read `probe.txt` with the fixture `read_file` tool and return exactly the requested JSON."}}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"I found the fixture file reader and am reading only `probe.txt` now."}}
+{"type":"item.started","item":{"id":"item_3","type":"mcp_tool_call","server":"fixture","tool":"read_file","arguments":{"path":"probe.txt"},"result":null,"error":null,"status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_3","type":"mcp_tool_call","server":"fixture","tool":"read_file","arguments":{"path":"probe.txt"},"result":{"content":[{"type":"text","text":"{\"path\": \"probe.txt\", \"total_lines\": 1, \"lines\": [{\"number\": 1, \"text\": \"APA_READ_PROBE_42\"}]}"}],"structured_content":null},"error":null,"status":"completed"}}
+{"type":"item.completed","item":{"id":"item_4","type":"agent_message","text":"{\"skills\":[],\"probe\":\"APA_READ_PROBE_42\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":15495,"cached_input_tokens":13824,"cache_write_input_tokens":0,"output_tokens":265,"reasoning_output_tokens":127}}

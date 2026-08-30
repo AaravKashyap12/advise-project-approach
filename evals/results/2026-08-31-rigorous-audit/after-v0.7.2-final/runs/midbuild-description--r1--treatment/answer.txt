@@ -1,0 +1,13 @@
+Assumptions: this is an internal API for about 30 trusted teammates, `cookie-session` is already working, MongoDB is the system of record, and your 18 integration tests cover happy-path CRUD plus basic auth/validation. No repo or external research was available, so this is based on your description only.
+
+Next priority is authorization and data scoping, not more endpoints. If tasks are user-owned, project-owned, or team-visible, make every read/write path enforce that rule centrally and add integration tests for cross-user access, stale-session behavior, and privilege mistakes. For an internal app of this size, auth bugs are more likely to hurt you than scale bugs.
+
+Second, harden write-path correctness. Add tests and handling for duplicate submits, partial update edge cases, invalid object IDs, delete-on-missing, and concurrent edits if two teammates can change the same task. If task state matters, define allowed status transitions now; otherwise you will accumulate inconsistent documents and route-specific behavior.
+
+Third, lock down operational basics: structured request/error logging, a health endpoint, consistent error envelopes, and a small index review for your hottest queries. At 30 users, observability and predictable failures matter more than architectural layering or queues.
+
+Credible alternative: invest next in more features. That improves surface area, but it increases the cost of fixing authorization and data consistency later.
+
+What would make this advice wrong: if the API is single-user per tenant with no shared visibility, or if usage is write-light and mostly personal drafts. In that case, feature completion can move ahead of concurrency/state rigor.
+
+First proof step: add one end-to-end authorization matrix test set. Acceptance: forbidden cross-user access fails consistently on all task routes. Broader check after that: rerun the full integration suite plus a few concurrent update probes.

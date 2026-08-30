@@ -1,0 +1,4 @@
+Environment: external research is unavailable in this controlled run. Local files, when present, are synthetic test fixtures. Do not use network fallbacks. Answer the user request, not the evaluation designer.
+
+User request:
+I've chosen Python's standard library for an offline command-line tool that renames photos using their dates. I'm solo, this is for my own 500 photos, and I need it this weekend. Give me exactly two implementation steps. Avoid data loss and let me verify the design before renaming real files.

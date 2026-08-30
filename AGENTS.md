@@ -26,6 +26,17 @@ This repository packages one public skill: `advise-project-approach`.
 
 ## Validation
 
+Install developer-only dependencies with `python -m pip install -r requirements-dev.txt`. They are not runtime requirements for people using the packaged skill.
+
+Run permanent regression tests with:
+
+```bash
+python -m unittest discover -s tests -v
+python -m unittest discover -s evals -p "test_*.py" -v
+```
+
+After source edits, rebuild once before validation: the validator intentionally rejects stale archive payloads. Keep model evaluations manual; see `evals/README.md` for isolated runs and evidence-retention rules.
+
 Before committing changes, run:
 
 ```bash
@@ -44,6 +55,7 @@ The validator checks:
 - evaluation cases retain their required schema
 - repository guidance remains available to generic agents and Claude Code
 - release version, plugin metadata, and README current-version references agree
+- YAML/JSON values and discovery paths are valid, archive payloads match source, and the current dated changelog entry exists
 
 ## Editing Rules
 

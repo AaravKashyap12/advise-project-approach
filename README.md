@@ -12,7 +12,7 @@
   <strong>
     <a href="#one-line-install">Install</a> |
     <a href="./skills/advise-project-approach/SKILL.md">Skill source</a> |
-    <a href="#whats-new-in-v071">What's new in v0.7.1</a> |
+    <a href="#whats-new-in-v072">What's new in v0.7.2</a> |
     <a href="#demo">Examples</a> |
     <a href="#evaluation">Tests &amp; evidence</a> |
     <a href="./CHANGELOG.md">Changelog</a> |
@@ -21,6 +21,8 @@
 </p>
 
 `advise-project-approach` is an agent skill for project planning, course correction, and review. Its portable `SKILL.md` can be loaded by Codex, Claude Code, pi, Hermes, and other Agent Skills-compatible harnesses.
+
+Portability is a design contract, not proof of identical behavior in every host. See the [host evidence matrix](./evals/portability.md).
 
 Before recommending a stack, architecture, vendor, refactor, or shipping plan, it checks:
 
@@ -52,15 +54,15 @@ The runtime skill spec lives in [skills/advise-project-approach/SKILL.md](./skil
 
 Everything else in this repo exists to package, explain, test, or distribute that skill.
 
-## What's New in v0.7.1
+## What's New in v0.7.2
 
-v0.7.1 keeps implementation-proof advice proportionate after the first controlled A/B exposed unnecessary report expansion.
+v0.7.2 addresses concrete failures found by independent audits, adversarial package tests, and repeated model evaluations.
 
-- Makes the first numbered step itself an end-to-end slice instead of horizontal schema or setup work.
-- Adds a narrow-advice route that preserves the user's requested shape and count without unnecessary browsing or full-report expansion.
-- Requires testable escalation thresholds rather than vague complexity language.
-- Requires every numbered greenfield step to deliver observable product behavior instead of proactive service-layer or folder-structure extraction.
-- Records the initial v0.7.0 A/B result, including the graders' position-biased disagreement.
+- Adds no-clobber and recovery checks for advice that changes user data, plus stronger concurrency-test guidance.
+- Keeps private project details out of public research queries and stops research after an inconclusive follow-up.
+- Clarifies project-stage routing, accepted intake unknowns, safety prerequisites, and requested answer limits.
+- Hardens YAML/metadata, archive integrity, release consistency, and failed-build handling, with permanent regression tests.
+- Preserves failures, mixed baseline comparisons, and post-fix evidence in a [dedicated audit report](./evals/results/2026-08-31-rigorous-audit/REPORT.md).
 
 See the [full changelog](./CHANGELOG.md) for earlier versions.
 
@@ -137,7 +139,7 @@ Download the packaged skill:
 
 Or install from the GitHub release:
 
-[Download the v0.7.1 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.7.1/advise-project-approach.skill)
+[Download the v0.7.2 release asset](https://github.com/AaravKashyap12/advise-project-approach/releases/download/v0.7.2/advise-project-approach.skill)
 
 #### Skill UI
 
@@ -172,7 +174,7 @@ The demo avoids hard-coded star counts and "latest" dates because those decay. T
 
 See more examples:
 
-- [A/B comparisons against generic prompting](./examples/ab-comparisons.md)
+- [Illustrative contrasts with generic advice, not measured A/B tests](./examples/ab-comparisons.md)
 - [Pricing and operating-cost example](./examples/pricing-operating-cost.md)
 - [Pre-build bookmark manager](./examples/prebuild-bookmark-manager.md)
 - [Mid-build Express API](./examples/midbuild-express-api.md)
@@ -196,24 +198,15 @@ Without the skill, an agent will usually give you an answer. This skill makes it
 
 ### Pre-Build
 
-```text
-## Project Approach: <name>
-TL;DR / Project Frame / Comparable Projects / Recommended Stack /
-Cost and Vendor Reality / Architecture Direction / Alternatives Considered / Build Plan /
-Validation Plan / Risks and Unknowns / References
-```
+The recommendation and constraint fit, relevant evidence, a credible alternative and tradeoffs, the first useful action and its checks, and what could reverse the decision. Vague ideas start with intake; bounded questions stay bounded.
 
 ### Mid-Build or Post-Build
 
-```text
-## Project Approach Review: <name>
-TL;DR / Project Summary / Evidence Reviewed, including evidence status /
-What Is Working / Comparable Projects / Gap Analysis /
-Recommended Changes, grouped High / Medium / Low /
-Validation Plan / Stack and Architecture Verdict / Cost and Vendor Reality / Risks and References
-```
+Prioritized, file-grounded findings; what to keep, change, and defer; inspection limits; and a focused validation plan. Report length follows the requested scope, not a mandatory list of headings.
 
-## What It Will Not Do
+## Guardrails
+
+The skill instructs the agent to avoid the following. These are not guarantees of model behavior; verify material advice and sources.
 
 - Invent star counts, last-commit dates, benchmark numbers, or production adoption claims.
 - Treat "free to start" as proof that a vendor is cheap to operate.
@@ -261,7 +254,12 @@ Validation Plan / Stack and Architecture Verdict / Cost and Vendor Reality / Ris
 |   |-- README.md
 |   |-- cases.json
 |   |-- portability.md
+|   |-- run_behavior.py
+|   |-- prepare_comparison.py
+|   |-- fixtures/
 |   `-- results/
+|-- tests/
+|-- requirements-dev.txt
 |-- scripts/
 |   |-- package_skill.py
 |   `-- validate_skill.py
@@ -271,25 +269,25 @@ The packaged `.skill` file is a zip archive containing the `advise-project-appro
 
 ## Development
 
-Validate and rebuild the package:
+Install developer-only dependencies, then rebuild and validate after edits:
 
 ```bash
-python scripts/validate_skill.py
+python -m pip install -r requirements-dev.txt
 python scripts/package_skill.py
 python scripts/validate_skill.py
 ```
 
-The GitHub Actions workflow runs the same checks and fails if the generated package differs from what is committed.
+See [Contributing](./CONTRIBUTING.md) for regression-test and release commands. CI runs both deterministic suites, validates/rebuilds the archive, and rejects uncommitted artifact drift. People installing the skill do not need Python or these developer dependencies.
 
 ## Evaluation
 
-The skill is forward-tested across vague and detailed pre-build requests, vendor-cost decisions, mid-build repository reviews, large-repository sampling, and post-build launch reviews.
+Tests cover package integrity and model behavior separately. Model cases include intake, narrow planning, pricing arithmetic, repository review, prompt injection, secret handling, large-repository sampling, and unavailable research.
 
-The first exploratory six-case run surfaced risks in intake enforcement, research completeness, repository permission boundaries, and stopping behavior. Later controlled A/B runs use the same prompt, model, isolation settings, and order-reversed blind graders. Rough and improved outputs are preserved rather than hidden.
+The August 31 audit found real failures and did not show a general advantage over the no-skill baseline. Those results and post-fix runs are retained with prompts, source hashes, tool traces, and qualitative blind reviews. Earlier exploratory scores are historical observations, not calibrated quality guarantees.
 
-[Methodology and rubric](./evals/README.md) | [Reusable cases](./evals/cases.json) | [Latest controlled A/B](./evals/results/2026-08-24-v0.7.1-ab-report.md) | [v0.7.0 inconclusive A/B](./evals/results/2026-08-24-v0.7.0-ab-report.md) | [Portability audit](./evals/portability.md) | [Initial failure run](./evals/results/2026-08-11-v0.4.0-forward-test.md)
+[Methodology and commands](./evals/README.md) | [Behavioral cases](./evals/cases.json) | [Regression tests](./tests/) | [Latest audit and retest](./evals/results/2026-08-31-rigorous-audit/REPORT.md) | [Portability audit](./evals/portability.md)
 
-The latest narrow-advice A/B is controlled and order-robust, but it covers one prompt and one model. No broad improvement percentage is claimed.
+Controlled model tests use synthetic fixtures and one model; live research quality and other hosts still need separate verification. No broad improvement percentage is claimed.
 
 ## Contributing
 

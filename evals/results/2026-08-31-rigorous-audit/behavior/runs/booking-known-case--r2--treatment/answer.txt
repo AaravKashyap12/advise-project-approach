@@ -1,0 +1,9 @@
+Assuming a small first release with staff-managed availability, one business timezone, and no payments yet.
+
+1. Build one end-to-end booking slice: a customer can choose a service, pick one real timeslot, submit contact details, and create an appointment in Postgres through a single Django flow. Acceptance behavior: a real user can book one slot from the browser, see a confirmation page, and the slot is no longer offered afterward. Focused check: create two simultaneous booking requests for the same slot and verify only one row is committed; if both succeed, your core architecture is already wrong.
+
+2. Add staff-side availability management in the same vertical path: staff can open/close slots and see upcoming appointments using ordinary Django models, forms, and admin/views before introducing extra layers. Acceptance behavior: when staff removes or changes availability, the public booking page reflects it immediately and existing bookings remain valid or are explicitly blocked from illegal edits. Focused check: change availability for a day with existing appointments and verify the invariants hold in one place only, not separately in the public form and staff form.
+
+3. Add the first lifecycle change that stresses the model: customer or staff cancels/reschedules an appointment, with status history and slot release rules. Acceptance behavior: a booked slot can be cancelled or moved, the old slot becomes reusable only when it should, and staff can see the updated state without manual cleanup. Focused check: reschedule the same appointment through both customer and staff entry points and confirm the same rules, validations, and resulting database state apply.
+
+Escalate the architecture only if the same booking invariants are duplicated across two entry points or the concurrent booking check fails; that is the point to extract a dedicated booking-domain function/service and enforce transactional locking explicitly.

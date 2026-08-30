@@ -1,0 +1,15 @@
+Assuming a small single-team product with standard Django MVC structure and no unusual compliance or multi-tenant requirements, the goal is to prove the booking flow before adding abstractions.
+
+1. **Build one end-to-end “create booking” slice in plain Django first.** Define the minimum models (`Provider`, `Service`, `Appointment`), one HTML or JSON entry point to create an appointment, and enforce the core invariant at the write boundary: no overlapping booking for the same provider and timeslot.  
+Acceptance behavior: a user can submit a booking for an open slot and immediately see it persisted; a conflicting second booking is rejected.  
+Focused check: create one valid appointment, then try to create the same slot again and confirm the second write fails for the exact provider/time collision.
+
+2. **Add availability generation from real persisted data, not hardcoded slots.** Implement the smallest read path that derives open slots from provider hours plus existing appointments, and use that same logic in the booking UI/API so reads and writes are forced to agree early.  
+Acceptance behavior: after one appointment is created, the corresponding slot no longer appears as available, while adjacent valid slots still do.  
+Focused check: seed one provider with working hours and one booking, request availability for that day, and verify the booked interval is absent and unaffected intervals remain.
+
+3. **Prove concurrency and transaction behavior before expanding features.** Wrap booking creation in a transaction and test the race that matters: two competing requests for the same provider/slot. This is the earliest useful architecture check because booking systems fail at the consistency boundary, not in routing or templates.  
+Acceptance behavior: under competing submissions, exactly one appointment is created and the system never stores duplicates.  
+Focused check: run a deterministic concurrent test against the booking endpoint or service path with the same payload twice in parallel and assert one success, one conflict, and one row in the database.
+
+Escalation condition: if the booking invariant ends up duplicated across two entry points or the concurrency check cannot be made to pass cleanly with ordinary Django models/views plus transactional writes, then introduce a dedicated booking domain module or service boundary; otherwise keep the architecture simple.

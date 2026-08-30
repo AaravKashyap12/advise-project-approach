@@ -1,0 +1,32 @@
+Recommend a simple Python monolith: `FastAPI` for the app, `SQLite FTS5` for search, server-rendered HTML templates for the UI, and a filesystem-backed content store using Markdown files plus a small ingestion script. For this scope, that is the best fit for the real constraints: solo build, four-week MVP, 50 internal users, low operational cost, and no sensitive data. It keeps hosting cheap, avoids premature service sprawl, and gives you usable full-text search without introducing a separate search engine.
+
+Evidence status: I only have your project description. External research, official docs, pricing pages, Reddit, and YouTube are unavailable in this run, so this is provisional engineering advice rather than source-backed benchmarking. Comparable-project research is therefore missing, and I am not claiming recent community consensus or verified vendor pricing.
+
+Constraint fit: the main drivers are speed, simplicity, and budget discipline. `FastAPI + SQLite FTS5` is strong here because you can ship search, auth-lite, admin upload/edit flows, and basic relevance quickly in plain Python. For 50 staff and handbook-style text, SQLite is usually enough for MVP if the corpus is modest and mostly read-heavy. Store source content as Markdown files or a simple table with rendered HTML cached on write; avoid a CMS, vector DB, Elasticsearch/OpenSearch, or microservices in v1 unless a real requirement appears.
+
+The best credible alternative is Django with PostgreSQL full-text search. It improves built-in admin, auth, and long-term multi-user content management, but it worsens setup complexity and hosting overhead for a four-week MVP. Another alternative is a static-site generator plus client-side search index; that is cheaper and simpler to host, but it becomes worse if you need permissions, editorial workflow, usage tracking, or frequent updates without rebuild friction. I would not start with embeddings or semantic search here: you gain fuzzy retrieval, but you give up cost predictability, simplicity, and debuggability, and the content type does not justify it yet.
+
+What I would build first:
+1. Ingestion pipeline: load handbook pages from Markdown or uploaded docs into normalized records with title, section, tags, body, and updated timestamp.
+Acceptance: a changed source document appears in the app with updated metadata and body.
+Focused check: edit one document, re-run ingest, and confirm only that record changes and old search results disappear.
+
+2. Search slice: index the content with SQLite FTS5 and expose keyword search with snippet highlights, section filters, and sort by relevance.
+Acceptance: staff can search a term and reach the right page within one click.
+Focused check: prepare 10 known queries against seeded handbook content and verify the expected page appears in the top results for most of them.
+
+3. Lightweight internal delivery: simple login or network-only access, page view, search analytics, and an admin refresh endpoint or scheduled ingest.
+Acceptance: a staff user can sign in or access internally, search, open pages, and admins can publish updates without touching code.
+Focused check: test from two browsers and confirm search, page rendering, and content refresh work end to end.
+
+Operating-cost view, provisionally: this stack should fit your `$30/month` target if hosted as a single small app instance with local or attached storage. The main risk is not database cost but hosting choices that bundle managed Postgres, enterprise auth, or heavy observability by default. Because pricing could not be verified here, the remaining research should specifically check hosting/runtime cost, persistent storage behavior, backups, and whether your chosen platform supports SQLite safely for your deployment model.
+
+This recommendation becomes wrong if any of these appear: you need complex editorial workflow with multiple concurrent editors, strict SSO requirements, large document volume with heavy ranking needs, attachment-heavy content, or search quality complaints that keyword search cannot handle. If that happens, the likely upgrade path is PostgreSQL first, then a dedicated search engine only if measured failure justifies it.
+
+Research still remaining once external access is available:
+- Verify current Reddit and YouTube practitioner feedback on `SQLite FTS5` for internal knowledge bases, especially ranking quality and operational pain points.
+- Compare current hosting options for low-cost Python deployment with persistent storage and backup support.
+- Check official docs for FTS5 tokenizer, prefix search, snippet/highlight support, and deployment caveats.
+- Review one or two real-world handbook/wiki-style projects to confirm which features are worth copying and which are overbuilt for 50 users.
+
+If you want, I can turn this into a four-week implementation plan with exact milestones, schema, routes, and deployment options next.

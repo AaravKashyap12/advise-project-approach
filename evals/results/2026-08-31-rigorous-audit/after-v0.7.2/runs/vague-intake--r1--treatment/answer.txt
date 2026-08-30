@@ -1,0 +1,8 @@
+1. What are you trying to build, and who is it for?
+2. Is this an idea, an active project, or nearly ready to ship?
+3. What must it do, and what is explicitly out of scope for now?
+4. Are you building solo or with a team, and what tools/languages are you comfortable with?
+5. What matters most: speed, low cost, simplicity, scale, control, or flexibility?
+6. Where do you expect to run it, and what would you strongly prefer to avoid?
+
+`Not sure` is fine for any of these. If you want, you can also say `skip questions and proceed`, and I’ll give you a recommendation with explicit assumptions.

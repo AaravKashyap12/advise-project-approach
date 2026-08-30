@@ -1,0 +1,98 @@
+{
+  "P01": {
+    "case": "vague-intake",
+    "repeat": 1,
+    "order1": {
+      "A": "treatment",
+      "B": "baseline"
+    },
+    "order2": {
+      "A": "baseline",
+      "B": "treatment"
+    }
+  },
+  "P02": {
+    "case": "vague-intake",
+    "repeat": 2,
+    "order1": {
+      "A": "baseline",
+      "B": "treatment"
+    },
+    "order2": {
+      "A": "treatment",
+      "B": "baseline"
+    }
+  },
+  "P03": {
+    "case": "booking-known-case",
+    "repeat": 1,
+    "order1": {
+      "A": "treatment",
+      "B": "baseline"
+    },
+    "order2": {
+      "A": "baseline",
+      "B": "treatment"
+    }
+  },
+  "P04": {
+    "case": "booking-known-case",
+    "repeat": 2,
+    "order1": {
+      "A": "baseline",
+      "B": "treatment"
+    },
+    "order2": {
+      "A": "treatment",
+      "B": "baseline"
+    }
+  },
+  "P05": {
+    "case": "cli-holdout",
+    "repeat": 1,
+    "order1": {
+      "A": "treatment",
+      "B": "baseline"
+    },
+    "order2": {
+      "A": "baseline",
+      "B": "treatment"
+    }
+  },
+  "P06": {
+    "case": "cli-holdout",
+    "repeat": 2,
+    "order1": {
+      "A": "baseline",
+      "B": "treatment"
+    },
+    "order2": {
+      "A": "treatment",
+      "B": "baseline"
+    }
+  },
+  "P07": {
+    "case": "pricing-fixture",
+    "repeat": 1,
+    "order1": {
+      "A": "treatment",
+      "B": "baseline"
+    },
+    "order2": {
+      "A": "baseline",
+      "B": "treatment"
+    }
+  },
+  "P08": {
+    "case": "pricing-fixture",
+    "repeat": 2,
+    "order1": {
+      "A": "baseline",
+      "B": "treatment"
+    },
+    "order2": {
+      "A": "treatment",
+      "B": "baseline"
+    }
+  }
+}

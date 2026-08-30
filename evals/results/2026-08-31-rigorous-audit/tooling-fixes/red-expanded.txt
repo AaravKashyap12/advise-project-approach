@@ -1,0 +1,361 @@
+test_anonymizes_all_nested_tool_evidence (test_runner.ComparisonTests.test_anonymizes_all_nested_tool_evidence) ... FAIL
+test_existing_partial_packet_output_is_preserved (test_runner.ComparisonTests.test_existing_partial_packet_output_is_preserved) ... FAIL
+test_matching_runs_generate_two_orders (test_runner.ComparisonTests.test_matching_runs_generate_two_orders) ... ok
+test_recursive_anonymization_handles_encoded_strings_and_keys (test_runner.ComparisonTests.test_recursive_anonymization_handles_encoded_strings_and_keys) ... FAIL
+test_rejects_changed_runtime (test_runner.ComparisonTests.test_rejects_changed_runtime) ... usage: prepare_comparison.py [-h] --control CONTROL --candidate CANDIDATE
+                             --output OUTPUT
+                             [--control-condition {baseline,treatment}]
+                             --cases CASES [CASES ...] [--repeats REPEATS]
+prepare_comparison.py: error: Comparison runtime mismatch: cli
+ok
+test_rejects_different_fixture_inputs (test_runner.ComparisonTests.test_rejects_different_fixture_inputs) ... FAIL
+test_rejects_different_served_prompts (test_runner.ComparisonTests.test_rejects_different_served_prompts) ... FAIL
+test_rejects_foreign_run_provenance (test_runner.ComparisonTests.test_rejects_foreign_run_provenance) ... FAIL
+test_rejects_legacy_evidence_without_rewriting (test_runner.ComparisonTests.test_rejects_legacy_evidence_without_rewriting) ... FAIL
+test_rejects_resealed_prompt_that_was_not_the_declared_request (test_runner.ComparisonTests.test_rejects_resealed_prompt_that_was_not_the_declared_request) ... FAIL
+test_rejects_tampered_served_prompt (test_runner.ComparisonTests.test_rejects_tampered_served_prompt) ... FAIL
+test_uses_saved_prompt_not_current_checkout (test_runner.ComparisonTests.test_uses_saved_prompt_not_current_checkout) ... FAIL
+test_cleanup_covers_configuration_write_failure (test_runner.RunnerTests.test_cleanup_covers_configuration_write_failure) ... FAIL
+test_cleanup_covers_failed_isolation_probe (test_runner.RunnerTests.test_cleanup_covers_failed_isolation_probe) ... ok
+test_cleanup_covers_keyboard_interrupt_after_auth_copy (test_runner.RunnerTests.test_cleanup_covers_keyboard_interrupt_after_auth_copy) ... ok
+test_cleanup_covers_partial_credential_copy (test_runner.RunnerTests.test_cleanup_covers_partial_credential_copy) ... FAIL
+test_cleanup_covers_post_copy_configuration_failure (test_runner.RunnerTests.test_cleanup_covers_post_copy_configuration_failure) ... ok
+test_cleanup_covers_version_command_failure (test_runner.RunnerTests.test_cleanup_covers_version_command_failure) ... FAIL
+test_completed_resume_preserves_manifest (test_runner.RunnerTests.test_completed_resume_preserves_manifest) ... FAIL
+test_failed_case_remains_nonzero_on_resume (test_runner.RunnerTests.test_failed_case_remains_nonzero_on_resume) ... FAIL
+test_new_output_must_be_empty (test_runner.RunnerTests.test_new_output_must_be_empty) ... FAIL
+test_reasoning_configuration_drives_both_commands (test_runner.RunnerTests.test_reasoning_configuration_drives_both_commands) ... FAIL
+test_resume_can_add_new_completed_runs_without_mutating_prior_evidence (test_runner.RunnerTests.test_resume_can_add_new_completed_runs_without_mutating_prior_evidence) ... FAIL
+test_resume_rejects_changed_cli_without_relabeling (test_runner.RunnerTests.test_resume_rejects_changed_cli_without_relabeling) ... FAIL
+test_resume_rejects_changed_executed_command (test_runner.RunnerTests.test_resume_rejects_changed_executed_command) ... FAIL
+test_resume_rejects_changed_fixture_adapter (test_runner.RunnerTests.test_resume_rejects_changed_fixture_adapter) ... ok
+test_resume_rejects_changed_runner (test_runner.RunnerTests.test_resume_rejects_changed_runner) ... FAIL
+test_resume_rejects_changed_source (test_runner.RunnerTests.test_resume_rejects_changed_source) ... ok
+test_resume_rejects_changed_timeout (test_runner.RunnerTests.test_resume_rejects_changed_timeout) ... FAIL
+test_resume_rejects_foreign_result (test_runner.RunnerTests.test_resume_rejects_foreign_result) ... FAIL
+test_resume_rejects_missing_answer (test_runner.RunnerTests.test_resume_rejects_missing_answer) ... FAIL
+test_resume_rejects_partial_run_directory (test_runner.RunnerTests.test_resume_rejects_partial_run_directory) ... FAIL
+test_resume_rejects_tampered_answer (test_runner.RunnerTests.test_resume_rejects_tampered_answer) ... FAIL
+test_resume_rejects_tampered_source_snapshot (test_runner.RunnerTests.test_resume_rejects_tampered_source_snapshot) ... FAIL
+test_resume_requires_manifest (test_runner.RunnerTests.test_resume_requires_manifest) ... FAIL
+test_rg_error_falls_back_to_filesystem_discovery (test_runner.RunnerTests.test_rg_error_falls_back_to_filesystem_discovery) ... FAIL
+test_rg_is_optional (test_runner.RunnerTests.test_rg_is_optional) ... ERROR
+test_snapshot_backed_fixture_adapter_is_executed (test_runner.RunnerTests.test_snapshot_backed_fixture_adapter_is_executed) ... FAIL
+
+======================================================================
+ERROR: test_rg_is_optional (test_runner.RunnerTests.test_rg_is_optional)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 214, in test_rg_is_optional
+    self.assertEqual(self.invoke(), 0)
+                     ^^^^^^^^^^^^^
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 124, in invoke
+    return self.runner.main()
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\AppData\Local\Temp\apa-tooling-test-b73f243e2e4848208ca100dc7e414143\program\evals\run_behavior.py", line 158, in main
+    discovery = subprocess.run(["rg", "--files", "--hidden", "-g", "SKILL.md", str(root)], capture_output=True, text=True, encoding="utf-8")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 88, in execute
+    raise FileNotFoundError("rg unavailable")
+FileNotFoundError: rg unavailable
+
+======================================================================
+FAIL: test_anonymizes_all_nested_tool_evidence (test_runner.ComparisonTests.test_anonymizes_all_nested_tool_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 411, in test_anonymizes_all_nested_tool_evidence
+    self.assertNotIn("--baseline", packet)
+AssertionError: '--baseline' unexpectedly found in '{\n  "rubric": "Judge the supplied evidence.",\n  "pairs": [\n    {\n      "id": "P01",\n      "user_request": "Review app.py without execution.",\n      "environment": "External research unavailable; supplied fixture file contents are synthetic and identical. Tool evidence below records actual served calls.",\n      "A": {\n        "answer": "Neutral synthetic answer",\n        "tools": [\n          {\n            "tool": "read_file",\n            "arguments": {\n              "path": "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-d696f4b0494d4a8090c969ea14f7d14a\\\\temporary-1\\\\fixtures\\\\probe-case--r1--treatment/app.py"\n            },\n            "result": {\n              "path": "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-d696f4b0494d4a8090c969ea14f7d14a\\\\temporary-1\\\\fixtures\\\\probe-case--r1--treatment/app.py",\n              "nested": [\n                {\n                  "source": "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-d696f4b0494d4a8090c969ea14f7d14a\\\\temporary-1\\\\fixtures\\\\probe-case--r1--treatment/app.py"\n                }\n              ]\n            }\n          }\n        ]\n      },\n      "B": {\n        "answer": "Neutral synthetic answer",\n        "tools": [\n          {\n            "tool": "read_file",\n            "arguments": {\n              "path": "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-d696f4b0494d4a8090c969ea14f7d14a\\\\temporary-0\\\\fixtures\\\\probe-case--r1--baseline/app.py"\n            },\n            "result": {\n              "path": "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-d696f4b0494d4a8090c969ea14f7d14a\\\\temporary-0\\\\fixtures\\\\probe-case--r1--baseline/app.py",\n              "nested": [\n                {\n                  "source": "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-d696f4b0494d4a8090c969ea14f7d14a\\\\temporary-0\\\\fixtures\\\\probe-case--r1--baseline/app.py"\n                }\n              ]\n            }\n          }\n        ]\n      }\n    }\n  ]\n}'
+
+======================================================================
+FAIL: test_existing_partial_packet_output_is_preserved (test_runner.ComparisonTests.test_existing_partial_packet_output_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 440, in test_existing_partial_packet_output_is_preserved
+    self.rejected(lambda: self.compare(control, candidate, output))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 132, in rejected
+    self.assertIsInstance(code, int, "Invalid evidence was accepted without an error")
+AssertionError: WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-2442564df2834b37bdc4862c9e310127/packets') is not an instance of <class 'int'> : Invalid evidence was accepted without an error
+
+======================================================================
+FAIL: test_recursive_anonymization_handles_encoded_strings_and_keys (test_runner.ComparisonTests.test_recursive_anonymization_handles_encoded_strings_and_keys)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 456, in test_recursive_anonymization_handles_encoded_strings_and_keys
+    self.assertNotIn("--treatment", packet)
+AssertionError: '--treatment' unexpectedly found in '{\n  "rubric": "Judge the supplied evidence.",\n  "pairs": [\n    {\n      "id": "P01",\n      "user_request": "Review app.py without execution.",\n      "environment": "External research unavailable; supplied fixture file contents are synthetic and identical. Tool evidence below records actual served calls.",\n      "A": {\n        "answer": "Neutral synthetic answer",\n        "tools": [\n          {\n            "tool": "read_file",\n            "arguments": {\n              "path": "c:/users/aarav/appdata/local/temp/apa-tooling-test-849c27c4dcc9433b99a5ac26b800f899/temporary-1/fixtures/probe-case--r1--treatment/app.py"\n            },\n            "result": {\n              "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-849c27c4dcc9433b99a5ac26b800f899\\\\temporary-1\\\\fixtures\\\\probe-case--r1--treatment/key": [\n                "{\\"path\\": \\"C:\\\\\\\\Users\\\\\\\\aarav\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\apa-tooling-test-849c27c4dcc9433b99a5ac26b800f899\\\\\\\\temporary-1\\\\\\\\fixtures\\\\\\\\probe-case--r1--treatment/app.py\\"}"\n              ]\n            }\n          }\n        ]\n      },\n      "B": {\n        "answer": "Neutral synthetic answer",\n        "tools": [\n          {\n            "tool": "read_file",\n            "arguments": {\n              "path": "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-849c27c4dcc9433b99a5ac26b800f899\\\\temporary-0\\\\fixtures\\\\probe-case--r1--baseline/app.py"\n            },\n            "result": {\n              "path": "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-849c27c4dcc9433b99a5ac26b800f899\\\\temporary-0\\\\fixtures\\\\probe-case--r1--baseline/app.py",\n              "nested": [\n                {\n                  "source": "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-849c27c4dcc9433b99a5ac26b800f899\\\\temporary-0\\\\fixtures\\\\probe-case--r1--baseline/app.py"\n                }\n              ]\n            }\n          }\n        ]\n      }\n    }\n  ]\n}'
+
+======================================================================
+FAIL: test_rejects_different_fixture_inputs (test_runner.ComparisonTests.test_rejects_different_fixture_inputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 382, in test_rejects_different_fixture_inputs
+    self.rejected(lambda: self.compare(control, candidate))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 132, in rejected
+    self.assertIsInstance(code, int, "Invalid evidence was accepted without an error")
+AssertionError: WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-0f602aa335c04db199630aed0b7dacfe/packets') is not an instance of <class 'int'> : Invalid evidence was accepted without an error
+
+======================================================================
+FAIL: test_rejects_different_served_prompts (test_runner.ComparisonTests.test_rejects_different_served_prompts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 370, in test_rejects_different_served_prompts
+    self.rejected(lambda: self.compare(control, candidate))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 132, in rejected
+    self.assertIsInstance(code, int, "Invalid evidence was accepted without an error")
+AssertionError: WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-ae5e21a9302a428283bb1f247188505a/packets') is not an instance of <class 'int'> : Invalid evidence was accepted without an error
+
+======================================================================
+FAIL: test_rejects_foreign_run_provenance (test_runner.ComparisonTests.test_rejects_foreign_run_provenance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 395, in test_rejects_foreign_run_provenance
+    self.rejected(lambda: self.compare(control, candidate))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 132, in rejected
+    self.assertIsInstance(code, int, "Invalid evidence was accepted without an error")
+AssertionError: WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-57fd38875f7445c898a04f73fc9bcc3b/packets') is not an instance of <class 'int'> : Invalid evidence was accepted without an error
+
+======================================================================
+FAIL: test_rejects_legacy_evidence_without_rewriting (test_runner.ComparisonTests.test_rejects_legacy_evidence_without_rewriting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 402, in test_rejects_legacy_evidence_without_rewriting
+    self.rejected(lambda: self.compare(control, candidate))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 132, in rejected
+    self.assertIsInstance(code, int, "Invalid evidence was accepted without an error")
+AssertionError: WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-78e0ea7e7d94495d8ed5410a07f105f9/packets') is not an instance of <class 'int'> : Invalid evidence was accepted without an error
+
+======================================================================
+FAIL: test_rejects_resealed_prompt_that_was_not_the_declared_request (test_runner.ComparisonTests.test_rejects_resealed_prompt_that_was_not_the_declared_request)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 433, in test_rejects_resealed_prompt_that_was_not_the_declared_request
+    self.rejected(lambda: self.compare(control, candidate))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 132, in rejected
+    self.assertIsInstance(code, int, "Invalid evidence was accepted without an error")
+AssertionError: WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-e60dcd32349242829e7ea10f90a61134/packets') is not an instance of <class 'int'> : Invalid evidence was accepted without an error
+
+======================================================================
+FAIL: test_rejects_tampered_served_prompt (test_runner.ComparisonTests.test_rejects_tampered_served_prompt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 387, in test_rejects_tampered_served_prompt
+    self.rejected(lambda: self.compare(control, candidate))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 132, in rejected
+    self.assertIsInstance(code, int, "Invalid evidence was accepted without an error")
+AssertionError: WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-5882d7ade7e54bffaa1ba432d1bbb8f5/packets') is not an instance of <class 'int'> : Invalid evidence was accepted without an error
+
+======================================================================
+FAIL: test_uses_saved_prompt_not_current_checkout (test_runner.ComparisonTests.test_uses_saved_prompt_not_current_checkout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 361, in test_uses_saved_prompt_not_current_checkout
+    self.assertEqual(pair["user_request"], original)
+AssertionError: 'Unrelated current checkout prompt' != 'Review app.py without execution.'
+- Unrelated current checkout prompt
++ Review app.py without execution.
+
+
+======================================================================
+FAIL: test_cleanup_covers_configuration_write_failure (test_runner.RunnerTests.test_cleanup_covers_configuration_write_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 177, in test_cleanup_covers_configuration_write_failure
+    self.no_copied_auth()
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 136, in no_copied_auth
+    self.assertFalse(list(self.base.glob("temporary-*/codex-home/auth.json")))
+AssertionError: [WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-347a878d06c34e07bb552355a0d9f3b6/temporary-0/codex-home/auth.json')] is not false
+
+======================================================================
+FAIL: test_cleanup_covers_partial_credential_copy (test_runner.RunnerTests.test_cleanup_covers_partial_credential_copy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 167, in test_cleanup_covers_partial_credential_copy
+    self.no_copied_auth()
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 136, in no_copied_auth
+    self.assertFalse(list(self.base.glob("temporary-*/codex-home/auth.json")))
+AssertionError: [WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-8e14aedc5ce34c5499b824a1acc5df16/temporary-0/codex-home/auth.json')] is not false
+
+======================================================================
+FAIL: test_cleanup_covers_version_command_failure (test_runner.RunnerTests.test_cleanup_covers_version_command_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 183, in test_cleanup_covers_version_command_failure
+    self.no_copied_auth()
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 136, in no_copied_auth
+    self.assertFalse(list(self.base.glob("temporary-*/codex-home/auth.json")))
+AssertionError: [WindowsPath('C:/Users/aarav/AppData/Local/Temp/apa-tooling-test-3d414c22d1234e2886a0473042e3975b/temporary-0/codex-home/auth.json')] is not false
+
+======================================================================
+FAIL: test_completed_resume_preserves_manifest (test_runner.RunnerTests.test_completed_resume_preserves_manifest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 281, in test_completed_resume_preserves_manifest
+    self.assertEqual((self.output / "manifest.json").read_bytes(), before)
+AssertionError: b'{\r[669 chars]rary-1",\r\n  "timeout_seconds": 150,\r\n  "sk[274 chars]r\n}' != b'{\r[669 chars]rary-0",\r\n  "timeout_seconds": 150,\r\n  "sk[274 chars]r\n}'
+
+======================================================================
+FAIL: test_failed_case_remains_nonzero_on_resume (test_runner.RunnerTests.test_failed_case_remains_nonzero_on_resume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 273, in test_failed_case_remains_nonzero_on_resume
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_new_output_must_be_empty (test_runner.RunnerTests.test_new_output_must_be_empty)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 226, in test_new_output_must_be_empty
+    self.rejected(self.invoke)
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_reasoning_configuration_drives_both_commands (test_runner.RunnerTests.test_reasoning_configuration_drives_both_commands)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 290, in test_reasoning_configuration_drives_both_commands
+    self.assertIn('model_reasoning_effort="high"', command)
+AssertionError: 'model_reasoning_effort="high"' not found in ['FAKE-CODEX', 'exec', '--json', '--ephemeral', '--ignore-rules', '--skip-git-repo-check', '--sandbox', 'read-only', '--model', 'fake-model', '-c', 'model_reasoning_effort="medium"', '-c', 'web_search="disabled"', '-c', 'approval_policy="never"', '--disable', 'shell_tool', '--disable', 'unified_exec', '--disable', 'plugins', '--disable', 'apps', '--disable', 'multi_agent', '--disable', 'skill_search', '--enable', 'skip_host_skill_discovery', '--disable', 'unbounded_connection_retries', '-C', 'C:\\Users\\aarav\\AppData\\Local\\Temp\\apa-tooling-test-3e8c996c28654edcb19c04e555700009\\temporary-0\\isolation-probe', '-o', 'C:\\Users\\aarav\\AppData\\Local\\Temp\\apa-tooling-test-3e8c996c28654edcb19c04e555700009\\evidence\\isolation-probe-answer.txt', '-']
+
+======================================================================
+FAIL: test_resume_can_add_new_completed_runs_without_mutating_prior_evidence (test_runner.RunnerTests.test_resume_can_add_new_completed_runs_without_mutating_prior_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 341, in test_resume_can_add_new_completed_runs_without_mutating_prior_evidence
+    self.assertEqual((self.output / "manifest.json").read_bytes(), manifest)
+AssertionError: b'{\r[669 chars]rary-1",\r\n  "timeout_seconds": 150,\r\n  "sk[274 chars]r\n}' != b'{\r[669 chars]rary-0",\r\n  "timeout_seconds": 150,\r\n  "sk[274 chars]r\n}'
+
+======================================================================
+FAIL: test_resume_rejects_changed_cli_without_relabeling (test_runner.RunnerTests.test_resume_rejects_changed_cli_without_relabeling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 253, in test_resume_rejects_changed_cli_without_relabeling
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_resume_rejects_changed_executed_command (test_runner.RunnerTests.test_resume_rejects_changed_executed_command)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 333, in test_resume_rejects_changed_executed_command
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_resume_rejects_changed_runner (test_runner.RunnerTests.test_resume_rejects_changed_runner)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 261, in test_resume_rejects_changed_runner
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_resume_rejects_changed_timeout (test_runner.RunnerTests.test_resume_rejects_changed_timeout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 265, in test_resume_rejects_changed_timeout
+    self.rejected(lambda: self.invoke("--resume", "--timeout", "151"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_resume_rejects_foreign_result (test_runner.RunnerTests.test_resume_rejects_foreign_result)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 245, in test_resume_rejects_foreign_result
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_resume_rejects_missing_answer (test_runner.RunnerTests.test_resume_rejects_missing_answer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 300, in test_resume_rejects_missing_answer
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_resume_rejects_partial_run_directory (test_runner.RunnerTests.test_resume_rejects_partial_run_directory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 305, in test_resume_rejects_partial_run_directory
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_resume_rejects_tampered_answer (test_runner.RunnerTests.test_resume_rejects_tampered_answer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 295, in test_resume_rejects_tampered_answer
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_resume_rejects_tampered_source_snapshot (test_runner.RunnerTests.test_resume_rejects_tampered_source_snapshot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 325, in test_resume_rejects_tampered_source_snapshot
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_resume_requires_manifest (test_runner.RunnerTests.test_resume_requires_manifest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 234, in test_resume_requires_manifest
+    self.rejected(lambda: self.invoke("--resume"))
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 133, in rejected
+    self.assertNotEqual(code, 0, "Invalid evidence was accepted")
+AssertionError: 0 == 0 : Invalid evidence was accepted
+
+======================================================================
+FAIL: test_rg_error_falls_back_to_filesystem_discovery (test_runner.RunnerTests.test_rg_error_falls_back_to_filesystem_discovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 221, in test_rg_error_falls_back_to_filesystem_discovery
+    self.assertIn("example", self.configs[0])
+AssertionError: 'example' not found in '\n[mcp_servers.fixture]\ncommand = "C:\\\\Users\\\\aarav\\\\.agent-reach-venv\\\\Scripts\\\\python.exe"\nargs = ["C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-f5fffd8fa2da439b930a9f48de6dfcb3\\\\program\\\\evals\\\\fixtures\\\\fixture_server.py", "--root", "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-f5fffd8fa2da439b930a9f48de6dfcb3\\\\temporary-0\\\\isolation-probe", "--log", "C:\\\\Users\\\\aarav\\\\AppData\\\\Local\\\\Temp\\\\apa-tooling-test-f5fffd8fa2da439b930a9f48de6dfcb3\\\\evidence\\\\isolation-probe-tools.jsonl", "--mode", "none"]\nstartup_timeout_sec = 20\n\n[mcp_servers.fixture.tools.list_files]\napproval_mode = "approve"\n[mcp_servers.fixture.tools.read_file]\napproval_mode = "approve"\n[mcp_servers.fixture.tools.run_project_tests]\napproval_mode = "prompt"\n\n[mcp_servers.fixture.tools.search_public]\napproval_mode = "approve"\n'
+
+======================================================================
+FAIL: test_snapshot_backed_fixture_adapter_is_executed (test_runner.RunnerTests.test_snapshot_backed_fixture_adapter_is_executed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\aarav\Desktop\skills\evals\test_runner.py", line 320, in test_snapshot_backed_fixture_adapter_is_executed
+    self.assertTrue(all("fixture-server-snapshot.py" in config for config in self.configs))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 38 tests in 6.435s
+
+FAILED (failures=30, errors=1)

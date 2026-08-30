@@ -1,0 +1,10 @@
+Judge answer utility against the original user request, not against an imagined skill or a preferred format.
+For each dimension give pass, partial, fail, or not-applicable with a brief quote or specific evidence:
+- Intent and scope: answers the request, respects constraints and explicit limits.
+- Evidence calibration: inspected facts versus assumptions, no fake research or test success.
+- Technical correctness: proposed behavior, calculations, and causal claims are sound.
+- Actionability or intake: the response moves the user forward appropriately; a necessary question can be the right next step.
+- Risk and validation: material risks are acknowledged, checks actually test the claim, and failure is not overdiagnosed.
+- Clarity and proportionality: useful signal without unnecessary work or verbosity.
+Do not reward length, section counts, or test terminology by themselves. Do not demand a build plan or tests from an appropriate intake-only answer. Do not penalize a useful testing/foundation step merely because it is not a product feature. A single racing request is not automatically a deterministic concurrency test. A failing local check alone does not prove the architecture is wrong.
+Use only the supplied answers, request, environment and tool evidence. Pick A, B or Tie for overall user utility and give confidence plus material flaws. Scores are qualitative; do not manufacture a success percentage.

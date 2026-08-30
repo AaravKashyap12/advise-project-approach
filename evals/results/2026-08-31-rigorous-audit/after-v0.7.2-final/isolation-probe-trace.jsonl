@@ -1,0 +1,9 @@
+{"type":"thread.started","thread_id":"01a054f4-10ad-7580-b627-d42b73cb0dc3"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in C:\\Users\\aarav\\AppData\\Local\\Temp\\apa-rigorous-btyiuwxs\\codex-home\\config.toml."}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"I’m checking which session-specific capabilities are actually present, then I’ll read `probe.txt` with the requested fixture file tool and return only the JSON result."}}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"The fixture file reader is available, and I’m using it directly on `probe.txt` without touching any other path."}}
+{"type":"item.started","item":{"id":"item_3","type":"mcp_tool_call","server":"fixture","tool":"read_file","arguments":{"path":"probe.txt"},"result":null,"error":null,"status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_3","type":"mcp_tool_call","server":"fixture","tool":"read_file","arguments":{"path":"probe.txt"},"result":{"content":[{"type":"text","text":"{\"path\": \"probe.txt\", \"total_lines\": 1, \"lines\": [{\"number\": 1, \"text\": \"APA_READ_PROBE_42\"}]}"}],"structured_content":null},"error":null,"status":"completed"}}
+{"type":"item.completed","item":{"id":"item_4","type":"agent_message","text":"{\"skills\":[],\"probe\":\"APA_READ_PROBE_42\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":15487,"cached_input_tokens":13824,"cache_write_input_tokens":0,"output_tokens":272,"reasoning_output_tokens":130}}

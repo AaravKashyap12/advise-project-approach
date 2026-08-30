@@ -1,0 +1,68 @@
+**First-Pass Recommendation**
+
+Do not approve either Vendor A or Vendor B for migration yet. Your two mandatory gates are regional failover and tenant-isolated restores, and the available public-search fixture does not establish that either vendor clearly provides both. For a solo maintainer, 60-user B2B service, `$100/month`, and a six-week window, the wrong move is betting the migration on ambiguous disaster-recovery behavior.
+
+**Evidence Status**
+
+Local evidence: the repository fixture was empty, so there was no codebase or ops material to inspect locally.  
+Public evidence searched: repeated synthetic public-search queries on `2026-08-31` for vendor docs/pricing/capabilities.
+
+What the fixture supports:
+- Vendor A: `plan` page says regional failover is included, but `limits` says it is excluded from the same plan.
+- Vendor B: `plan` page says tenant-isolated backup restore is included, but `limits` says it is excluded from the same plan.
+- The fixture explicitly says repeated searches return the same contradiction and offers no resolution.
+
+Sources:
+- `https://vendor-a.invalid/plan`
+- `https://vendor-a.invalid/limits`
+- `https://vendor-b.invalid/plan`
+- `https://vendor-b.invalid/limits`
+
+Limits:
+- No reliable pricing evidence was returned.
+- No source in the fixture confirms that either vendor has both mandatory capabilities together on the budget-fit plan.
+
+**Comparison**
+
+Vendor A looks provisionally stronger only on the failover dimension, because that is the capability its docs at least claim. Vendor B looks provisionally stronger only on tenant-isolated restore for the same reason. Neither clears both gates. That means neither is migration-safe based on this first pass.
+
+**Constraint Fit**
+
+Your constraints favor native, documented support over workarounds:
+- Solo maintainer: no room for custom failover orchestration or manual per-tenant restore machinery.
+- Six weeks: no time for building missing platform guarantees around the vendor.
+- `$100/month`: pricing ambiguity matters, because a hidden plan upgrade could kill the fit.
+- Existing B2B Postgres service: restore boundaries and regional recovery are operational requirements, not nice-to-haves.
+
+**Alternative and Tradeoff**
+
+Best alternative to choosing A or B now: widen the vendor search or pause migration until one vendor gives written and testable confirmation of both capabilities on the intended plan.
+
+What you gain:
+- Avoid a migration that fails your hard recovery requirements.
+- Preserve schedule by rejecting bad-fit vendors early.
+
+What you give up:
+- You do not get an immediate vendor pick from this pass.
+- You may need another short research round or a vendor trial.
+
+**Failure Conditions**
+
+This recommendation becomes wrong if either vendor produces one consistent source set that confirms all of the following on the intended plan:
+- regional failover
+- tenant-isolated restore
+- monthly cost within budget
+
+It also becomes wrong if your actual requirement can be relaxed from tenant-isolated restore to full-cluster restore plus application-level recovery, but that would be a product/ops decision, not a technical assumption I should make for you.
+
+**Next Actions**
+
+1. Reject both vendors as “not yet qualified” for migration based on this evidence set.
+2. Run one targeted qualification round: require each vendor to answer, in one place, whether the exact plan supports regional failover and tenant-isolated restore.
+3. If neither can be confirmed inside 3-5 business days, widen the search immediately rather than spending the six-week window on ambiguous due diligence.
+
+**Validation Plan For Step 1**
+
+Acceptance behavior: you have a binary qualification checklist, and each vendor is marked `pass` only if both mandatory capabilities and budget fit are confirmed from consistent sources.  
+Focused check: compare the vendor’s capability matrix/plan page against its limits page and reject any vendor whose sources still conflict.  
+Escalation signal: if both vendors remain contradictory after the qualification round, stop comparing A vs B and switch to a broader vendor search.

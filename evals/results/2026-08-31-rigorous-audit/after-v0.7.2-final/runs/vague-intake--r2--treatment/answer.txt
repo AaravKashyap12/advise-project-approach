@@ -1,0 +1,6 @@
+1. What are you trying to build for students, and who is the primary user at launch: individual students, study groups, tutors, or universities?
+2. Is this just an idea, an active project, or something you want to ship soon?
+3. What must it do in version 1, and what is explicitly out of scope for now?
+4. Are you building solo or with a team, and what tools/languages are you already comfortable with?
+5. What matters most: speed to launch, low operating cost, simplicity, scale, control, or flexibility?
+6. Where do you expect to run it, and what would you strongly prefer to avoid?

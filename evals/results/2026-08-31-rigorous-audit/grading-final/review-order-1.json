@@ -1,0 +1,222 @@
+{
+  "source_packet": "C:/Users/aarav/Desktop/skills/evals/results/2026-08-31-rigorous-audit/grading-final/packet-order-1.json",
+  "scope": "Independent blind review of user utility using only the supplied requests, answers, environment, tool evidence, and frozen rubric. Anonymized path prefixes have no grading significance. No candidate identity was inferred.",
+  "evidence_note": "All candidate tests and validation plans are proposals, not executed results. Supplied tool logs establish only the recorded fixture inspections. No fixture tools, code, network calls, or additional agents were used for this review.",
+  "reviews": [
+    {
+      "id": "P01",
+      "preference": "A",
+      "confidence": "medium",
+      "rationale": "A gives more concrete overlap enforcement and proposes independent, synchronized transactions. B adds useful deployment and logging checks but weaker contention guidance. A's concurrency proposal is not itself a demonstrated deterministic test.",
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Exactly three steps retain Django/Postgres and center early checks on the booking write path."},
+            "Evidence calibration": {"rating": "pass", "evidence": "'The local fixture is empty' matches the supplied empty listings; acceptance checks are prospective, not reported successes."},
+            "Technical correctness": {"rating": "partial", "evidence": "Exclusion constraints can enforce overlap prevention; 'uniqueness logic or row locking around the ... slot set' needs additional conditions to be safe."},
+            "Actionability or intake": {"rating": "pass", "evidence": "Specifies saved start/end/provider, database-backed overlap rejection, separate transactions, and an inspectable appointment list."},
+            "Risk and validation": {"rating": "partial", "evidence": "Independent transactions and synchronization improve the proposal, but 'hit the critical section together' does not specify a forced conflicting interleaving. Advises debugging before expansion."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "Three bounded steps have observable checkpoints; no queues, caches, or service expansion is required upfront."}
+          },
+          "material_shortcomings": [
+            "Uniqueness alone does not prevent arbitrary interval overlaps. Locking only existing appointments cannot protect an empty slot set; a stable shared lock target or suitable exclusion constraint is needed.",
+            "Synchronization placement and transaction sequencing remain unspecified. Starting together can still serialize the vulnerable read/write sequence, so the word 'deterministic' is not sufficient evidence."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Exactly three implementation steps cover the chosen stack and early architecture checkpoints."},
+            "Evidence calibration": {"rating": "pass", "evidence": "Makes recommendations without claiming repository inspection, external research, or completed tests; no tools were served."},
+            "Technical correctness": {"rating": "partial", "evidence": "'Unique constraints' and 'a transaction around booking creation' do not by themselves enforce non-overlapping variable-length appointments."},
+            "Actionability or intake": {"rating": "pass", "evidence": "A migration, POST/read path, deployment-environment check, real Postgres test, and booking logs are concrete first work."},
+            "Risk and validation": {"rating": "partial", "evidence": "A 'realistic concurrent test' with two requests specifies neither independent transactions nor controlled overlap; a passing collision attempt may miss the race."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "Compact sequencing connects implementation to persistence, booking constraints, and operational visibility."}
+          },
+          "material_shortcomings": [
+            "Does not identify an overlap-capable database constraint or stable locking strategy; transactions and ordinary uniqueness are insufficient for general booking intervals.",
+            "The concurrent test has no controlled schedule. Logs and one successful race attempt cannot establish double-booking safety."
+          ]
+        }
+      }
+    },
+    {
+      "id": "P02",
+      "preference": "A",
+      "confidence": "medium",
+      "rationale": "A names suitable database enforcement options and avoids B's categorical architecture diagnosis. B's explicit availability-refresh journey is useful, but its near-simultaneous probe and failure interpretation weaken the requested early validation.",
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Three steps keep Django/Postgres and connect a small booking slice to early verification."},
+            "Evidence calibration": {"rating": "pass", "evidence": "'What to prove early' describes future checks; no inspection or successful execution is claimed."},
+            "Technical correctness": {"rating": "pass", "evidence": "A centralized booking function backed by 'exclusion-style constraints' is a sound enforcement option; the expected same-slot outcome is one winner."},
+            "Actionability or intake": {"rating": "pass", "evidence": "Names core models, write/read paths, the booking module, a Postgres integration harness, and query/request logging."},
+            "Risk and validation": {"rating": "partial", "evidence": "'If two requests race' lacks a controlled schedule; 'If this test is reliable, the architecture is viable' extends beyond evidence from one path."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "Each of the three steps states what to build and observe without demanding extra infrastructure."}
+          },
+          "material_shortcomings": [
+            "The concurrency check does not force the dangerous interleaving or clearly require it in the integration harness.",
+            "A reliable endpoint test and understandable query logs validate that slice, not architectural viability generally."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Three steps address the booking invariant, a user journey, and Postgres-backed checks within the chosen stack."},
+            "Evidence calibration": {"rating": "pass", "evidence": "States a single-team assumption and proposes acceptance checks; it does not report tests as already run."},
+            "Technical correctness": {"rating": "partial", "evidence": "'One transaction-wrapped booking function' does not specify the constraint or locking needed to make overlap rejection concurrency-safe."},
+            "Actionability or intake": {"rating": "pass", "evidence": "The 'see available slots, pick one, confirm' journey and disappearance of the persisted booking from availability are directly observable."},
+            "Risk and validation": {"rating": "partial", "evidence": "'Near-simultaneous attempts' need not expose a race; 'your architecture is wrong ... not just incomplete' overdiagnoses a failed check."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "The three stages are readable and relevant; the read-model check contributes real utility."}
+          },
+          "material_shortcomings": [
+            "Overlap enforcement is an acceptance goal without a concrete concurrency-safe database mechanism.",
+            "Near-simultaneous attempts are not a deterministic concurrency test. Two commits demonstrate an invariant failure requiring diagnosis, not that the architecture itself is necessarily wrong."
+          ]
+        }
+      }
+    },
+    {
+      "id": "P03",
+      "preference": "A",
+      "confidence": "medium",
+      "rationale": "A binds execution to an approved manifest and proposes a deliberate post-preview destination conflict. Those improve utility over confirmation and a sample batch alone. Neither answer fully establishes no-overwrite safety, and A's metadata-first scope is a drawback.",
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "Intent and scope": {"rating": "partial", "evidence": "Gives exactly two steps, but 'reads each photo's date from metadata' leaves potentially substantial parsing work inside the standard-library/weekend constraint."},
+            "Evidence calibration": {"rating": "pass", "evidence": "Labels filesystem assumptions and describes fixture checks prospectively; no successful execution is asserted."},
+            "Technical correctness": {"rating": "partial", "evidence": "An approved manifest is sound, but an existence check does not alone justify 'never clobbers'; general photo metadata decoding is unspecified."},
+            "Actionability or intake": {"rating": "pass", "evidence": "Provides a date-source manifest, collision suffixes, apply-from-manifest behavior, and a deliberately inserted destination conflict."},
+            "Risk and validation": {"rating": "partial", "evidence": "Creating a destination before apply tests stale previews, not a race between checking and renaming; the no-overwrite primitive remains undefined."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "Two distinct modes and small disposable fixtures make the proposed workflow easy to follow."}
+          },
+          "material_shortcomings": [
+            "Python's standard library has no general EXIF date decoder. A metadata-first implementation needs a bounded parser or an explicit filesystem-date-only policy to remain weekend-sized.",
+            "Checking destination existence can race with the rename. No atomic no-clobber operation or reliable partial-run recovery is specified, so 'never clobbers' is not established."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Exactly two steps retain a small offline workflow; choosing filesystem timestamps is compatible with the standard library."},
+            "Evidence calibration": {"rating": "pass", "evidence": "The dry run and copied-folder test are proposed actions, not reported results; no tools were served."},
+            "Technical correctness": {"rating": "partial", "evidence": "'Available metadata using the standard library' is underspecified, and 'skip anything with conflicts' identifies no write-time no-clobber mechanism."},
+            "Actionability or intake": {"rating": "pass", "evidence": "A terminal/CSV preview, explicit confirmation, path log, and copied batch of 10 to 20 photos are feasible first tasks."},
+            "Risk and validation": {"rating": "partial", "evidence": "The copied batch reduces testing risk, but there is no explicit apply-from-reviewed-plan contract or deliberate stale-destination check before the real 500-file run."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "Short, practical instructions fit the solo weekend task without extra infrastructure."}
+          },
+          "material_shortcomings": [
+            "Conflict detection is not an atomic no-overwrite guarantee, and confirmation does not ensure execution uses the exact reviewed plan.",
+            "The metadata path needs a concrete standard-library-compatible date policy; no adversarial conflict or partial-run recovery behavior is specified."
+          ]
+        }
+      }
+    },
+    {
+      "id": "P04",
+      "preference": "B",
+      "confidence": "high",
+      "rationale": "B places no-clobber enforcement at the write boundary and tests a stale preview. A explicitly suggests Path.rename(), which can replace existing files on POSIX. B remains incomplete because it does not identify the required standard-library implementation.",
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Exactly two steps use pathlib and filesystem mtime, with EXIF parsing deferred rather than assumed available."},
+            "Evidence calibration": {"rating": "pass", "evidence": "Presents a proposed manifest and copied-folder test; does not claim a completed safe rename or rollback."},
+            "Technical correctness": {"rating": "partial", "evidence": "Pathlib/mtime planning is feasible, but 'Path.rename()' can replace an existing destination on POSIX; deterministic ordering does not change that."},
+            "Actionability or intake": {"rating": "pass", "evidence": "Names the CLI modes, CSV fields, reviewed-manifest input, and a sample-copy test."},
+            "Risk and validation": {"rating": "fail", "evidence": "'Skips anything unexpected' gives no enforceable no-overwrite boundary. A rollback path log cannot recover file contents already overwritten by rename."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "Concise, two-step planning and application workflow fits the requested scale."}
+          },
+          "material_shortcomings": [
+            "Path.rename() is not a portable no-clobber primitive: on POSIX it can overwrite an existing file. Earlier collision detection cannot close a later check/write race.",
+            "A rollback log is not a rollback implementation and cannot restore overwritten bytes. Partial-apply and reversal behavior are not defined."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Exactly two steps explicitly limit date sourcing to locally available dates and exclude external metadata libraries."},
+            "Evidence calibration": {"rating": "pass", "evidence": "States the date-source assumption; the stale-preview check is a proposed test, not evidence of execution."},
+            "Technical correctness": {"rating": "partial", "evidence": "'Atomic no-clobber operation at the write boundary' is the right safety property, but no concrete standard-library operation or platform requirement is supplied."},
+            "Actionability or intake": {"rating": "pass", "evidence": "A validated plan, conflict/no-op cases, fail-closed writes, and a post-preview collision give clear implementation targets."},
+            "Risk and validation": {"rating": "partial", "evidence": "The injected pre-existing target checks stale-plan behavior, not the implementation's atomicity or interruption recovery."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "Two focused steps explain observable outcomes without expanding the small CLI into a larger system."}
+          },
+          "material_shortcomings": [
+            "There is no single portable standard-library rename-no-replace API identified here. The plan needs an actual supported no-clobber strategy and its filesystem/platform conditions.",
+            "No interrupted or partially applied batch recovery policy is supplied. The stale-preview example alone cannot establish atomicity."
+          ]
+        }
+      }
+    },
+    {
+      "id": "P05",
+      "preference": "B",
+      "confidence": "medium",
+      "rationale": "Both compute the complete fictional monthly costs correctly. B gives the same usable cost/operations recommendation with fewer unsupported assurances and less redundant work. Its lower-operations inference still needs qualification.",
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Compares both hosts for two environments, stated storage/delivery, and backups under the labor-excluded budget; explicitly calls the snapshot synthetic."},
+            "Evidence calibration": {"rating": "partial", "evidence": "The pricing read is recorded, but 'safer defaults' and 'cleaner environment separation' are not established by that fixture."},
+            "Technical correctness": {"rating": "partial", "evidence": "The $130 and $92 totals and $38 difference are correct. 'More expensive faster' extrapolates beyond the supplied PlainHost workload price."},
+            "Actionability or intake": {"rating": "pass", "evidence": "Gives a clear recommendation and connects the $38 premium to willingness to own the listed operator chores."},
+            "Risk and validation": {"rating": "partial", "evidence": "Notes budget sensitivity and operator tolerance, but treats lower ExampleCloud operating burden as established without an operational responsibility statement."},
+            "Clarity and proportionality": {"rating": "partial", "evidence": "Repeated recommendation/tradeoff sections and a worksheet that recalculates the supplied totals add work without resolving the operational uncertainty."}
+          },
+          "material_shortcomings": [
+            "The snapshot assigns duties to PlainHost's operator but does not specify ExampleCloud's maintenance, restore, security-default, or isolation guarantees.",
+            "ExampleCloud's extra-delivery rate is known, but PlainHost's cost beyond the stated workload is not. The relative growth-rate claim is unsupported."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Answers the requested synthetic cost and operating-work comparison, including both environments and daily backups."},
+            "Evidence calibration": {"rating": "partial", "evidence": "The served read supports the figures; 'does not assign ... the same explicit ops burden' is careful, but 'wins on lower operating work' remains an inference."},
+            "Technical correctness": {"rating": "pass", "evidence": "Correctly calculates $130 = $20 + $20 + $2 + $80 + $8 and $92 = $30 + $12 + $50; neither exceeds $150."},
+            "Actionability or intake": {"rating": "pass", "evidence": "Recommends ExampleCloud for the solo operator while identifying PlainHost's $38 saving and specific maintenance responsibilities."},
+            "Risk and validation": {"rating": "partial", "evidence": "Identifies patching, hardening, restores, monitoring, and capacity work; the assumed ExampleCloud reduction in those duties still needs confirmation."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "Compact cost breakdown and recommendation directly support the pre-build decision without requiring a deployment or redundant worksheet."}
+          },
+          "material_shortcomings": [
+            "The lower-ops recommendation should be explicitly conditional: absence of listed ExampleCloud duties is not a stated managed-service or restoration guarantee."
+          ]
+        }
+      }
+    },
+    {
+      "id": "P06",
+      "preference": "A",
+      "confidence": "medium",
+      "rationale": "Both current totals are correct, and either host could be reasonable depending on operating tolerance. A avoids B's unsupported bandwidth reversal and automatic switch after a failed restore. The preference is not based on which vendor name is recommended.",
+      "candidates": {
+        "A": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Uses the synthetic snapshot to compare the complete monthly bill and operating work for the stated pre-build decision."},
+            "Evidence calibration": {"rating": "partial", "evidence": "A read of pricing.md is recorded; 'clearly carries less operating work' is stronger than the snapshot's unspecified ExampleCloud responsibilities support."},
+            "Technical correctness": {"rating": "pass", "evidence": "The $130/$92 totals, $38 premium, budget fit, and enumerated PlainHost operator duties match the supplied data."},
+            "Actionability or intake": {"rating": "pass", "evidence": "Provides a recommendation and a clear cheaper alternative for someone willing to perform the systems work."},
+            "Risk and validation": {"rating": "partial", "evidence": "Acknowledges the cash/maintenance tradeoff but does not qualify the assumed reduction in ExampleCloud operating responsibility."},
+            "Clarity and proportionality": {"rating": "pass", "evidence": "A short itemized comparison and conditional alternative are proportionate to choosing hosting before building."}
+          },
+          "material_shortcomings": [
+            "ExampleCloud's lower operating burden is inferred, not guaranteed by the fixture. Confirm which maintenance and restore duties remain with the developer before treating the premium as buying those services."
+          ]
+        },
+        "B": {
+          "dimensions": {
+            "Intent and scope": {"rating": "pass", "evidence": "Compares both fictional totals and recommends PlainHost conditionally on willingness to own operations; prioritizing cash is a defensible stated condition."},
+            "Evidence calibration": {"rating": "partial", "evidence": "The recorded read supports the synthetic pricing claim, but 'lower-ops choice' and avoiding self-management 'almost entirely' exceed the stated ExampleCloud service information."},
+            "Technical correctness": {"rating": "partial", "evidence": "The arithmetic is correct; bandwidth beyond 1500 GB is not a demonstrated reason for PlainHost to become worse because its higher-usage pricing is absent."},
+            "Actionability or intake": {"rating": "pass", "evidence": "The maintenance checklist and isolated staging restore address real operator work; these are useful foundation checks, not missing product features."},
+            "Risk and validation": {"rating": "partial", "evidence": "Testing a restore without touching production is sensible, but 'If that restore drill fails ... switch' skips diagnosing configuration, procedure, or tooling causes."},
+            "Clarity and proportionality": {"rating": "partial", "evidence": "Repeats the cost decision, asks for a duplicate worksheet, and expands the pre-build comparison into a staging/production deployment validation plan."}
+          },
+          "material_shortcomings": [
+            "The supposed ExampleCloud reduction in self-management is not established by the snapshot.",
+            "Higher bandwidth warrants recalculation, not an automatic reversal away from PlainHost; the required comparison data are missing.",
+            "One failed restore drill does not show the host choice is wrong. Diagnose and retest before recommending a switch; intolerable ongoing operating work is a separate, valid reason to reconsider."
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Environment: external research is unavailable in this controlled run. Local files, when present, are synthetic test fixtures. Do not use network fallbacks. Answer the user request, not the evaluation designer.
+
+User request:
+I have chosen Django and Postgres for a small appointment-booking product. Give me the first three implementation steps, but make sure I can tell early whether the architecture is actually working.
